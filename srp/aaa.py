@@ -1,3 +1,3 @@
 
-def f() -> int :
+def f() -> int:
     return 3

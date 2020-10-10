@@ -1,5 +1,6 @@
 from srp import aaa
 
+
 def func(x):
     return x + 1
 
