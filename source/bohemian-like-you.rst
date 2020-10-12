@@ -30,8 +30,8 @@ intro
 
 couplet
 
-	| You've got a great :underline:`car`:sup:`A`
-	| Yeah, what's wrong with it today?
+	| You\'ve :sub:`3`\ got a :sub:`4`\ great :sub:`1`:underline:`car`:sup:`A`
+	| Yeah, what\'s wrong with it today?
 	| I used to have one too
 	| Baby, oh, come and have a look
 

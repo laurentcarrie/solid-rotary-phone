@@ -89,7 +89,7 @@ nosidebar = True
 # ---sphinx-themes-----
 html_theme = 'yummy_sphinx_theme'
 # html_theme = 'alabaster'
-html_theme = 'bootstrap-astropy'
+# html_theme = 'bootstrap-astropy'
 if False:
     import sphinx_theme
     html_theme = 'stanford_theme'
@@ -103,7 +103,7 @@ if False:
     html_theme_path = p
 
 
-# html_style =  'css/custom.css'
+html_style = 'css/custom.css'
 
 
 html_theme_options = {
