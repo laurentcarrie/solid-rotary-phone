@@ -1,26 +1,29 @@
-=====================================
-bohemian like you ( Dandy Warhols )
-=====================================
+\documentclass[a4paper]{article}
 
-.. index::
-    single: bohemian like you - Dandy Warhols
-    single: Dandy Warhols ; bohemian like you
+\begin{document}
 
-.. role:: underline
-    :class: underline
+Documents for \verb+lilypond-book+ may freely mix music and text.
+For example,
 
-.. csv-table:: couplet
-    :align: center
-    :class: xxx
+\begin{lilypond}
+\relative {
+  c'2 e2 \tuplet 3/2 { f8 a b } a2 e4
+}
+\end{lilypond}
 
-         F,C % % % D\ :sub:`m`
+Options are put in brackets.
 
+\begin{lilypond}[fragment,quote,staffsize=26,verbatim]
+  c'4 f16
+\end{lilypond}
 
+Larger examples can be put into a separate file, and introduced with
+\verb+\lilypondfile+.
 
-.. image:: bohemian-like-you.png
-   :scale: 10 %
-   :alt: alternate text
-   :align: center
+%\lilypondfile[quote,noindent]{screech-and-boink.ly}
+
+(If needed, replace @file{screech-and-boink.ly} by any @file{.ly} file
+you put in the same directory as this file.)
 
 intro
 
@@ -30,7 +33,7 @@ intro
 
 couplet
 
-	| You've got a great :underline:`car`:sup:`A`
+	| You've got a great car
 	| Yeah, what's wrong with it today?
 	| I used to have one too
 	| Baby, oh, come and have a look
@@ -89,3 +92,6 @@ couplet
 	| Ooh, ooh, ooh
 	| Ooh, ooh, ooh
 	| Ooh, ooh, ooh
+
+
+\end{document}

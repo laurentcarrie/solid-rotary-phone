@@ -7,14 +7,14 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Sphinx-Themes template'
-copyright = '2018, sphinx-themes.org'
-author = 'sphinx-themes.org'
+project = 'La bande à Pierre, Stéphane, Céline, Laurent'
+copyright = '2020'
+author = 'laurent'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '1'
+release = ''
 
 
 # -- General configuration ---------------------------------------------------
@@ -85,5 +85,39 @@ html_static_path = ['_static']
 # 'searchbox.html']``.
 #
 # html_sidebars = {}
+nosidebar = True
 # ---sphinx-themes-----
-html_theme = 'yummy_sphinx_theme'
+# html_theme = 'yummy_sphinx_theme'
+# html_theme = 'alabaster'
+# html_theme = 'bootstrap-astropy'
+if False:
+    import sphinx_theme
+    html_theme = 'stanford_theme'
+    html_theme_path = [sphinx_theme.get_html_theme_path('stanford-theme')]
+
+if True:
+    html_theme = 'p-greycreme'
+    from PSphinxTheme import utils
+
+    p, html_theme, needs_sphinx = utils.set_psphinxtheme(html_theme)
+    html_theme_path = p
+
+
+html_css_files = [
+    'css/custom.css',
+]
+html_theme_options = {
+    'navs': {
+        #        'Home': 'http://tagnumelite.elitekast.com',
+        #        'Blog': 'http://blog.elitekast.com',
+        #        'Forum': 'http://forum.elitekast.com',
+    },
+    'github_url': 'TagnumElite/yummy_sphinx_theme',
+    'bitbucket_url': 'TagnumElite/yummy_sphinx_theme',
+    'gitlab_url': 'TagnumElite/yummy_sphinx_theme',
+    # 'navbar_icon': 'spin fa-book',
+    'jumbotron_use_geopattern': True,
+    'nosidebar': True,
+    'navbar_icon': 'music',
+    'home_name': 'let\'s rock !'
+}

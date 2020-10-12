@@ -5,8 +5,12 @@ set -x
 
 rm -rf build
 
-lilypond -dbackend=eps -dresolution=600 --png source/bohemian-like-you.ly
-cp bohemian-like-you.png source/.
+lilypond_files="bohemian-like-you scar-tissue"
+
+for f in $lilypond_files ; do
+  lilypond -dbackend=eps -dresolution=600 --png source/$f.ly
+  cp $f.png source/.
+done
 
 make latexpdf
 make html

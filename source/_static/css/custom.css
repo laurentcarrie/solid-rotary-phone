@@ -1,0 +1,16 @@
+.underline {
+  text-decoration: underline;
+}
+
+
+table.xxx, th.xxx, td.xxx {
+  border: 10px solid green;
+  background-color: lavender ;
+  foreground-color: black ;
+}
+
+table, th, td {
+  border: 10px solid green;
+  background-color: lavender ;
+  foreground-color: black ;
+}

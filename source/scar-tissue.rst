@@ -4,14 +4,15 @@ scar tissue ( Red Hot Chili Peppers )
 
 
 
-.. csv-table:: couplet
+.. image:: scar-tissue.png
+   :scale: 25 %
+   :alt: alternate text
+   :align: center
 
-         F,C % % % D\ :sub:`m`
 
 
+couplet 1
 
-
-{couplet 1}
 	| Scar tissue that I wish you saw
 	| Sarcastic mister know it all
 	| Close your eyes and I'll kiss you 'cause
@@ -21,7 +22,8 @@ scar tissue ( Red Hot Chili Peppers )
 	| With the birds I'll share
 	| This lonely view
 
-{couplet 2}
+couplet 2
+
 	| Push me up against the wall
 	| Young Kentucky girl in a push-up bra
 	| Fallin' all over myself
@@ -29,7 +31,8 @@ scar tissue ( Red Hot Chili Peppers )
 	| With the birds I'll share
 	| This lonely view...
 
-{couplet 3}
+couplet 3
+
 	| Blood loss in a bathroom stall
 	| Southern girl with a scarlet drawl
 	| Wave good-bye to ma and pa 'cause

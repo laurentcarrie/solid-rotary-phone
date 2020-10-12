@@ -6,14 +6,17 @@
 Bienvenue sur notre set list (Pierre Stéphane Céline Laurent) !
 ===============================================================
 
+.. role:: underline
+    :class: underline
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   bohemian-like-you
    creep
    scar-tissue
-   bohemian-like-you
+
 
 
 Indices and tables
