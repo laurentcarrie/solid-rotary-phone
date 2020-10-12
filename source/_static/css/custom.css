@@ -3,14 +3,22 @@
 }
 
 
-table.xxx, th.xxx, td.xxx {
-  border: 10px solid green;
+table.xxx{
+       border-collapse: collapse;
   background-color: lavender ;
   foreground-color: black ;
+    text-align: center;
+          vertical-align: center;
+
+    padding: 0px;
 }
 
-table, th, td {
-  border: 10px solid green;
+th, td {
+  border: 1px solid green;
   background-color: lavender ;
   foreground-color: black ;
+    text-align: center;
+      vertical-align: center;
+
+    padding: 10px;
 }

@@ -87,15 +87,15 @@ html_static_path = ['_static']
 # html_sidebars = {}
 nosidebar = True
 # ---sphinx-themes-----
-# html_theme = 'yummy_sphinx_theme'
+html_theme = 'yummy_sphinx_theme'
 # html_theme = 'alabaster'
-# html_theme = 'bootstrap-astropy'
+html_theme = 'bootstrap-astropy'
 if False:
     import sphinx_theme
     html_theme = 'stanford_theme'
     html_theme_path = [sphinx_theme.get_html_theme_path('stanford-theme')]
 
-if True:
+if False:
     html_theme = 'p-greycreme'
     from PSphinxTheme import utils
 
@@ -103,9 +103,9 @@ if True:
     html_theme_path = p
 
 
-html_css_files = [
-    'css/custom.css',
-]
+# html_style =  'css/custom.css'
+
+
 html_theme_options = {
     'navs': {
         #        'Home': 'http://tagnumelite.elitekast.com',

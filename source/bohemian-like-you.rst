@@ -16,11 +16,11 @@ bohemian like you ( Dandy Warhols )
          F,C % % % D\ :sub:`m`
 
 
-
-.. image:: bohemian-like-you.png
-   :scale: 10 %
-   :alt: alternate text
-   :align: center
+..
+    .. image:: bohemian-like-you.png
+       :scale: 10 %
+       :alt: alternate text
+       :align: center
 
 intro
 
