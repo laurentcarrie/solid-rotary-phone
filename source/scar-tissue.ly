@@ -1,3 +1,5 @@
+\version "2.20.0"
+
 \paper {
   indent = 0\mm
   line-width = 110\mm
