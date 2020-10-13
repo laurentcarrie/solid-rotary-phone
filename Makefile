@@ -52,5 +52,5 @@ pdf :  mount images
 	@$(SPHINXBUILD) -M latexpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 s3 : html pdf
-	aws s3 cp --recursive build/html/ s3://s3-lolo-web/html
-	aws s3 cp  build/latex/labandepierrestphaneclinelaurent.pdf s3://s3-lolo-web/pdf/labandepierrestphaneclinelaurent.pdf
+	aws s3 cp --recursive build/html/ s3://s3-lolo-web/labandeapierrestephanecelinelaurent/html
+	#aws s3 cp  build/latex/labandepierrestphaneclinelaurent.pdf s3://s3-lolo-web/pdf/labandepierrestphaneclinelaurent.pdf

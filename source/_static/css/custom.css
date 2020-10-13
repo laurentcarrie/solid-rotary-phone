@@ -1,9 +1,32 @@
 @import "theme.css";
 
-.underline {
+.bar1 {
   text-decoration: underline;
+  color:red ;
+  font-weight: bold ;
 }
 
+.bar1::before {
+  content: "1";
+  color: black;
+  font-weight: normal;
+  vertical-align: sub;
+  font-size: x-small;
+}
+
+.bar45 {
+  text-decoration: underline;
+  color:mediumvioletred ;
+  font-weight: bold ;
+}
+
+.bar45::before {
+  content: "45";
+  color: black ;
+  font-weight: normal ;
+  vertical-align: sub ;
+  font-size: x-small ;
+}
 
 table.xxx{
        border-collapse: collapse;
@@ -19,8 +42,62 @@ th, td {
   border: 1px solid green;
   background-color: lavender ;
   foreground-color: black ;
-    text-align: center;
-      vertical-align: center;
+  text-align: center;
+  vertical-align: center;
+  padding: 10px;
+}
 
-    padding: 10px;
+
+table.structure{
+  border-collapse: collapse;
+  background-color: lavender ;
+  foreground-color: black ;
+  text-align: center;
+  vertical-align: center;
+  padding: 0px;
+  font-size: 1em;
+  line-height: 0.5em ;
+  column-width: 10em;
+
+}
+
+th, td {
+  border: 1px solid blue;
+  background-color: lavender ;
+  foreground-color: red ;
+  text-align: center;
+  vertical-align: center;
+  padding:10px ;
+  height:5em ;
+  width: auto;
+}
+
+ul,ol,dl {
+  font-size: 1.5rem;
+}
+
+li, p {
+  line-height: 1.5;
+}
+
+/* Styles des listes descriptives */
+
+
+dd, dt {
+  line-height: 1.5;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: 1.5rem;
+}
+
+li:nth-child(odd) {
+    color: darkgreen;
+}
+li:nth-child(even) {
+    color: indianred;
 }
