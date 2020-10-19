@@ -34,6 +34,8 @@ D G D G B D
     :align: left
     :class: structure
 
+`Link text <wav/bohemian-like-you.wav>`_
+
 structure :
 
         #. 8, intro d

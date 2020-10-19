@@ -11,6 +11,8 @@
 
 
 \include "predefined-guitar-fretboards.ly"
+
+\score {
 <<
   \new ChordNames {
     \chordmode {
@@ -24,3 +26,7 @@
   }
 
 >>
+\layout {}
+\midi {}
+
+}

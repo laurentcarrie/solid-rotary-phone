@@ -66,6 +66,9 @@ mynotes = {
  b1 d1 a1 e1
  }
 
+ \score {
+
+
 <<
 % \new ChordNames {
 %  \chordmode {
@@ -92,4 +95,10 @@ mynotes = {
    % \set TabStaff.stringTunings = #custom-tuning
      \mynotes
   }
+
+
 >>
+ \layout {}
+
+  \midi {}
+}
