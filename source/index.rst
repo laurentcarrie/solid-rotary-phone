@@ -13,7 +13,7 @@ Bienvenue sur notre set list (Pierre Stéphane Céline Laurent) !
    :maxdepth: 2
    :caption: Contents:
 
-   bohemian-like-you
+   bohemian-like-you/bohemian-like-you
    creep
    scar-tissue
 

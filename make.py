@@ -18,7 +18,7 @@ html_build_dir = here / 'html-build'
 logging.info(f'source_dir : {build_dir}')
 rst_sources = [source_dir / f for f in [
     'index.rst',
-    'bohemian-like-you.rst',
+    Path('bohemian-like-you')/'bohemian-like-you.rst',
     'scar-tissue.rst',
     'creep.rst'
 ]]
@@ -107,6 +107,7 @@ def scan_ly_ly(ly_file: Path) -> List[Path]:
 def write_if_necessary(source, target):
     if not target.exists() or target.stat().st_mtime < source.stat().st_mtime:
         logging.info(f'... to copy : {target}')
+        target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(source.read_bytes())
 
 
