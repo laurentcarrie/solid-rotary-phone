@@ -24,6 +24,7 @@ help:
 start :
 
 %.png : %.ly
+	ly reformat -o $< $<
 	lilypond -dbackend=eps -dresolution=600 --png --output $(@:.png=) $<
 
 %.midi : %.ly
