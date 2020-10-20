@@ -5,6 +5,7 @@ import sys
 import logging
 from typing import List
 import re
+import click
 
 logging.basicConfig(level=logging.INFO)
 
@@ -141,7 +142,10 @@ def copy_to_s3():
     print('The exit code was: %d' % p.returncode)
 
 
-if __name__ == '__main__':
+@click.command()
+@click.option('--s3', default=False, is_flag=True, help='upload to s3')
+def main(s3):
+
     try:
         mount([source_dir/'conf.py', source_dir/'_static'/'css'/'custom.css'])
         ret = mount(rst_sources)
@@ -149,10 +153,8 @@ if __name__ == '__main__':
 
         for f in ret:
             if f.suffix == '.png':
-                logging.info(f'xxxxxxxxxxxxxxxxxx {f}')
                 make_png(source=f.parent/(f.stem+'.ly'), target=f)
             if f.suffix == '.wav':
-                logging.info(f'xxxxxxxxxxxxxxxxxx {f}')
                 make_wav(source=f.parent/(f.stem+'.midi'), target=f)
 
         p = subprocess.run(['sphinx-build', '-M', 'html',
@@ -164,8 +166,13 @@ if __name__ == '__main__':
                 write_if_necessary(f, html_build_dir/'html' /
                                    f.relative_to(build_dir))
 
-        copy_to_s3()
+        if s3:
+            copy_to_s3()
 
     except Exception as e:
         logging.error(e)
         traceback.print_exc(file=sys.stdout)
+
+
+if __name__ == '__main__':
+    main()
