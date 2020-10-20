@@ -42,10 +42,12 @@ src_files= \
 
 lilypond_png= \
 	$(SOURCEDIR)/bohemian-like-you.png \
+	$(SOURCEDIR)/bohemian-like-you-voice.png \
 	$(SOURCEDIR)/scar-tissue.png
 
 lilypond_wav= \
 	$(SOURCEDIR)/bohemian-like-you.wav \
+	$(SOURCEDIR)/bohemian-like-you-voice.wav \
 	$(SOURCEDIR)/scar-tissue.wav
 
 images : $(lilypond_png)

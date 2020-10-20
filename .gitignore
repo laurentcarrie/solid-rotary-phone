@@ -127,6 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/source/bohemian-like-you.png
-/source/scar-tissue.png
-/source2/
+/source/*.png
+/source/*.midi
+/source/*.tex
+/source/*.wav
+/source/*.texi
+/source/*.count

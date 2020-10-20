@@ -34,7 +34,16 @@ D G D G B D
     :align: left
     :class: structure
 
-`Link text <wav/bohemian-like-you.wav>`_
+`accords <wav/bohemian-like-you.wav>`_
+
+
+.. image:: bohemian-like-you-voice.png
+       :scale: 10 %
+       :alt: alternate text
+       :align: center
+
+`voix <wav/bohemian-like-you-voice.wav>`_
+
 
 structure :
 
