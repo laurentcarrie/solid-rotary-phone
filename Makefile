@@ -78,3 +78,4 @@ clean :
 	rm -f $(SOURCEDIR)/*.pdf
 	rm -f $(SOURCEDIR)/*.eps
 	rm -f $(SOURCEDIR)/snippet*.ly
+	rm -f $(SOURCEDIR)/*.midi

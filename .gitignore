@@ -133,3 +133,4 @@ dmypy.json
 /source/*.wav
 /source/*.texi
 /source/*.count
+/html-build/
