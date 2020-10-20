@@ -1,3 +1,6 @@
+*~
+/.idea
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -134,3 +137,4 @@ dmypy.json
 /source/*.texi
 /source/*.count
 /html-build/
+/solid-rotary-phone.iml
