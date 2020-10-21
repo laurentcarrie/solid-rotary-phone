@@ -13,20 +13,20 @@
 \include "predefined-guitar-fretboards.ly"
 
 \score {
-<<
-  \new ChordNames {
-    \chordmode {
-      c1 | f | g | c
+  <<
+    \new ChordNames {
+      \chordmode {
+        c1 | f | g | c
+      }
     }
-  }
-  \new FretBoards {
-    \chordmode {
-      c1 | f | g | c
+    \new FretBoards {
+      \chordmode {
+        c1 | f | g | c
+      }
     }
-  }
 
->>
-\layout {}
-\midi {}
+  >>
+  \layout {}
+  \midi {}
 
 }

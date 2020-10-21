@@ -34,12 +34,6 @@ mychords = \chordmode {
       \verseOne
     }
 
-    \new Voice = "second" {
-      \tempo 4 = 131
-      % \set TabStaff.stringTunings = #custom-tuning
-      \othervoice
-    }
-
   >>
   \layout {}
 

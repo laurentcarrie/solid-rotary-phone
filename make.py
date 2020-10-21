@@ -1,9 +1,10 @@
 from pathlib import Path
 import subprocess
+from subprocess import CompletedProcess
 import traceback
 import sys
 import logging
-from typing import List
+from typing import List, Callable
 import re
 import click
 
@@ -18,17 +19,25 @@ html_build_dir = here / 'html-build'
 logging.info(f'source_dir : {build_dir}')
 rst_sources = [source_dir / f for f in [
     'index.rst',
-    Path('bohemian-like-you')/'bohemian-like-you.rst',
+    Path('bohemian-like-you') / 'bohemian-like-you.rst',
     'scar-tissue.rst',
     'creep.rst'
 ]]
 
 
-def check_output(func):
+def check_output(func: Callable[[Path, Path], CompletedProcess]):
     def inner(source: Path, target: Path):
+        if not source.exists():
+            logging.error(f'file does not exist : {source}')
+            raise Exception(f'file does not exist : {source}')
         if not target.exists() or \
                 target.stat().st_mtime < source.stat().st_mtime:
-            func(source, target)
+            p = func(source, target)
+            if p.returncode != 0:
+                logging.error(f'command returned code {p.returncode}')
+                logging.error(f'{p.args}')
+                logging.error(f'{p.stdout}')
+                logging.error(f'{p.stderr}')
             if not target.exists():
                 raise Exception(f'target {target} not  built')
         return
@@ -38,21 +47,25 @@ def check_output(func):
 @check_output
 def make_png(source: Path, target: Path):
     p = subprocess.run(['lilypond', '-dbackend=eps', '-dresolution=600',
-                        '--png', '--output', str(target.parent/target.stem),
+                        '--png', '--output', str(target.parent / target.stem),
                         str(source)])
-    print('The exit code was: %d' % p.returncode)
+    return p
 
-    return target
+
+@check_output
+def make_midi(source: Path, target: Path):
+    p = subprocess.run(['lilypond', '-dmidi-extension=midi',
+                        '--output', str(target.parent / target.stem),
+                        str(source)])
+    return p
 
 
 @check_output
 def make_wav(source: Path, target: Path):
     p = subprocess.run(['fluidsynth', '-F', str(target),
-                        '/usr/share/sounds/sf2/FluidR3_GM.sf2', str(source)])
-
-    print('The exit code was: %d' % p.returncode)
-
-    return target
+                        '/usr/share/sounds/sf2/FluidR3_GM.sf2',
+                        str(source)])
+    return p
 
 
 def scan_rst(rst_file: Path) -> List[Path]:
@@ -100,6 +113,8 @@ def scan_ly_ly(ly_file: Path) -> List[Path]:
                 logging.info(f'---- while scanning {ly_file} : <{link}>')
                 if link not in built_in_ly:
                     ret.append(ly_file.parent / link)
+                    inner_deps = scan_ly_ly(ly_file.parent / link)
+                    ret = ret + inner_deps
 
     return ret
 
@@ -114,8 +129,8 @@ def write_if_necessary(source, target):
 def mount(srcfiles: List[Path]) -> List[Path]:
     if not build_dir.exists():
         build_dir.mkdir()
-    (build_dir/'_static').mkdir(exist_ok=True)
-    (build_dir/'_static'/'css').mkdir(exist_ok=True)
+    (build_dir / '_static').mkdir(exist_ok=True)
+    (build_dir / '_static' / 'css').mkdir(exist_ok=True)
     ret = []
     for source in srcfiles:
         logging.info(f'mount {source}')
@@ -138,34 +153,72 @@ def mount(srcfiles: List[Path]) -> List[Path]:
 def copy_to_s3():
     p = subprocess.run([
         'aws', 's3', 'cp',
-        '--recursive', str(html_build_dir/'html'),
+        '--recursive', str(html_build_dir / 'html'),
         's3://s3-lolo-web/labandeapierrestephanecelinelaurent/html'])
     print('The exit code was: %d' % p.returncode)
 
 
+def rmdir_f(path: Path):
+    for p in path.iterdir():
+        if p.is_file():
+            p.unlink()
+        else:
+            if p.is_dir():
+                rmdir_f(p)
+                p.rmdir()
+            else:
+                raise Exception(f'not a file or a dir : {p}')
+
+
+def beautify_ly(root: Path):
+    for f in root.iterdir():
+        if f.is_file() and f.suffix == '.ly':
+            logging.info(f'reformat {f}')
+            p = subprocess.run(['ly', 'reformat;write', '-o', str(f), str(f)])
+            if p.returncode != 0:
+                logging.error(p.args)
+                raise Exception(p.args)
+        if f.is_dir():
+            beautify_ly(f)
+
+
 @click.command()
-@click.option('--s3', default=False, is_flag=True, help='upload to s3')
-def main(s3):
+@click.option('--clean-first', default=False, is_flag=True,
+              help='clean build directories')
+@click.option('--s3', default=False, is_flag=True, help='reformat ly files')
+@click.option('--reformat', default=False, is_flag=True, help='upload to s3')
+@click.option('--build', default=False, is_flag=True, help='build')
+def main(s3, clean_first, reformat, build):
 
     try:
-        mount([source_dir/'conf.py', source_dir/'_static'/'css'/'custom.css'])
-        ret = mount(rst_sources)
-        ret = [build_dir/f.relative_to(source_dir) for f in ret]
+        if reformat:
+            beautify_ly(source_dir)
 
-        for f in ret:
-            if f.suffix == '.png':
-                make_png(source=f.parent/(f.stem+'.ly'), target=f)
-            if f.suffix == '.wav':
-                make_wav(source=f.parent/(f.stem+'.midi'), target=f)
+        if clean_first:
+            rmdir_f(build_dir)
+            rmdir_f(html_build_dir)
 
-        p = subprocess.run(['sphinx-build', '-M', 'html',
-                            str(build_dir), str(html_build_dir)])
-        print('The exit code was: %d' % p.returncode)
+        if build:
+            mount([source_dir / 'conf.py', source_dir / '_static' / 'css' / 'custom.css'])
+            ret = mount(rst_sources)
+            ret = [build_dir / f.relative_to(source_dir) for f in ret]
 
-        for f in ret:
-            if f.suffix == '.wav':
-                write_if_necessary(f, html_build_dir/'html' /
-                                   f.relative_to(build_dir))
+            for f in ret:
+                if f.suffix == '.png':
+                    make_png(source=f.parent / (f.stem + '.ly'), target=f)
+                if f.suffix == '.wav':
+                    make_midi(source=f.parent / (f.stem + '.ly'),
+                              target=f.parent / (f.stem + '.midi'))
+                    make_wav(source=f.parent / (f.stem + '.midi'), target=f)
+
+            p = subprocess.run(['sphinx-build', '-M', 'html',
+                                str(build_dir), str(html_build_dir)])
+            print('The exit code was: %d' % p.returncode)
+
+            for f in ret:
+                if f.suffix == '.wav':
+                    write_if_necessary(f, html_build_dir / 'html'
+                                       / f.relative_to(build_dir))
 
         if s3:
             copy_to_s3()

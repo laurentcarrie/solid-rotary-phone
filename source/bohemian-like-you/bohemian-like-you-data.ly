@@ -1,3 +1,16 @@
+
+
+verseOne = \lyricmode {
+  you've got a great car, what's wrong with it to -- day,
+  I used to have one too,
+  ba -- by oh come and have a look I real -- ly love,
+  your hair -- do yeah, I'm glad you like mine too, see
+  we're look -- ing pret -- ty cool look at you,
+  cause I like you, yeah I like you, and I'm fee -- ling
+  so bo -- he -- mi -- an like you, yeah I like you,
+  yea I like you, and I feel whoa woo
+}
+
 mainvoice = {
   r4. b'8 b' b' d''4
   |
