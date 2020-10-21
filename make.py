@@ -189,7 +189,6 @@ def beautify_ly(root: Path):
 @click.option('--reformat', default=False, is_flag=True, help='upload to s3')
 @click.option('--build', default=False, is_flag=True, help='build')
 def main(s3, clean_first, reformat, build):
-
     try:
         if reformat:
             beautify_ly(source_dir)
@@ -199,7 +198,8 @@ def main(s3, clean_first, reformat, build):
             rmdir_f(html_build_dir)
 
         if build:
-            mount([source_dir / 'conf.py', source_dir / '_static' / 'css' / 'custom.css'])
+            mount([source_dir / 'conf.py', source_dir /
+                   '_static' / 'css' / 'custom.css'])
             ret = mount(rst_sources)
             ret = [build_dir / f.relative_to(source_dir) for f in ret]
 
