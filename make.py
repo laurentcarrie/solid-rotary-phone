@@ -12,18 +12,6 @@ logging.basicConfig(level=logging.INFO)
 
 here = Path(__file__).parent
 
-source_dir = here / 'source'
-logging.info(f'source_dir : {source_dir}')
-build_dir = here / 'build'
-html_build_dir = here / 'html-build'
-logging.info(f'source_dir : {build_dir}')
-rst_sources = [source_dir / f for f in [
-    'index.rst',
-    Path('bohemian-like-you') / 'bohemian-like-you.rst',
-    'scar-tissue.rst',
-    'creep.rst'
-]]
-
 
 def check_output(func: Callable[[Path, Path], CompletedProcess]):
     def inner(source: Path, target: Path):
@@ -38,6 +26,7 @@ def check_output(func: Callable[[Path, Path], CompletedProcess]):
                 logging.error(f'{p.args}')
                 logging.error(f'{p.stdout}')
                 logging.error(f'{p.stderr}')
+                raise Exception(f'command returned code {p.returncode}')
             if not target.exists():
                 raise Exception(f'target {target} not  built')
         return
@@ -126,7 +115,7 @@ def write_if_necessary(source, target):
         target.write_bytes(source.read_bytes())
 
 
-def mount(srcfiles: List[Path]) -> List[Path]:
+def mount(srcfiles: List[Path], source_dir: Path, build_dir: Path) -> List[Path]:
     if not build_dir.exists():
         build_dir.mkdir()
     (build_dir / '_static').mkdir(exist_ok=True)
@@ -150,15 +139,19 @@ def mount(srcfiles: List[Path]) -> List[Path]:
     return ret
 
 
-def copy_to_s3():
+def copy_to_s3(html_build_dir: Path, dest: str):
+
     p = subprocess.run([
         'aws', 's3', 'cp',
         '--recursive', str(html_build_dir / 'html'),
-        's3://s3-lolo-web/labandeapierrestephanecelinelaurent/html'])
+        dest]
+    )
     print('The exit code was: %d' % p.returncode)
 
 
 def rmdir_f(path: Path):
+    if not path.exists():
+        return
     for p in path.iterdir():
         if p.is_file():
             p.unlink()
@@ -182,14 +175,39 @@ def beautify_ly(root: Path):
             beautify_ly(f)
 
 
+def get_all_rst_files(root: Path):
+    ret = []
+    for f in root.iterdir():
+        if f.is_file() and f.suffix == '.rst':
+            ret.append(f)
+        if f.is_dir():
+            ret = ret + get_all_rst_files(f)
+    return ret
+
+
 @click.command()
 @click.option('--clean-first', default=False, is_flag=True,
               help='clean build directories')
 @click.option('--s3', default=False, is_flag=True, help='reformat ly files')
 @click.option('--reformat', default=False, is_flag=True, help='upload to s3')
 @click.option('--build', default=False, is_flag=True, help='build')
-def main(s3, clean_first, reformat, build):
+@click.option('--book', help='name of the book')
+def main(s3, clean_first, reformat, build, book):
     try:
+
+        source_dir = here / 'source'
+        logging.info(f'source_dir : {source_dir}')
+        build_dir = here / 'build' / book
+        html_build_dir = here / 'html-build' / book
+        logging.info(f'source_dir : {build_dir}')
+
+        rst_sources = get_all_rst_files(source_dir)
+
+        dest_s3_map_book = {
+            'pscl': 's3://s3-lolo-web/labandeapierrestephanecelinelaurent/html',
+                    'garenne': 's3://s3-lolo-web/garenne/html'
+        }
+
         if reformat:
             beautify_ly(source_dir)
 
@@ -198,9 +216,15 @@ def main(s3, clean_first, reformat, build):
             rmdir_f(html_build_dir)
 
         if build:
-            mount([source_dir / 'conf.py', source_dir /
-                   '_static' / 'css' / 'custom.css'])
-            ret = mount(rst_sources)
+            mount([
+                source_dir / f'conf-{book}.py',
+                source_dir / f'index-{book}.rst',
+                source_dir / '_static' / 'css' / 'custom.css'
+            ],
+                source_dir, build_dir)
+            Path(build_dir / f'conf-{book}.py').rename(build_dir / 'conf.py')
+            Path(build_dir / f'index-{book}.rst').rename(build_dir / 'index.rst')
+            ret = mount(rst_sources, source_dir, build_dir)
             ret = [build_dir / f.relative_to(source_dir) for f in ret]
 
             for f in ret:
@@ -221,7 +245,10 @@ def main(s3, clean_first, reformat, build):
                                        / f.relative_to(build_dir))
 
         if s3:
-            copy_to_s3()
+            dest_s3 = dest_s3_map_book[book]
+            if dest_s3 is None:
+                raise Exception('no s3 destination')
+            copy_to_s3(html_build_dir, dest_s3)
 
     except Exception as e:
         logging.error(e)

@@ -46,6 +46,7 @@ D G D G B D
 
 `voix 1 <bohemian-like-you-voice-1.wav>`_
 
+`voix 2 <bohemian-like-you-voice-2.wav>`_
 
 structure :
 

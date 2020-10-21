@@ -6,7 +6,7 @@ set -x
 source venv/bin/activate
 
 #make $1
-python make.py
+python make.py --reformat --build --book garenne
 
 # pour créer des .mid à partir de .ly
 #         lilypond -dmidi-extension=mid bohemian-like-you.ly

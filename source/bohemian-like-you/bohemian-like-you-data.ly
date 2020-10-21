@@ -52,7 +52,7 @@ mainvoice = {
 }
 
 
-othervoice = {
+othervoicea = {
   r1
   |
   r1
@@ -69,22 +69,24 @@ othervoice = {
   r1
   |
   r1
-  |
+}
+
+othervoiceb = {
   % bar 9
   r1
   |
   r2 r8  b' b' d''
   |
-  r8 fis''4 r4 fis''8 fis'' fis''
+  r8 d''4 r4 d''8 d'' d''
   |
-  r8 e''4 r4 fis''8 fis'' fis''
+  r8 cis''4 r4 b'8 b' b'
   |
   % bar 13
-  fis''8 fis'' fis'' fis'' fis'' fis'' fis'' r
+  b'8 b' b' b' b' b' b' r
   |
-  b'4  r4. b'8 b' fis''
+  b'4  r4. b'8 b' d''
   |
-  r8 fis''4 r4 fis''8 fis'' fis''
+  r8 d''4 r4 d''8 d'' d''
   |
   r8 e''4 r4 b'8 b' fis''
   |

@@ -12,10 +12,6 @@
 
 \include "bohemian-like-you-data.ly"
 
-mychords = \chordmode {
-  b1 d1 a1 e1
-}
-
 
 \score {
 
@@ -23,22 +19,10 @@ mychords = \chordmode {
 
 
 
-    \new Voice = "one" {
+    \new Voice = "two" {
       \tempo 4 = 131
       \override Score.BarNumber.break-visibility = ##(#t #t #t)
       %\set TabStaff.stringTunings = #custom-tuning
-      \mainvoice
-    }
-
-    \new Lyrics \lyricsto "one" {
-      \verseOne
-    }
-
-    \new Voice = "second" {
-      \tempo 4 = 131
-      % \set TabStaff.stringTunings = #custom-tuning
-      \othervoicea
-      |
       \othervoiceb
     }
 
