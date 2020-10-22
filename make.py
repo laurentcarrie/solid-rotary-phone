@@ -78,7 +78,9 @@ def scan_rst(rst_file: Path) -> List[Path]:
             if result is not None:
                 link = result.group(1)
                 logging.info(f'---- while scanning {rst_file} : <{link}>')
-                ret.append(rst_file.parent / link)
+                link = rst_file.parent / link
+                if link.suffix != '.mp3':
+                    ret.append(link)
 
     return ret
 
@@ -204,7 +206,7 @@ def main(s3, clean_first, reformat, build, book):
         rst_sources = get_all_rst_files(source_dir)
 
         dest_s3_map_book = {
-            'pscl': 's3://s3-lolo-web/labandeapierrestephanecelinelaurent/html',
+            'pscl': 'c',
                     'garenne': 's3://s3-lolo-web/garenne/html'
         }
 

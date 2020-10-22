@@ -34,6 +34,7 @@ D G D G B D
     :align: left
     :class: structure
 
+
 `accords <bohemian-like-you.wav>`_
 
 

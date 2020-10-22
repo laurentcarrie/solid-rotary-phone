@@ -20,6 +20,8 @@ structure :
        :alt: alternate text
        :align: center
 
+`song <../../../mp3/yodelice/free.mp3>`_
+
 `riff <free.wav>`_
 
 
