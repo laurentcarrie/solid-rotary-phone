@@ -7,10 +7,19 @@ import logging
 from typing import List, Callable
 import re
 import click
+import json
 
 logging.basicConfig(level=logging.INFO)
 
 here = Path(__file__).parent
+
+
+class Data:
+    def __init__(self, song_files: List[Path], book_name: str, project_title: str, s3: str):
+        self.song_files = song_files
+        self.book_name = book_name
+        self.project_title = project_title
+        self.s3 = s3
 
 
 def check_output(func: Callable[[Path, Path], CompletedProcess]):
@@ -78,8 +87,8 @@ def scan_rst(rst_file: Path) -> List[Path]:
             if result is not None:
                 link = result.group(1)
                 logging.info(f'---- while scanning {rst_file} : <{link}>')
-                link = rst_file.parent / link
-                if link.suffix != '.mp3':
+                if not link.endswith('.mp3') and 'https://' not in str(link):
+                    link = rst_file.parent / link
                     ret.append(link)
 
     return ret
@@ -187,6 +196,31 @@ def get_all_rst_files(root: Path):
     return ret
 
 
+def read_json_definition(json_file: Path, source_dir: Path) -> Data:
+    with open(str(json_file)) as f:
+        data = json.load(f)
+        song_files = [source_dir / Path(s) for s in data['songs']]
+        book_name = data['book_name']
+        return Data(song_files=song_files, book_name=book_name, project_title=data['project_title'],
+                    s3=data['s3'])
+
+
+def make_conf_py(data_conf: Data, source_dir: Path, build_dir: Path):
+    text = (Path(source_dir) / 'conf.template.py').read_text()
+    text = text.replace('$project_title$', data_conf.project_title)
+    (Path(build_dir) / 'conf.py').write_text(text)
+
+
+def make_index_rst(data_conf: Data, source_dir: Path, build_dir: Path):
+    text = (Path(source_dir) / 'index.template.rst').read_text()
+    song_files = ''
+    for s in data_conf.song_files:
+        song_files = song_files + \
+            f"   {s.relative_to(source_dir).with_suffix('')}" + '\n'
+    text = text.replace('$song_files$', song_files)
+    (Path(build_dir) / 'index.rst').write_text(text)
+
+
 @click.command()
 @click.option('--clean-first', default=False, is_flag=True,
               help='clean build directories')
@@ -196,19 +230,17 @@ def get_all_rst_files(root: Path):
 @click.option('--book', help='name of the book')
 def main(s3, clean_first, reformat, build, book):
     try:
-
         source_dir = here / 'source'
+
+        data_conf = read_json_definition(Path(book), source_dir=source_dir)
+
         logging.info(f'source_dir : {source_dir}')
-        build_dir = here / 'build' / book
-        html_build_dir = here / 'html-build' / book
+        build_dir = here / 'build' / data_conf.book_name
+        html_build_dir = here / 'html-build' / data_conf.book_name
         logging.info(f'source_dir : {build_dir}')
 
-        rst_sources = get_all_rst_files(source_dir)
-
-        dest_s3_map_book = {
-            'pscl': 'c',
-                    'garenne': 's3://s3-lolo-web/garenne/html'
-        }
+        build_dir.mkdir(parents=True, exist_ok=True)
+        html_build_dir.mkdir(parents=True, exist_ok=True)
 
         if reformat:
             beautify_ly(source_dir)
@@ -219,14 +251,13 @@ def main(s3, clean_first, reformat, build, book):
 
         if build:
             mount([
-                source_dir / f'conf-{book}.py',
-                source_dir / f'index-{book}.rst',
                 source_dir / '_static' / 'css' / 'custom.css'
             ],
                 source_dir, build_dir)
-            Path(build_dir / f'conf-{book}.py').rename(build_dir / 'conf.py')
-            Path(build_dir / f'index-{book}.rst').rename(build_dir / 'index.rst')
-            ret = mount(rst_sources, source_dir, build_dir)
+            make_conf_py(data_conf=data_conf, source_dir=source_dir, build_dir=build_dir)
+            make_index_rst(data_conf=data_conf,
+                           source_dir=source_dir, build_dir=build_dir)
+            ret = mount(data_conf.song_files, source_dir, build_dir)
             ret = [build_dir / f.relative_to(source_dir) for f in ret]
 
             for f in ret:
@@ -247,10 +278,9 @@ def main(s3, clean_first, reformat, build, book):
                                        / f.relative_to(build_dir))
 
         if s3:
-            dest_s3 = dest_s3_map_book[book]
-            if dest_s3 is None:
+            if data_conf.s3 is None:
                 raise Exception('no s3 destination')
-            copy_to_s3(html_build_dir, dest_s3)
+            copy_to_s3(html_build_dir, data_conf.s3)
 
     except Exception as e:
         logging.error(e)

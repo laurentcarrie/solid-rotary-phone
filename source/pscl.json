@@ -1,0 +1,11 @@
+{
+  "book_name": "pscl",
+  "songs": [
+    "bohemian-like-you/bohemian-like-you.rst",
+    "creep.rst",
+    "scar-tissue.rst",
+    "The_Beatles/I_saw_her_standing_there/I_saw_her_standing_there.rst"
+  ],
+  "project_title": "the band Pierre Stéphane Céline Laurent",
+  "s3": "s3://s3-lolo-web/labandeapierrestephanecelinelaurent/html"
+}

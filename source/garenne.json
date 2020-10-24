@@ -1,0 +1,8 @@
+{
+  "book_name": "garenne",
+  "songs": [
+    "yodelice/free/free.rst"
+  ],
+  "project_title": "atelier de la Garenne Colombes",
+  "s3": "s3://s3-lolo-web/garenne/html"
+}

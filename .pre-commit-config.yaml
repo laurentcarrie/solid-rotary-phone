@@ -12,7 +12,6 @@ repos:
     -   id: check-merge-conflict
     -   id: double-quote-string-fixer
     -   id: end-of-file-fixer
-    -   id: pretty-format-json
     -   id: trailing-whitespace
 
 -   repo: https://github.com/pre-commit/mirrors-autopep8

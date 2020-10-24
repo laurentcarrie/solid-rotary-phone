@@ -3,8 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Bienvenue sur notre set list (la Garenne Colombes) !
-====================================================
+$title
 
 .. role:: underline
     :class: underline
@@ -13,8 +12,7 @@ Bienvenue sur notre set list (la Garenne Colombes) !
    :maxdepth: 2
    :caption: Contents:
 
-   yodelice/free/free
-
+$song_files$
 
 
 

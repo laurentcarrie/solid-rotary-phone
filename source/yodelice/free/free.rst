@@ -10,6 +10,8 @@ free ( Yodelice )
 
 g1 : guitare rhytmique, g2 : guitare lead
 
+`XXXXX <https://drive.google.com/file/d/1Pkd36ons9LyTPqLH56Llz5G0-amt6lsA/view?usp=sharing>`_
+
 structure :
 
         #. 8, intro g1 g2

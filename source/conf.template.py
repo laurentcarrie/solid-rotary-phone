@@ -7,7 +7,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'la Garenne Colombes'
+project = '$project_title$'
 copyright = '2020'
 author = 'laurent'
 

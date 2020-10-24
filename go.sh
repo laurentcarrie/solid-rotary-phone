@@ -5,8 +5,10 @@ set -x
 
 source venv/bin/activate
 
+here=$(dirname $(realpath $0))
+
 #make $1
-python make.py --reformat --build --book garenne
+python make.py --reformat --build --book $here/source/pscl.json
 
 # pour créer des .mid à partir de .ly
 #         lilypond -dmidi-extension=mid bohemian-like-you.ly
