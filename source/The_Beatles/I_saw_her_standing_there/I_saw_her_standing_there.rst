@@ -12,18 +12,30 @@ I saw her standig there ( the Beatles )
 .. role:: bar45
     :class: bar45
 
+.. rst-class:: grillexxx
 
+.. list-table:: Title
+   :widths: 10 10 10
+   :header-rows: 0
+   :class: grille
 
-
-
-..
-    .. csv-table:: structure
-    :align: left
-    :class: structure
+   * - C
+     - C
+     - F
+   * - F
+     -
+     - Row 1, column 3
+   * - Row 2, column 1
+     - Row 2, column 2
+     - Row 2, column 3
 
 `original en E <https://drive.google.com/file/d/1nKwXL6120Bq8xTE6vb6B5Lsm1aBrv85-/view?usp=sharing>`_
 
 `transpose en C <https://drive.google.com/file/d/1zSnzccwg2Xc0JU5IMNb5jhWmOc0kDUYi/view?usp=sharing>`_
+
+grille:
+
+    a, b, c, d
 
 structure :
 
@@ -31,8 +43,8 @@ structure :
         #. 16, couplet 1
         #. 16, couplet 2
         #. 10, refrain
-        #. 16, couplet 3 (grille solo)
-        #. 16, solo
+        #. 16, couplet 3
+        #. 16, solo( grille couplet)
         #. 10, refrain
         #. 16, couplet 4
         #. 8, outtro
@@ -70,6 +82,8 @@ couplet 3
     | I fell in love with her
     | Now I\'ll never dance with another
     | Ooh, since I saw her standing there
+
+solo
 
 refrain 2
 

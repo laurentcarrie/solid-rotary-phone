@@ -160,6 +160,16 @@ def copy_to_s3(html_build_dir: Path, dest: str):
     print('The exit code was: %d' % p.returncode)
 
 
+def sync_with_s3(html_build_dir: Path, dest: str):
+
+    p = subprocess.run([
+        'aws', 's3', 'sync',
+        str(html_build_dir / 'html'),
+        dest]
+    )
+    print('The exit code was: %d' % p.returncode)
+
+
 def rmdir_f(path: Path):
     if not path.exists():
         return
@@ -280,7 +290,7 @@ def main(s3, clean_first, reformat, build, book):
         if s3:
             if data_conf.s3 is None:
                 raise Exception('no s3 destination')
-            copy_to_s3(html_build_dir, data_conf.s3)
+            sync_with_s3(html_build_dir, data_conf.s3)
 
     except Exception as e:
         logging.error(e)
