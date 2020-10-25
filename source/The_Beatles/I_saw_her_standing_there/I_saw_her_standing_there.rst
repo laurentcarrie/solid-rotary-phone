@@ -12,22 +12,47 @@ I saw her standig there ( the Beatles )
 .. role:: bar45
     :class: bar45
 
-.. rst-class:: grillexxx
-
-.. list-table:: Title
-   :widths: 10 10 10
+.. list-table:: grille couplet
+   :widths: 10 10 10 10
    :header-rows: 0
    :class: grille
 
    * - C
      - C
      - F
+     - C
+   * - C
+     - C
+     - G
+     - G
+   * - C
+     - C
+     - F
+     - G#
+   * - C
+     - G
+     - C
+     - C
+
+.. list-table:: grille refrain
+   :widths: 10 10 10 10
+   :header-rows: 0
+   :class: grille
+
    * - F
+     - F
+     - F
+     - F
+   * - F
+     - F
+     - G
+     - G
+   * - F
+     - F
      -
-     - Row 1, column 3
-   * - Row 2, column 1
-     - Row 2, column 2
-     - Row 2, column 3
+     -
+
+
 
 `original en E <https://drive.google.com/file/d/1nKwXL6120Bq8xTE6vb6B5Lsm1aBrv85-/view?usp=sharing>`_
 

@@ -52,8 +52,8 @@ th.x, td.x {
     width: auto;
 }
 
-th,td {
-        border: 1px solid blue;
+th, td {
+    border: 1px solid blue;
 
 }
 
@@ -98,15 +98,12 @@ table.grille {
     border: 1px solid blue;
     text-align: center;
     vertical-align: center;
-    padding: 10px;
-    height: 5em;
-    width: auto;
-    border-collapse: collapse;
-    foreground-color: black;
-    text-align: center;
-    vertical-align: center;
-    padding: 10px;
-    font-size: 1em;
     line-height: 0.5em;
     column-width: 10em;
+    width: 50%;
+
+}
+
+span.caption-text {
+    font-weight: bold;
 }
