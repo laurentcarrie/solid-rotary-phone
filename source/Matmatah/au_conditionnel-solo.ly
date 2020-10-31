@@ -52,7 +52,7 @@ lead = {
   |
   r8 b\3 cis'\3  fis'\2 gis'  e'\2 c'4\3
   |
-  cis'4.\3 cis'8\3 a'8 r8 a'8 gis'
+  cis'4.\3 cis'8\3 e'8\2 r8 a'8 gis'
   |
   e'1\2
 

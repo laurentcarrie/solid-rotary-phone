@@ -61,7 +61,7 @@ def make_midi(source: Path, target: Path):
 
 @check_output
 def make_wav(source: Path, target: Path):
-    p = subprocess.run(['fluidsynth', '-F', str(target),
+    p = subprocess.run(['fluidsynth', '--gain', '4', '-F', str(target),
                         '/usr/share/sounds/sf2/FluidR3_GM.sf2',
                         str(source)])
     return p

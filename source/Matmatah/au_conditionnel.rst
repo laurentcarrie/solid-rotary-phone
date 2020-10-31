@@ -77,7 +77,9 @@ au conditionnel ( Matmatah )
        :alt: alternate text
        :align: center
 
-`accords <au_conditionnel-solo.wav>`_
+`pont guitare (midi) <au_conditionnel-solo.wav>`_
+
+
 
 structure :
 
