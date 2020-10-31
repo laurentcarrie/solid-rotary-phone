@@ -35,6 +35,7 @@ def check_output(func: Callable[[Path, Path], CompletedProcess]):
                 logging.error(f'{p.args}')
                 logging.error(f'{p.stdout}')
                 logging.error(f'{p.stderr}')
+
                 raise Exception(f'command returned code {p.returncode}')
             if not target.exists():
                 raise Exception(f'target {target} not  built')
@@ -119,11 +120,22 @@ def scan_ly_ly(ly_file: Path) -> List[Path]:
     return ret
 
 
-def write_if_necessary(source, target):
-    if not target.exists() or target.stat().st_mtime < source.stat().st_mtime:
+def write_if_necessary(source: Path, target: Path):
+    doit = False
+    new_data = None
+    if not target.exists():
+        doit = True
+    else:
+        old_data = target.read_bytes()
+        new_data = source.read_bytes()
+        doit = old_data != new_data
+
+    if doit:
         logging.info(f'... to copy : {target}')
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(source.read_bytes())
+        if new_data is None:
+            new_data = source.read_bytes()
+        target.write_bytes(new_data)
 
 
 def mount(srcfiles: List[Path], source_dir: Path, build_dir: Path) -> List[Path]:
@@ -187,11 +199,16 @@ def rmdir_f(path: Path):
 def beautify_ly(root: Path):
     for f in root.iterdir():
         if f.is_file() and f.suffix == '.ly':
-            logging.info(f'reformat {f}')
-            p = subprocess.run(['ly', 'reformat;write', '-o', str(f), str(f)])
+            outfile = f.with_suffix('.lytmp')
+            p = subprocess.run(['ly', 'reformat;write', '-o', str(outfile), str(f)])
             if p.returncode != 0:
                 logging.error(p.args)
                 raise Exception(p.args)
+            new_data = outfile.read_text()
+            old_data = f.read_text()
+            if new_data != old_data:
+                logging.info(f'reformated : {f}')
+                f.write_text(new_data)
         if f.is_dir():
             beautify_ly(f)
 
@@ -228,6 +245,7 @@ def make_index_rst(data_conf: Data, source_dir: Path, build_dir: Path):
         song_files = song_files + \
             f"   {s.relative_to(source_dir).with_suffix('')}" + '\n'
     text = text.replace('$song_files$', song_files)
+    text = text.replace('$title$', data_conf.project_title)
     (Path(build_dir) / 'index.rst').write_text(text)
 
 
@@ -279,6 +297,10 @@ def main(s3, clean_first, reformat, build, book):
                     make_wav(source=f.parent / (f.stem + '.midi'), target=f)
 
             p = subprocess.run(['sphinx-build', '-M', 'html',
+                                str(build_dir), str(html_build_dir)])
+            print('The exit code was: %d' % p.returncode)
+
+            p = subprocess.run(['sphinx-build', '-M', 'latexpdf',
                                 str(build_dir), str(html_build_dir)])
             print('The exit code was: %d' % p.returncode)
 

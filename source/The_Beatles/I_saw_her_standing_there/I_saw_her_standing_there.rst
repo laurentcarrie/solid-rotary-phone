@@ -1,6 +1,6 @@
-=======================================
-I saw her standig there ( the Beatles )
-=======================================
+========================================
+I saw her standing there ( the Beatles )
+========================================
 
 .. index::
     single: I saw her standing there - the Beatles
@@ -17,22 +17,22 @@ I saw her standig there ( the Beatles )
    :header-rows: 0
    :class: grille
 
-   * - C
-     - C
-     - F
-     - C
-   * - C
-     - C
-     - G
-     - G
-   * - C
-     - C
-     - F
-     - G#
-   * - C
-     - G
-     - C
-     - C
+   * - C7
+     - C7
+     - F7
+     - C7
+   * - C7
+     - C7
+     - G7
+     - G7
+   * - C7
+     - C7
+     - F7
+     - G#7
+   * - C7
+     - G7
+     - C7
+     - C7
 
 .. list-table:: grille refrain
    :widths: 10 10 10 10
