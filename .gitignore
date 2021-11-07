@@ -138,3 +138,5 @@ dmypy.json
 /source/*.count
 /html-build/
 /solid-rotary-phone.iml
+
+*.lytmp

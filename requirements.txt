@@ -60,9 +60,9 @@ sphinxcontrib-htmlhelp==1.0.3
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
--e git+git@github.com:laurentcarrie/solid-rotary-phone.git@a6bb1063775ff3aa9466af57329655b82a8dfd63#egg=srp
 toml==0.10.1
 urllib3==1.25.8
 virtualenv==20.0.33
 webencodings==0.5.1
 yummy-sphinx-theme==0.1.1
+sphinx_panels

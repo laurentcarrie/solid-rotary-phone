@@ -8,7 +8,7 @@
 # -- Project information -----------------------------------------------------
 
 project = '$project_title$'
-copyright = '2020'
+copyright = '2021'
 author = 'laurent'
 
 # The short X.Y version
@@ -32,7 +32,9 @@ extensions = [
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo',
               'sphinx.ext.coverage', 'sphinx.ext.mathjax', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
-              'sphinx.ext.githubpages']
+              'sphinx.ext.githubpages',
+              'sphinx_panels'
+              ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -61,6 +63,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+html_css_files = ['custom.css',
+                  'https://example.com/css/custom.css',
+                  ('print.css', {'media': 'print'})]
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -90,20 +95,39 @@ html_static_path = ['_static']
 # html_sidebars = {}
 nosidebar = True
 # ---sphinx-themes-----
-html_theme = 'yummy_sphinx_theme'
+
+from enum import Enum,auto
+
+class StyleEnum:
+    yummy = auto()
+    stanford=auto()
+    greycreme=auto()
+
+
+choice = StyleEnum.yummy
+
 # html_theme = 'alabaster'
 # html_theme = 'bootstrap-astropy'
-if False:
+
+if choice == StyleEnum.yummy:
+    html_theme = 'yummy_sphinx_theme'
+
+elif choice == StyleEnum.stanford:
     import sphinx_theme
     html_theme = 'stanford_theme'
     html_theme_path = [sphinx_theme.get_html_theme_path('stanford-theme')]
+    from PSphinxTheme import utils
+    p, html_theme, needs_sphinx = utils.set_psphinxtheme('p-red')
+    html_theme_path = p
 
-if False:
+elif choice == StyleEnum.greycreme:
     html_theme = 'p-greycreme'
     from PSphinxTheme import utils
-
     p, html_theme, needs_sphinx = utils.set_psphinxtheme(html_theme)
     html_theme_path = p
+else:
+    raise RuntimeError("no style selected")
+
 
 
 html_style = 'css/custom.css'

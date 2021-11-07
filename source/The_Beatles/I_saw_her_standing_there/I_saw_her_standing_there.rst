@@ -115,6 +115,9 @@ refrain 2
     | Well, my heart went, "Boom"
     | When I crossed that room
     | And I held her hand in mine
+
+couplet 4
+
     | Oh, we danced through the night
     | And we held each other tight
     | And before too long

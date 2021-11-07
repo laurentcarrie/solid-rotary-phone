@@ -9,6 +9,8 @@ import re
 import click
 import json
 
+from util import check_type
+
 logging.basicConfig(level=logging.INFO)
 
 here = Path(__file__).parent
@@ -172,7 +174,7 @@ def copy_to_s3(html_build_dir: Path, dest: str):
     print('The exit code was: %d' % p.returncode)
 
 
-def sync_with_s3(html_build_dir: Path, dest: str):
+def     sync_with_s3(html_build_dir: Path, dest: str):
 
     p = subprocess.run([
         'aws', 's3', 'sync',
@@ -197,6 +199,7 @@ def rmdir_f(path: Path):
 
 
 def beautify_ly(root: Path):
+    check_type(root,Path)
     for f in root.iterdir():
         if f.is_file() and f.suffix == '.ly':
             outfile = f.with_suffix('.lytmp')
@@ -224,7 +227,10 @@ def get_all_rst_files(root: Path):
 
 
 def read_json_definition(json_file: Path, source_dir: Path) -> Data:
-    with open(str(json_file)) as f:
+    check_type(json_file,Path)
+    if not json_file.exists() :
+        raise FileExistsError(f"{str(json_file)}")
+    with json_file.open('r') as f:
         data = json.load(f)
         song_files = [source_dir / Path(s) for s in data['songs']]
         book_name = data['book_name']
@@ -255,7 +261,7 @@ def make_index_rst(data_conf: Data, source_dir: Path, build_dir: Path):
 @click.option('--s3', default=False, is_flag=True, help='reformat ly files')
 @click.option('--reformat', default=False, is_flag=True, help='upload to s3')
 @click.option('--build', default=False, is_flag=True, help='build')
-@click.option('--book', help='name of the book')
+@click.option('--book', required=True,help='name of the book')
 def main(s3, clean_first, reformat, build, book):
     try:
         source_dir = here / 'source'
