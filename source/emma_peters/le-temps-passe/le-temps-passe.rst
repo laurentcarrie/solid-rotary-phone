@@ -49,6 +49,8 @@ Je ne veux pas que le temps passe ( Emma Peters )
     :class: structure
 
 
+tempo : 95 bpm
+
 structure :
 
     #. 4, intro gbd, chant entre M4

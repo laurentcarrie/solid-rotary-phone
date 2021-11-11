@@ -16,6 +16,10 @@ function make_clean {
 
 function make_songs {
 #make $1
+
+rm -rf html
+rm -rf html-build
+
 python make.py --reformat --build --book $here/source/$1.json
 
 # pour créer des .mid à partir de .ly

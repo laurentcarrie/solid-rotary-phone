@@ -69,6 +69,15 @@ def make_wav(source: Path, target: Path):
     return p
 
 
+@check_output
+def make_mp3(source: Path, target: Path):
+    p = subprocess.run(['fluidsynth', '--gain', '4', '-F', str(target),
+                        '/usr/share/sounds/sf2/FluidR3_GM.sf2',
+                        "--audio-file-format","mp3",
+                        str(source)])
+    return p
+
+
 def scan_rst(rst_file: Path) -> List[Path]:
     # ..image:: bohemian - like - you.png
     # `accords <wav/bohemian-like-you.wav> `_
@@ -174,7 +183,7 @@ def copy_to_s3(html_build_dir: Path, dest: str):
     print('The exit code was: %d' % p.returncode)
 
 
-def     sync_with_s3(html_build_dir: Path, dest: str):
+def sync_with_s3(html_build_dir: Path, dest: str):
 
     p = subprocess.run([
         'aws', 's3', 'sync',
@@ -258,8 +267,8 @@ def make_index_rst(data_conf: Data, source_dir: Path, build_dir: Path):
 @click.command()
 @click.option('--clean-first', default=False, is_flag=True,
               help='clean build directories')
-@click.option('--s3', default=False, is_flag=True, help='reformat ly files')
-@click.option('--reformat', default=False, is_flag=True, help='upload to s3')
+@click.option('--s3', default=False, is_flag=True,help='upload to s3')
+@click.option('--reformat', default=False, is_flag=True, help='reformat ly files' )
 @click.option('--build', default=False, is_flag=True, help='build')
 @click.option('--book', required=True,help='name of the book')
 def main(s3, clean_first, reformat, build, book):
@@ -301,6 +310,10 @@ def main(s3, clean_first, reformat, build, book):
                     make_midi(source=f.parent / (f.stem + '.ly'),
                               target=f.parent / (f.stem + '.midi'))
                     make_wav(source=f.parent / (f.stem + '.midi'), target=f)
+                if f.suffix == '.mp3':
+                    make_midi(source=f.parent / (f.stem + '.ly'),
+                              target=f.parent / (f.stem + '.midi'))
+                    make_mp3(source=f.parent / (f.stem + '.midi'), target=f)
 
             p = subprocess.run(['sphinx-build', '-M', 'html',
                                 str(build_dir), str(html_build_dir)])

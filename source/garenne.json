@@ -2,8 +2,9 @@
   "book_name": "garenne",
   "songs": [
     "yodelice/free/free.rst",
-    "emma_peters/le-temps-passe/le-temps-passe.rst"
+    "emma_peters/le-temps-passe/le-temps-passe.rst",
+    "The_Beatles/Come_together/come_together.rst"
   ],
-  "project_title": "atelier de la Garenne Colombes",
+  "project_title": "Garenne Colombes",
   "s3": "s3://s3-lolo-web/garenne/html"
 }
