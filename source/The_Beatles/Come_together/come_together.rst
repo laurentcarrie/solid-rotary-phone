@@ -58,23 +58,6 @@ solo 1 ( après couplet 3 )
       - z
 
 
-
-xxxx
-
-
-    * -  8 couplet 1
-    * -  4 instru
-    * -  10 couplet 2 + come
-    * -  4 instru
-    * -  10 couplet 3 + come
-    * -  solo 1
-    * -  2 mesures en D
-    * -  4 mesures en D (clavier martelé)
-    * -  4 mesures en A (solo)
-    * -  2 mesures en D
-
-
-
 couplet 1
 
 	 | Here come old flat top
