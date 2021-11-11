@@ -57,15 +57,14 @@ font-size: x-small
 
 table.structure {
     border-collapse: collapse;
-    background-color: lavender;
+    background-color: lightpink;
     foreground-color: black;
-    text-align: center;
+    text-align: left ;
     vertical-align: center;
     padding: 0px;
     font-size: 1em;
     line-height: 0.5em;
     column-width: 10em;
-
 }
 
 th.x, td.x {
@@ -130,6 +129,8 @@ table.grille {
     width: 50%;
 
 }
+
+
 
 span.caption-text {
     font-weight: bold;

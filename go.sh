@@ -34,6 +34,12 @@ python make.py --reformat --build --book $here/source/$1.json
 
 }
 
+function sync_mp3s {
+
+  aws s3 sync $HOME/Music/work-mp3 s3://s3-lolo-web/zik/work-mp3/
+  #aws s3 cp --recursive $HOME/Music/work-mp3 s3://s3-lolo-web/zik/work-mp3/
+}
+
 
 
 function make_docker {
@@ -69,6 +75,9 @@ aws)
   make_songs garenne
   make_docker
   make_aws
+  ;;
+s3)
+  sync_mp3s
   ;;
 *)
   echo "no such command : $1"

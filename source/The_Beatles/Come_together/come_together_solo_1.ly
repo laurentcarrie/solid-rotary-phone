@@ -52,29 +52,31 @@ rhythm = {
 lead = {
   \relative c'' {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
-    g'2-\bendAfter #1
-    r8
-    g8-\bendAfter #1
-    a8-\bendAfter #-1
-    f16
-    r16
+    a'2~
+    a8
+    a8
+    a16
+    g16
+    f8
     |
-    (g8)-\bendAfter #5 a8
+    a1
     |
-    g2-\bendAfter #1
-    r8
-    g8-\bendAfter #1
-    a8-\bendAfter #-1
-    f16
-    r16
+    a2~
+    a8
+    a8
+    a16
+    g16
+    f8
     |
-    (g8)-\bendAfter #5 a8
+    e2~\2
+    e8\2
+    c8\2
+    e16\2
+    d16\2
+    c8\2
     |
+    a'1\1
 
-    %c4-\bendAfter #5
-    %c2-\bendAfter #-4.75
-    %c2-\bendAfter #8.5
-    %c2-\bendAfter #-6
   }
 }
 
