@@ -57,13 +57,7 @@ lead = {
 
 drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
 
-\score {
-
-  <<
-
-
-
-    \new DrumStaff {
+staff_drums =    \new DrumStaff {
       \tempo 4 = 83
 
       \drumbar |
@@ -86,7 +80,7 @@ drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
     }
 
 
-    \new Staff {
+staff_rhythm =    \new Staff {
       \clef "treble_8"
       \tempo 4 = 83
       \override Score.BarNumber.break-visibility = ##(#t #t #t)
@@ -94,7 +88,7 @@ drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
       \rhythm
     }
 
-    \new Staff	 {
+staff_lead    \new Staff	 {
       \clef "treble_8"
       \tempo 4 = 83
       \override Score.BarNumber.break-visibility = ##(#t #t #t)
@@ -103,7 +97,7 @@ drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
 
     }
 
-    \new TabStaff {
+staff_lead_tab = \new TabStaff {
       \tempo 4 = 83
       \tabFullNotation
       \override Score.BarNumber.break-visibility = ##(#t #t #t)
@@ -112,8 +106,3 @@ drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
 
 
 
-  >>
-  \layout {}
-
-  \midi {}
-}
