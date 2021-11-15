@@ -36,17 +36,25 @@ come together ( the Beatles )
 
 solo 1 ( après couplet 3 )
 
+
+`(mp3) <https://s3-lolo-web.s3.eu-west-1.amazonaws.com/zik/work-mp3/Beatles/come-together/come-together.mp3>`_
+
 .. image:: come_together_solo_1_image.png
        :scale: 10 %
        :alt: alternate text
        :align: center
 
+
 `solo 1 (midi) <come_together_solo_1_midi.wav>`_
 
-
-`(mp3) <https://s3-lolo-web.s3.eu-west-1.amazonaws.com/zik/work-mp3/Beatles/come-together/come-together.mp3>`_
-
 `solo 1 (mp3) <https://s3-lolo-web.s3.eu-west-1.amazonaws.com/zik/work-mp3/Beatles/come-together/come-together-solo1.mp3>`_
+
+.. image:: come_together_solo_final_image.png
+       :scale: 10 %
+       :alt: alternate text
+       :align: center
+
+`solo final (midi) <come_together_solo_final_midi.wav>`_
 
 `solo final (mp3) <https://s3-lolo-web.s3.eu-west-1.amazonaws.com/zik/work-mp3/Beatles/come-together/come-together-solo-final.mp3>`_
 

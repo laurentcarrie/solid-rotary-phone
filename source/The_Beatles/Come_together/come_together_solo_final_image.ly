@@ -17,7 +17,7 @@
 
 }
 
-\include "base_solo_1.ly"
+\include "base_solo_final.ly"
 
 \score {
 
@@ -31,6 +31,13 @@
       \drumbar
       \drumbar
       \drumbar
+      \drumbar
+      \drumbar
+      \drumbar
+      \drumbar
+      \drumbar
+      \drumbar
+      \drumbar
     }
 
 
@@ -39,7 +46,7 @@
     %  \tempo 4 = \song_tempo
     %  \override Score.BarNumber.break-visibility = ##(#t #t #t)
     %  \omit StringNumber
-    %  \lead
+    %  \rhythm
     %}
 
 
@@ -49,7 +56,6 @@
       \tabFullNotation
       \override Score.BarNumber.break-visibility = ##(#t #t #t)
       \lead
-
     }
 
 

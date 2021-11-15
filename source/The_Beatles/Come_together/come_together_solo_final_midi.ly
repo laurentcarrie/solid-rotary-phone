@@ -1,6 +1,6 @@
 \version "2.20.0"
 
-\include "base_solo_1.ly"
+\include "base_solo_final.ly"
 
 \score {
 
@@ -9,11 +9,9 @@
     \new DrumStaff {
       \tempo 4 = \song_tempo
       % why not \drums ?
-      \drumbar
-      \drumbar
-      \drumbar
-      \drumbar
-      \drumbar
+      \drumbar       \drumbar       \drumbar       \drumbar
+      \drumbar       \drumbar       \drumbar       \drumbar
+      \drumbar       \drumbar       \drumbar       \drumbar
     }
 
 
