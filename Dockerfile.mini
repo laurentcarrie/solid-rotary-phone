@@ -32,7 +32,6 @@ FROM nginx:latest
 #EXPOSE 80
 
 
-COPY html-build /usr/share/nginx/html
-COPY source/welcome.html /usr/share/nginx/html/index.html
+RUN rm -rf /usr/share/nginx/html
 
 #ENTRYPOINT ["bash", "export.sh"]

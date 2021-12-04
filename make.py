@@ -71,10 +71,16 @@ def make_wav(source: Path, target: Path):
 
 @check_output
 def make_mp3(source: Path, target: Path):
-    p = subprocess.run(['fluidsynth', '--gain', '4', '-F', str(target),
-                        '/usr/share/sounds/sf2/FluidR3_GM.sf2',
-                        "--audio-file-format","mp3",
-                        str(source)])
+    # p = subprocess.run(['fluidsynth', '--gain', '4', '-F', str(target),
+    #                    '/usr/share/sounds/sf2/FluidR3_GM.sf2',
+    #                    '--audio-file-format', 'mp3',
+    #                    str(source)])
+
+    wav = source.with_suffix(".wav")
+    p = make_wav(source,wav)
+
+    p = subprocess.run(['ffmpeg', '-i', str(wav), '-codec:a',
+                       'libmp3lame', '-b:a', '320k', str(target)])
     return p
 
 
@@ -99,7 +105,8 @@ def scan_rst(rst_file: Path) -> List[Path]:
             if result is not None:
                 link = result.group(1)
                 logging.info(f'---- while scanning {rst_file} : <{link}>')
-                if not link.endswith('.mp3') and 'https://' not in str(link):
+                # if not link.endswith('.mp3') and 'https://' not in str(link):
+                if 'https://' not in str(link):
                     link = rst_file.parent / link
                     ret.append(link)
 
@@ -208,7 +215,7 @@ def rmdir_f(path: Path):
 
 
 def beautify_ly(root: Path):
-    check_type(root,Path)
+    check_type(root, Path)
     for f in root.iterdir():
         if f.is_file() and f.suffix == '.ly':
             outfile = f.with_suffix('.lytmp')
@@ -236,9 +243,9 @@ def get_all_rst_files(root: Path):
 
 
 def read_json_definition(json_file: Path, source_dir: Path) -> Data:
-    check_type(json_file,Path)
-    if not json_file.exists() :
-        raise FileExistsError(f"{str(json_file)}")
+    check_type(json_file, Path)
+    if not json_file.exists():
+        raise FileExistsError(f'{str(json_file)}')
     with json_file.open('r') as f:
         data = json.load(f)
         song_files = [source_dir / Path(s) for s in data['songs']]
@@ -264,13 +271,13 @@ def make_index_rst(data_conf: Data, source_dir: Path, build_dir: Path):
     (Path(build_dir) / 'index.rst').write_text(text)
 
 
-@click.command()
-@click.option('--clean-first', default=False, is_flag=True,
-              help='clean build directories')
-@click.option('--s3', default=False, is_flag=True,help='upload to s3')
-@click.option('--reformat', default=False, is_flag=True, help='reformat ly files' )
-@click.option('--build', default=False, is_flag=True, help='build')
-@click.option('--book', required=True,help='name of the book')
+@ click.command()
+@ click.option('--clean-first', default=False, is_flag=True,
+               help='clean build directories')
+@ click.option('--s3', default=False, is_flag=True, help='upload to s3')
+@ click.option('--reformat', default=False, is_flag=True, help='reformat ly files')
+@ click.option('--build', default=False, is_flag=True, help='build')
+@ click.option('--book', required=True, help='name of the book')
 def main(s3, clean_first, reformat, build, book):
     try:
         source_dir = here / 'source'
@@ -319,12 +326,12 @@ def main(s3, clean_first, reformat, build, book):
                                 str(build_dir), str(html_build_dir)])
             print('The exit code was: %d' % p.returncode)
 
-            p = subprocess.run(['sphinx-build', '-M', 'latexpdf',
-                                str(build_dir), str(html_build_dir)])
-            print('The exit code was: %d' % p.returncode)
+            #p = subprocess.run(['sphinx-build', '-M', 'latexpdf',
+            #                    str(build_dir), str(html_build_dir)])
+            #print('The exit code was: %d' % p.returncode)
 
             for f in ret:
-                if f.suffix == '.wav':
+                if f.suffix in ['.wav', '.mp3']:
                     write_if_necessary(f, html_build_dir / 'html'
                                        / f.relative_to(build_dir))
 
@@ -336,7 +343,11 @@ def main(s3, clean_first, reformat, build, book):
     except Exception as e:
         logging.error(e)
         traceback.print_exc(file=sys.stdout)
+        raise e
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:  # noqa: E722
+        traceback.print_exc()

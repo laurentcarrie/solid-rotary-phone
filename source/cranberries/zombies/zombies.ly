@@ -2,7 +2,7 @@
 
 \paper {
   indent = 0\mm
-  line-width = 110\mm
+  line-width = 210\mm
   oddHeaderMarkup = ""
   evenHeaderMarkup = ""
   oddFooterMarkup = ""
@@ -10,91 +10,103 @@
 }
 
 
-\include "predefined-guitar-fretboards.ly"
-custom-tuning = \stringTuning <d g d' g' b' d''>
 
-\addChordShape #'flatbar #guitar-tuning "0-1-(;0-1;0-1;0-1;0-1;0-1-);"
+ma = {
+  < e' gis' b' e'' >
+  < e' gis' b' e'' >
+  < cis' gis' cis'' e''  >
+  < cis' gis' cis'' e''  >
+}
 
-\storePredefinedDiagram #default-fret-table
-\chordmode { e }
-#guitar-tuning
-#(offset-fret 2 (chord-shape 'flatbar guitar-tuning))
+mb = {
+  < gis dis' gis' b' dis'' >
+  < gis dis' gis' b' dis'' >
+  < b fis' b' dis'  >
+  < b fis' b' dis'  >
+}
 
-\storePredefinedDiagram #default-fret-table
-\chordmode { b }
-#guitar-tuning
-#(offset-fret 4 (chord-shape 'flatbar guitar-tuning))
+mc = {
+  < e' gis' b' e'' >
+  < e' gis' b' e'' >
+  < gis dis' gis' b' dis'' >
+  < gis dis' gis' b' dis'' >
+}
 
-\storePredefinedDiagram #default-fret-table
-\chordmode { d }
-#guitar-tuning
-#(offset-fret 7 (chord-shape 'flatbar guitar-tuning))
+md = {
+  <a e' a' cis' >
+  <a e' a' cis' >
+  <a e' a' cis' >
+  <a e' a' cis' >
+}
 
-\storePredefinedDiagram #default-fret-table
-\chordmode { a }
-#guitar-tuning
-#(offset-fret 2 (chord-shape 'flatbar guitar-tuning))
 
-\storePredefinedDiagram #default-fret-table
-\chordmode { e }
-#guitar-tuning
-#(offset-fret 9 (chord-shape 'flatbar guitar-tuning))
+rhythm = {
+  \ma \mb \mc \md
+  \ma \mb \mc \md
+}
 
-mynotes = {
-  <fis b fis' b' dis'' fis''>4
-  <fis b fis' b' dis'' fis''>4
-  <fis b fis' b' dis'' fis''>4
-  <fis b fis' b' dis'' fis''>4
+lead = {
+  r8 b\3 cis'\3  fis'\2 gis'  e'\2 cis'4\3
   |
-  <a e a' e' cis'' a''>4
-  <a e a' e' cis'' a''>4
-  <a e a' e' cis'' a''>4
-  <a e a' e' cis'' a''>4
+  dis'4.\3 b8\3 dis' b\3 r4
   |
-  <d a d' a' fis'' d''>4
-  <d a d' a' fis'' d''>4
-  <d a d' a' fis'' d''>4
-  <d a d' a' fis'' d''>4
+  r8 b\3 cis'\3  fis'\2 gis'  e'\2 c'4\3
   |
-  <b e b' e' gis'' b''>4
-  <b e b' e' gis'' b''>4
-  <b e b' e' gis'' b''>4
-  <b e b' e' gis'' b''>4
+  cis'4.\3 cis'8\3 e'8\2 r8 a'8 gis'
+  |
+  e'1\2
 
 }
-mychords = \chordmode {
-  b1 d1 a1 e1
-}
+
+
+drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
 
 \score {
 
   <<
-    % \new ChordNames {
-    %  \chordmode {
-    %    c1 d:m e
-    %    }
-    %
+
+    \new DrumStaff {
+
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
+      \drumbar |
 
 
 
-    \new ChordNames {
-      \mychords
     }
 
-    \new FretBoards {
-      \mychords
-    }
-
-    %  \new Staff {
-    %    \clef treble
-    %    \mynotes
-    %  }
 
     \new Staff {
-      \tempo 4 = 200
-      % \set TabStaff.stringTunings = #custom-tuning
-      \mynotes
+      \tempo 4 = 90
+      \override Score.BarNumber.break-visibility = ##(#t #t #t)
+      %\set TabStaff.stringTunings = #custom-tuning
+      \rhythm
     }
+
+    \new Staff	 {
+      \clef "treble_8"
+      \tempo 4 = 90
+      \override Score.BarNumber.break-visibility = ##(#t #t #t)
+      \lead
+    }
+
+    \new TabStaff {
+      \tempo 4 = 90
+      \override Score.BarNumber.break-visibility = ##(#t #t #t)
+      \lead
+    }
+
 
 
   >>

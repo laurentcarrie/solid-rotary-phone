@@ -7,6 +7,7 @@
 
 # -- Project information -----------------------------------------------------
 
+from enum import Enum, auto
 project = '$project_title$'
 copyright = '2021'
 author = 'laurent'
@@ -96,12 +97,11 @@ html_static_path = ['_static']
 nosidebar = True
 # ---sphinx-themes-----
 
-from enum import Enum,auto
 
 class StyleEnum:
     yummy = auto()
-    stanford=auto()
-    greycreme=auto()
+    stanford = auto()
+    greycreme = auto()
 
 
 choice = StyleEnum.yummy
@@ -126,8 +126,7 @@ elif choice == StyleEnum.greycreme:
     p, html_theme, needs_sphinx = utils.set_psphinxtheme(html_theme)
     html_theme_path = p
 else:
-    raise RuntimeError("no style selected")
-
+    raise RuntimeError('no style selected')
 
 
 html_style = 'css/custom.css'
@@ -139,9 +138,9 @@ html_theme_options = {
         #        'Blog': 'http://blog.elitekast.com',
         #        'Forum': 'http://forum.elitekast.com',
     },
-    #'github_url': 'TagnumElite/yummy_sphinx_theme',
-    #'bitbucket_url': 'TagnumElite/yummy_sphinx_theme',
-    #'gitlab_url': 'TagnumElite/yummy_sphinx_theme',
+    # 'github_url': 'TagnumElite/yummy_sphinx_theme',
+    # 'bitbucket_url': 'TagnumElite/yummy_sphinx_theme',
+    # 'gitlab_url': 'TagnumElite/yummy_sphinx_theme',
     # 'navbar_icon': 'spin fa-book',
     'jumbotron_use_geopattern': True,
     'nosidebar': True,

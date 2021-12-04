@@ -5,7 +5,7 @@
 
 - docker create volume toto
 
-- lancer nginx 
+- lancer nginx
 
    docker run -d --rm -p 8080:80 --volume toto:/etc/nginx --name web nginx
 

@@ -80,6 +80,3 @@ staff_lead_tab = {
   \override Score.BarNumber.break-visibility = ##(#t #t #t)
   \lead
 }
-
-
-
