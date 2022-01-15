@@ -1,5 +1,7 @@
 \version "2.20.0"
 
+\include "base_solo.ly"
+
 \paper {
   indent = 0\mm
   line-width = 210\mm
@@ -8,73 +10,6 @@
   oddFooterMarkup = ""
   evenFooterMarkup = ""
 }
-
-%theChords = \chordmode {
-%  \time 2/2
-%  Em1 | C | G | D| %\break
-%}
-
-
-% Em
-ma = {
-  < e, b, e g>1
-}
-
-% C
-mb = {
-  < g, c e g c' e'   >1
-}
-
-% G
-mc = {
-  < g, d b d' >1
-}
-
-md = {
-  <fis, d a d'>1
-}
-
-
-rhythm = {
-  \ma \mb \ma \mb
-  \ma \mb \ma \mb
-
-
-  \ma \mb \mc \md
-  \ma \mb \mc \md
-  \ma \mb \mc \md
-}
-
-lead = {
-
-
-  r1 | r1 | r1 | r1 |
-  b'8 c'' r a' b' b'16 b' b' b' b' r |
-  b'8 c'' r a' b' b'16 b' b' b' b' r |
-  b'8 c'' r a' b' b'16 b' b' b' b' r |
-  b'8 c'' r a' b' <fis' b'>16 <fis' b'><fis' b'><fis' b'><fis' b'> r |
-
-}
-
-
-drumbar =  \drummode {
-  bassdrum4
-  snare
-  bassdrum
-  snare
-}
-
-drumbarhh =  \drummode {
-  hihat8
-  hihat8
-  hihat8
-  hihat8
-  hihat8
-  hihat8
-  hihat8
-  hihat8
-}
-
 
 \score {
   <<

@@ -42,14 +42,14 @@ riff 1
 solo final
 ----------
 
-.. image:: solo.png
+.. image:: png_solo.png
        :scale: 10 %
        :alt: alternate text
        :align: center
 
 
 
-`solo (midi) <solo.mp3>`_
+`solo (midi) <midi_solo.mp3>`_
 `solo (mp3) <https://s3-lolo-web.s3.eu-west-1.amazonaws.com/zik/work-mp3/Cranberries/zombies/solo.mp3>`_
 
 

@@ -42,6 +42,7 @@ def check_output(func: Callable[[Path, Path], CompletedProcess]):
             if not target.exists():
                 raise Exception(f'target {target} not  built')
         return
+
     return inner
 
 
@@ -77,10 +78,10 @@ def make_mp3(source: Path, target: Path):
     #                    str(source)])
 
     wav = source.with_suffix(".wav")
-    p = make_wav(source,wav)
+    p = make_wav(source, wav)
 
     p = subprocess.run(['ffmpeg', '-i', str(wav), '-codec:a',
-                       'libmp3lame', '-b:a', '320k', str(target)])
+                        'libmp3lame', '-b:a', '320k', str(target)])
     return p
 
 
@@ -112,11 +113,11 @@ def scan_rst(rst_file: Path) -> List[Path]:
 
     return ret
 
+
 # @todo : recursive scan
 
 
 def scan_ly_ly(ly_file: Path) -> List[Path]:
-
     built_in_ly = [
         'predefined-guitar-fretboards.ly'
     ]
@@ -181,7 +182,6 @@ def mount(srcfiles: List[Path], source_dir: Path, build_dir: Path) -> List[Path]
 
 
 def copy_to_s3(html_build_dir: Path, dest: str):
-
     p = subprocess.run([
         'aws', 's3', 'cp',
         '--recursive', str(html_build_dir / 'html'),
@@ -191,7 +191,6 @@ def copy_to_s3(html_build_dir: Path, dest: str):
 
 
 def sync_with_s3(html_build_dir: Path, dest: str):
-
     p = subprocess.run([
         'aws', 's3', 'sync',
         str(html_build_dir / 'html'),
@@ -265,19 +264,19 @@ def make_index_rst(data_conf: Data, source_dir: Path, build_dir: Path):
     song_files = ''
     for s in data_conf.song_files:
         song_files = song_files + \
-            f"   {s.relative_to(source_dir).with_suffix('')}" + '\n'
+                     f"   {s.relative_to(source_dir).with_suffix('')}" + '\n'
     text = text.replace('$song_files$', song_files)
     text = text.replace('$title$', data_conf.project_title)
     (Path(build_dir) / 'index.rst').write_text(text)
 
 
-@ click.command()
-@ click.option('--clean-first', default=False, is_flag=True,
-               help='clean build directories')
-@ click.option('--s3', default=False, is_flag=True, help='upload to s3')
-@ click.option('--reformat', default=False, is_flag=True, help='reformat ly files')
-@ click.option('--build', default=False, is_flag=True, help='build')
-@ click.option('--book', required=True, help='name of the book')
+@click.command()
+@click.option('--clean-first', default=False, is_flag=True,
+              help='clean build directories')
+@click.option('--s3', default=False, is_flag=True, help='upload to s3')
+@click.option('--reformat', default=False, is_flag=True, help='reformat ly files')
+@click.option('--build', default=False, is_flag=True, help='build')
+@click.option('--book', required=True, help='name of the book')
 def main(s3, clean_first, reformat, build, book):
     try:
         source_dir = here / 'source'
@@ -326,9 +325,9 @@ def main(s3, clean_first, reformat, build, book):
                                 str(build_dir), str(html_build_dir)])
             print('The exit code was: %d' % p.returncode)
 
-            #p = subprocess.run(['sphinx-build', '-M', 'latexpdf',
+            # p = subprocess.run(['sphinx-build', '-M', 'latexpdf',
             #                    str(build_dir), str(html_build_dir)])
-            #print('The exit code was: %d' % p.returncode)
+            # print('The exit code was: %d' % p.returncode)
 
             for f in ret:
                 if f.suffix in ['.wav', '.mp3']:
@@ -343,11 +342,16 @@ def main(s3, clean_first, reformat, build, book):
     except Exception as e:
         logging.error(e)
         traceback.print_exc(file=sys.stdout)
-        raise e
+        exit(1)
+        # raise e
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except:  # noqa: E722
-        traceback.print_exc()
+    s = "h̷̥͙͐è̴̝̹̬̅͌͝l̸̺͛́l̷̰̬͆͗o̵̓   ̨̥̣͉͌ ̴̞̖̲̅̍̚w̸̟͈͇͂̏̌ỏ̷͎̯̃̽̔r̸̭͋l̷̮̩͍̍̐d̴͉̖̿̏͗͒"
+    print(s)
+
+    main()
+
+#    except:  # noqa: E722
+#        traceback.print_exc()
+#        exit(1)

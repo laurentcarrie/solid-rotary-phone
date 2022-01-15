@@ -1,10 +1,12 @@
 #!/bin/bash
 
+echo $PWD
+
+
 
 #books="garenne pscl ultimate-chorus"
-
-books="work"
-
+#books="work"
+books="garenne"
 
 set -e
 set -x
@@ -32,7 +34,6 @@ function make_songs {
 find . -name "*.lytmp" | while read f ; do rm $f ; done
 
 python make.py --reformat --build --book $here/source/$1.json
-
 find . -name "*.lytmp" | while read f ; do rm $f ; done
 
 # pour créer des .mid à partir de .ly
@@ -128,6 +129,12 @@ function start_web_server {
 
 
 case $1 in
+work)
+  shift
+  make_clean
+  make_songs work
+  start_web_server
+  ;;
 songs)
   shift
   make_clean
@@ -163,3 +170,7 @@ nginx)
 *)
   echo "no such command : $1"
 esac
+
+
+s="h̷̥͙͐è̴̝̹̬̅͌͝l̸̺͛́l̷̰̬͆͗o̵̓   ̨̥̣͉͌ ̴̞̖̲̅̍̚w̸̟͈͇͂̏̌ỏ̷͎̯̃̽̔r̸̭͋l̷̮̩͍̍̐d̴͉̖̿̏͗͒"
+echo $s
