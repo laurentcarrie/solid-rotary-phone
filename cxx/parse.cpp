@@ -10,8 +10,7 @@
 #include <cassert>
 #include <algorithm>
 #include <sstream>
-
-std::vector<std::string> tags = {"V", "C", "T"};
+#include "config.h"
 
 struct tag_position {
     int pos_;
@@ -23,6 +22,19 @@ struct tag_position {
 bool myCompare(const tag_position &pos1, const tag_position &pos2) {
     return pos1.pos_ < pos2.pos_;
 }
+
+bool myCompareInclude(const Item &pos1, const Item &pos2) {
+    // nested
+    if (pos1.starting_ < pos2.starting_ && pos1.ending_ > pos2.ending_) return false;
+    if (pos2.starting_ < pos1.starting_ && pos2.ending_ > pos1.ending_) return true;
+
+    // not nested
+    if (pos1.starting_ < pos2.starting_ && pos1.ending_ < pos2.ending_) return true;
+    if (pos2.starting_ < pos1.starting_ && pos2.ending_ < pos1.ending_) return false;
+
+    throw std::runtime_error("cannot compare");
+}
+
 
 std::list<int> find(std::string input, std::string tag) {
     std::list<int> ret;
@@ -102,9 +114,11 @@ std::vector<Item> parse(std::string input) {
     }
 
 
-    for (unsigned int i = 0; i < nesting_vector.size() - 1; i++) {
+    for (unsigned i = 0; i < nesting_vector.size(); i++) {
+        unsigned int j = i + 1;
+        if (j >= nesting_vector.size()) break;
         tag_position &current = nesting_vector[i];
-        const tag_position &next = nesting_vector[i + 1];
+        const tag_position &next = nesting_vector[j];
         if (current.opening_ and !next.opening_) {
             // current est une ouverture et next une fermeture, ce doit etre pour la meme balise
             if (current.tag_ != next.tag_) {
@@ -128,21 +142,36 @@ std::vector<Item> parse(std::string input) {
         }
 
     }
-
+/*
     for (auto i: nesting_vector) {
         std::cout << i.pos_ << " : " << i.opening_ << " ; " << i.tag_ << " ( to " << i.pos_closing_ << " )"
                   << std::endl;
     }
-
-    std::vector<Item> ret ;
+*/
+    std::vector<Item> ret;
     for (auto i: nesting_vector) {
-        if ( ! i.opening_) continue ;
-        ret.push_back({i.tag_,i.pos_,i.pos_closing_}) ;
+        if (!i.opening_) continue;
+        ret.push_back({i.tag_, i.pos_, i.pos_closing_});
 
     }
 
+/*
+    for (auto i: ret) {
+        std::cout << i.tag_ << " : " << i.starting_ << " ; " << i.ending_
+                  << std::endl;
+    }
+*/
+    std::sort(ret.begin(), ret.end(), myCompareInclude);
 
-    return ret ;
+
+    std::cout << "after sort " << std::endl;
+    for (auto i: ret) {
+        std::cout << i.tag_ << " : " << i.starting_ << " ; " << i.ending_
+                  << std::endl;
+    }
+
+
+    return ret;
 
 
 }
