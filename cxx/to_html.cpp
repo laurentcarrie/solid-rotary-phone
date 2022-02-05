@@ -87,7 +87,7 @@ std::stringstream to_html(Config config) {
 
 .wrapper {
 	background-color: #ffffff;
-	border: 10px solid #00ffff;
+	border: 1px solid #00ffff;
 grid-column-gap: 30px;
 grid-row-gap: 30px;
   display: grid;
