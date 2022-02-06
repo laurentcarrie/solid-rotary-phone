@@ -17,26 +17,93 @@ std::string closing_tag(std::string tag) {
     return std::string("</")+tag+(">") ;
 }
 
-void substitute_V(Item item,std::string& data) {
-    data.replace(item.ending_, closing_tag(item.tag_).size(),"</div>") ;
-    data.replace(item.starting_, opening_tag(item.tag_).size(),"<div class=\"verse\">") ;
-    data = std::regex_replace(data,std::regex("\n"),"<br>") ;
+std::vector<std::string> split_string(std::string input,std::string delim) {
+    std::vector<std::string> ret ;
+    int begin_index = 0 ;
+    while(true) {
+        auto found_index = input.find_first_of(delim, begin_index) ;
+        if ( found_index == std::string::npos ) {
+            ret.push_back(input.substr(begin_index,input.size()-begin_index)) ;
+            break ;
+        }
+        ret.push_back(input.substr(begin_index,found_index-begin_index)) ;
+        begin_index = found_index+1 ;
+    }
+    return ret ;
+
 }
 
-void substitute_C(Item item,std::string& data) {
-    data.replace(item.ending_, closing_tag(item.tag_).size(),"</div>") ;
-    data.replace(item.starting_, opening_tag(item.tag_).size(),"<div class=\"chorus\">") ;
-    data = std::regex_replace(data,std::regex("\n"),"<br>") ;
+std::string get_string_between_tags(std::string input,Item item) {
+    std::string gdata = input.substr(item.starting_+2+item.tag_.size(),item.ending_-item.starting_-2-item.tag_.size()) ;
+    return gdata ;
 }
 
-void substitute_T(Item item,std::string& data) {
-    data.replace(item.ending_, closing_tag(item.tag_).size(),"</div>") ;
-    data.replace(item.starting_, opening_tag(item.tag_).size(),"<div class=\"title\">") ;
+void replace_string_between_tags(std::string& input,std::string replacement,Item item) {
+    input.replace(item.starting_,item.ending_-item.starting_+item.tag_.size()+3,replacement) ;
 }
 
-void substitute_L(Item item,std::string& data) {
-    data.replace(item.ending_, closing_tag(item.tag_).size(),"</div>") ;
-    data.replace(item.starting_, opening_tag(item.tag_).size(),"<div class=\"lyrics\">") ;
+
+void substitute_V(Item item,std::string& input) {
+    std::string data = get_string_between_tags(input,item) ;
+    std::vector<std::string> lines = split_string(data,"\n") ;
+    std::ostringstream oss ;
+    oss << "<div class=\"verse\">" << std::endl ;
+    for ( auto line : lines ) {
+        if (!line.empty()) {
+            oss << line << " <br>" << std::endl;
+        }
+    }
+    oss << "</div>" << std::endl ;
+    replace_string_between_tags(input,oss.str(),item) ;
+}
+
+void substitute_C(Item item,std::string& input) {
+    std::string data = get_string_between_tags(input,item) ;
+    std::vector<std::string> lines = split_string(data,"\n") ;
+    std::ostringstream oss ;
+    oss << "<div class=\"chorus\">" << std::endl ;
+    for ( auto line : lines ) {
+        if (!line.empty()) {
+            oss << line << " <br>" << std::endl;
+        }
+    }
+    oss << "</div>" << std::endl ;
+    replace_string_between_tags(input,oss.str(),item) ;
+}
+
+void substitute_T(Item item,std::string& input) {
+    input.replace(item.ending_, closing_tag(item.tag_).size(), "</div>") ;
+    input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"title\">") ;
+}
+
+void substitute_L(Item item,std::string& input) {
+    input.replace(item.ending_, closing_tag(item.tag_).size(), "</div>") ;
+    input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"lyrics\">") ;
+}
+
+void substitute_G(Item item,std::string& input) {
+    std::string gdata = get_string_between_tags(input, item) ;
+    // data.replace(item.ending_, closing_tag(item.tag_).size(),"</table></div>") ;
+    // data.replace(item.starting_, opening_tag(item.tag_).size(),"<div><table class=\"redtable\">") ;
+    // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
+    std::vector<std::string> lines = split_string(gdata,"\n") ;
+    std::ostringstream oss ;
+    oss << "<div><table class=\"redtable\">" << std::endl ;
+    for ( auto line : lines ) {
+        oss << "<tr>" ;
+        std::vector<std::string> cells = split_string(line,"|") ;
+        for ( auto cell : cells ) {
+            oss << "<td><div style=\"width: 50px\" >" << cell << "</div></td>" ;
+        }
+        oss << "</tr>" << std::endl ;
+    }
+    oss << "</table></div>" ;
+
+    // data.replace(item.starting_,item.ending_-item.starting_+std::string("</G>").size(),oss.str()) ;
+    replace_string_between_tags(input, oss.str(), item) ;
+    // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
+    // std::cout << input << std::endl ;
+
 }
 
 
@@ -50,7 +117,7 @@ std::string substitute_all_tags(std::string data) {
         if (items.empty()) break ;
         Item item = items.front() ;
 
-        std::cout << "substitute " << item.starting_ << " -> " << item.ending_ << std::endl ;
+        // std::cout << "substitute " << item.starting_ << " -> " << item.ending_ << std::endl ;
 
         Tag etag = tag_of_name((item.tag_)) ;
         switch (etag) {
@@ -66,11 +133,14 @@ std::string substitute_all_tags(std::string data) {
             case L:
                 substitute_L(item,data) ;
                 break ;
+            case G:
+                substitute_G(item,data) ;
+                break ;
             default:
                 throw std::runtime_error(std::string("case not managed : ")+item.tag_) ;
         }
     }
-
+    // data = std::regex_replace(data,std::regex("<br>"),"<br>\n") ;
     return data ;
 
 

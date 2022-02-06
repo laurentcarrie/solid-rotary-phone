@@ -94,7 +94,7 @@ std::vector<Item> parse(std::string input) {
     for (auto tag: tags) {
         int level = 0;
         for (auto pair: positions[tag]) {
-            std::cout << tag << " : " << pair.first << " => " << pair.second << std::endl;
+            // std::cout << tag << " : " << pair.first << " => " << pair.second << std::endl;
             nesting_vector.push_back({pair.first, pair.second, tag, -1});
             if (pair.second) {
                 level++;
@@ -109,9 +109,11 @@ std::vector<Item> parse(std::string input) {
 
     std::sort(nesting_vector.begin(), nesting_vector.end(), myCompare);
 
+    /*
     for (auto i: nesting_vector) {
         std::cout << i.pos_ << " : " << i.opening_ << " ; " << i.tag_ << std::endl;
     }
+     */
 
 
     for (unsigned i = 0; i < nesting_vector.size(); i++) {
@@ -164,12 +166,13 @@ std::vector<Item> parse(std::string input) {
     std::sort(ret.begin(), ret.end(), myCompareInclude);
 
 
-    std::cout << "after sort " << std::endl;
-    for (auto i: ret) {
-        std::cout << i.tag_ << " : " << i.starting_ << " ; " << i.ending_
-                  << std::endl;
+    if (false) {
+        std::cout << "after sort " << std::endl;
+        for (auto i: ret) {
+            std::cout << i.tag_ << " : " << i.starting_ << " ; " << i.ending_
+                      << std::endl;
+        }
     }
-
 
     return ret;
 

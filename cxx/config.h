@@ -28,10 +28,10 @@ Config read_master(std::filesystem::path p) ;
 
 
 enum Tag {
-    V=0,C,T,L
+    V=0,C,T,L,G,TD
 };
 
-static std::vector<std::string> tags = {"V", "C", "T","L"};
+static std::vector<std::string> tags = {"V", "C", "T","L","G",""};
 
 Tag tag_of_name(std::string name) ;
 

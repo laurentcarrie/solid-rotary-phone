@@ -11,7 +11,11 @@ cells:
     row: 1
     col: 2
     what: grille
-    
+  -
+    row: 2
+    col: 2
+    what: png_solo.ly
+
 
 
 
