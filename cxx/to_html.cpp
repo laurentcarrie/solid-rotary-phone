@@ -9,6 +9,19 @@
 #include <cassert>
 #include <regex>
 
+std::string exec(const char* cmd) {
+    std::array<char, 128> buffer;
+    std::string result;
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+    if (!pipe) {
+        throw std::runtime_error("popen() failed!");
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        result += buffer.data();
+    }
+    return result;
+}
+
 std::string opening_tag(std::string tag) {
     return std::string("<")+tag+(">") ;
 }
@@ -81,6 +94,23 @@ void substitute_L(Item item,std::string& input) {
     input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"lyrics\">") ;
 }
 
+void substitute_LY(Config config,Item item,std::string& input) {
+    std::string data = get_string_between_tags(input,item) ;
+    std::cout << "DDDDDDDDDDDDDDDD "   << data << std::endl ;
+    replace_string_between_tags(input,std::string("<img class=\"ly\" src=\"")+data+(".png\">"),item) ;
+    std::ostringstream oss ;
+    oss << "lilypond -dbackend=eps -dresolution=600 --png --output " ;
+    oss << config.builddir / config.relpath / data ;
+    std::filesystem::path source (config.srcdir / config.relpath / data ) ;
+    source.replace_extension(".ly") ;
+    oss << " " << source ;
+    // oss << /home/laurent/work/solid-rotary-phone/build/cranberries/zombies/png_solo /home/laurent/work/solid-rotary-phone/source/cranberries/zombies/png_solo.ly" ;
+    std::cout << oss.str() << std::endl ;
+    exec(oss.str().c_str()) ;
+
+}
+
+
 void substitute_G(Item item,std::string& input) {
     std::string gdata = get_string_between_tags(input, item) ;
     // data.replace(item.ending_, closing_tag(item.tag_).size(),"</table></div>") ;
@@ -88,8 +118,9 @@ void substitute_G(Item item,std::string& input) {
     // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
     std::vector<std::string> lines = split_string(gdata,"\n") ;
     std::ostringstream oss ;
-    oss << "<div><table class=\"redtable\">" << std::endl ;
+    oss << "<div><table class=\"blueTable\">" << std::endl ;
     for ( auto line : lines ) {
+        if (line == "") continue ;
         oss << "<tr>" ;
         std::vector<std::string> cells = split_string(line,"|") ;
         for ( auto cell : cells ) {
@@ -107,7 +138,7 @@ void substitute_G(Item item,std::string& input) {
 }
 
 
-std::string substitute_all_tags(std::string data) {
+std::string substitute_all_tags(Config config,std::string data) {
 
     int previous_length=1000 ;
     while (true) {
@@ -136,8 +167,13 @@ std::string substitute_all_tags(std::string data) {
             case G:
                 substitute_G(item,data) ;
                 break ;
+            case LY:
+                substitute_LY(config,item,data) ;
+                break ;
             default:
-                throw std::runtime_error(std::string("case not managed : ")+item.tag_) ;
+                std::ostringstream oss ;
+                oss << __FILE__ << ":" << __LINE__ << " ; case not managed : '" << item.tag_ << "'" ;
+                throw std::runtime_error(oss.str()) ;
         }
     }
     // data = std::regex_replace(data,std::regex("<br>"),"<br>\n") ;
@@ -171,7 +207,7 @@ grid-row-gap: 30px;
 }
 
 </style>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../style/style.css">
 </head>
 <body>
 
@@ -187,7 +223,7 @@ grid-row-gap: 30px;
                 if (c.irow != irow + 1) continue;
                 if (c.icol != icol + 1) continue;
                 found = true;
-                oss << "<div>" << substitute_all_tags(c.data) << "</div>" << std::endl ;
+                oss << "<div>" << substitute_all_tags(config,c.data) << "</div>" << std::endl ;
             }
             if (!found) {
                 oss << "<div>" << irow * config.cols.size() + icol << "</div>" << std::endl;

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <yaml-cpp/yaml.h>
 #include <cassert>
+#include <iostream>
 
 #include "config.h"
 
@@ -22,28 +23,59 @@ namespace YAML {
             return node;
         }
 
+
         static bool decode(Node const &node, Cell &rhs) {
             // std::cout << "node : " << node << std::endl ;
             unsigned int irow = node["row"].as<unsigned int>();
             unsigned int icol = node["col"].as<unsigned int>();
             std::string what = node["what"].as<std::string>();
-            rhs = {irow, icol, what,""} ;
+            rhs = {irow, icol, what, ""};
             return true;
+        }
+    } ;
+
+    template<>
+    struct convert<Song> {
+        static Node encode(Song const &rhs) {
+            assert(false) ;
+        }
+
+        static bool decode(Node const &node,Song &rhs) {
+            std::string spath(node.as<std::string>()) ;
+            std::filesystem::path path(spath) ;
+            rhs = {path};
+            return true ;
         }
     };
 }
 
 
 
+Book read_book(std::filesystem::path p) {
+    try {
+        YAML::Node yaml = YAML::LoadFile(p);
+        std::string name = yaml["name"].as<std::string>();
+        std::vector<Song> songs = yaml["songs"].as<std::vector<Song>>();
+
+        Book book{name, songs};
+        return book;
+    }
+    catch (std::exception& e) {
+        std::cout << "Error while reading " << p << std::endl << e.what() << std::endl ;
+        throw(e) ;
+    }
+}
 
 
-Config read_master(std::filesystem::path p) {
+
+
+Config read_master(std::filesystem::path srcdir,std::string relpath,std::filesystem::path builddir,std::filesystem::path p) {
     YAML::Node yaml = YAML::LoadFile(p);
     unsigned int rows = yaml["rows"].as<unsigned int>();
     std::vector<unsigned int> cols = yaml["cols"].as<std::vector<unsigned int>>();
     std::vector<Cell> cells = yaml["cells"].as<std::vector<Cell>>();
 
-    Config config{rows, cols, cells};
+    Config config{srcdir/"songs",builddir,relpath,rows, cols, cells};
     return config;
 }
 

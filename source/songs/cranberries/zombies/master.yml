@@ -1,7 +1,7 @@
-rows: 2
+rows: 1
 cols:
-  - 10
-  - 10
+  - 5
+  - 15
 cells:
   -
     row: 1
@@ -11,10 +11,7 @@ cells:
     row: 1
     col: 2
     what: grille
-  -
-    row: 2
-    col: 2
-    what: png_solo.ly
+
 
 
 
