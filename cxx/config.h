@@ -31,10 +31,10 @@ Config read_master(std::filesystem::path srcdir,std::string relpath,std::filesys
 
 
 enum Tag {
-    V=0,C,T,L,G,LY
+    V=0,C,T,L,G,LY,LY_WAV
 };
 
-static std::vector<std::string> tags = {"V", "C", "T","L","G","LY"};
+static std::vector<std::string> tags = {"V", "C", "T","L","G","LY","LY_WAV"};
 
 Tag tag_of_name(std::string name) ;
 

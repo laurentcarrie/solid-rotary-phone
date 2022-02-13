@@ -115,14 +115,17 @@ void make_book(std::filesystem::path srcdir, std::filesystem::path book_path, st
 }
 
 
-void copy_css_file(std::filesystem::path builddir) {
-    std::filesystem::path to = builddir / "style" / "style.css";
-    std::filesystem::create_directories(to.parent_path());
+void copy_css_file(std::filesystem::path srcdir,std::filesystem::path builddir) {
+    std::function<std::string(std::string)> f = [srcdir,builddir](std::string name) {
+        std::filesystem::path to = builddir /"style" / name ;
+        std::filesystem::create_directories(to.parent_path());
+        std::filesystem::path from = srcdir / name ;
+        std::filesystem::copy_file(from, to, std::filesystem::copy_options::overwrite_existing);
+        return "" ;
+    };
+    std::vector<std::string> names {"style.css","print.css"};
 
-    std::filesystem::path here(__FILE__);
-    std::filesystem::path from = here.parent_path().parent_path() / "source/style.css";
-    std::filesystem::copy_file(from, to, std::filesystem::copy_options::overwrite_existing);
-
+    std::transform(names.begin(),names.end(),names.begin(),f) ;
 }
 
 int main(int argc, char **argv) {
@@ -140,7 +143,7 @@ int main(int argc, char **argv) {
 
 
         // make_song(rootdir,builddir) ;
-        copy_css_file(builddir);
+        copy_css_file(srcdir,builddir);
     }
     catch (std::exception &e) {
         std::cout << e.what();

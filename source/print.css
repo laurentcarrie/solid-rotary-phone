@@ -122,5 +122,9 @@ table.blueTable tfoot .links a{
 }
 
 div.wav {
+    display:none
+}
 
+a.wav {
+    display:none
 }

@@ -1,5 +1,5 @@
 <L>
-<T>couplet 1 (g rhytmique seulement)</T>
+<T>A(g rhytmique seulement)</T>
 <V>
 
 Thank you for pretending that
@@ -9,7 +9,7 @@ And what I meant is what you really heard
 </V>
  
  
-<T>refrain (g,b, d grosse caisse)</T>
+<T>B (g,b, d grosse caisse)</T>
 <C>
 'Cause baby baby baby
 
@@ -18,7 +18,7 @@ Crazy as it may be
 I'll die when I wanna
 </C>
 
-<T>couplet</T>
+<T>C</T>
 <V>
 Lies set me free
 Lies keep me from my fear
@@ -26,15 +26,16 @@ Lies believe in me
 Lies heavenly shelter
 </V>
 
-<T>refrain (g rhytmique seule)</T>
+<T>A(g rhytmique seule)</T>
 <C>
-
 Thank you for pretending that
-I don't cry and I don'\t care
+I don't cry and I don't care
 That my heart is made of clay
 And I will keep sailing away
+</C>
 
-
+<T>xxx</T>
+<C>
 'Cause baby baby baby
 I'll be what I wanna be
 Crazy as it may be

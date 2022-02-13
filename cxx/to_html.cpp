@@ -97,7 +97,7 @@ void substitute_L(Item item,std::string& input) {
 void substitute_LY(Config config,Item item,std::string& input) {
     std::string data = get_string_between_tags(input,item) ;
     std::cout << "DDDDDDDDDDDDDDDD "   << data << std::endl ;
-    replace_string_between_tags(input,std::string("<img class=\"ly\" src=\"")+data+(".png\">"),item) ;
+    replace_string_between_tags(input,std::string("<div><img class=\"ly\" src=\"")+data+(".png\"></div>"),item) ;
     std::ostringstream oss ;
     oss << "lilypond -dbackend=eps -dresolution=600 --png --output " ;
     oss << config.builddir / config.relpath / data ;
@@ -109,6 +109,41 @@ void substitute_LY(Config config,Item item,std::string& input) {
     exec(oss.str().c_str()) ;
 
 }
+
+void substitute_LY_WAV(Config config,Item item,std::string& input) {
+    std::string data = get_string_between_tags(input, item);
+    std::stringstream oss;
+    auto ly_path = config.srcdir / config.relpath / data;
+    ly_path.replace_extension(".ly");
+    auto midi_path = config.builddir / config.relpath / data;
+    midi_path.replace_extension(".midi");
+    auto wav_path = config.builddir / config.relpath / data;
+    wav_path.replace_extension(".wav");
+
+    {
+        // make midi
+        std::ostringstream oss;
+        oss << "lilypond -dmidi-extension=midi --output " << midi_path << " " << ly_path;
+        std::cout << oss.str() << std::endl;
+        exec(oss.str().c_str());
+    }
+    {
+        // make wav
+        std::ostringstream oss;
+        oss << "fluidsynth -F " << wav_path << " /usr/share/sounds/sf2/FluidR3_GM.sf2 " << midi_path;
+        std::cout << oss.str() << std::endl;
+        exec(oss.str().c_str());
+
+    }
+    {
+        std::ostringstream oss ;
+        oss <<  R"here(<div><a class="wav" href=")here" << data << R"here(.wav">)here" << data << "</a></div>";
+        replace_string_between_tags(input,oss.str(),item) ;
+    }
+
+
+}
+
 
 
 void substitute_G(Item item,std::string& input) {
@@ -170,6 +205,9 @@ std::string substitute_all_tags(Config config,std::string data) {
             case LY:
                 substitute_LY(config,item,data) ;
                 break ;
+            case LY_WAV:
+                substitute_LY_WAV(config,item,data) ;
+                break ;
             default:
                 std::ostringstream oss ;
                 oss << __FILE__ << ":" << __LINE__ << " ; case not managed : '" << item.tag_ << "'" ;
@@ -207,7 +245,8 @@ grid-row-gap: 30px;
 }
 
 </style>
-<link rel="stylesheet" href="../../style/style.css">
+<link rel="stylesheet" type="text/css" href="../../style/style.css">
+<link rel="stylesheet" type="text/css" href="../../style/print.css" media="print" />
 </head>
 <body>
 
