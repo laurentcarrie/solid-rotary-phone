@@ -140,3 +140,4 @@ dmypy.json
 /solid-rotary-phone.iml
 
 *.lytmp
+/cmake-build-debug/
