@@ -70,13 +70,23 @@ Book read_book(std::filesystem::path p) {
 
 
 Config read_master(std::filesystem::path srcdir,std::string relpath,std::filesystem::path builddir,std::filesystem::path p) {
-    YAML::Node yaml = YAML::LoadFile(p);
-    unsigned int rows = yaml["rows"].as<unsigned int>();
-    std::vector<unsigned int> cols = yaml["cols"].as<std::vector<unsigned int>>();
-    std::vector<Cell> cells = yaml["cells"].as<std::vector<Cell>>();
+    try {
+        YAML::Node yaml = YAML::LoadFile(p);
+        unsigned int rows = yaml["rows"].as<unsigned int>();
+        assert(yaml["rows"]) ;
+        std::vector<unsigned int> cols = yaml["cols"].as<std::vector<unsigned int>>();
+        assert(yaml["cells"]) ;
+        std::vector<Cell> cells = yaml["cells"].as<std::vector<Cell>>() ;
+        assert (yaml["title"]) ;
+        std::string main_title = yaml["title"].as<std::string>();
 
-    Config config{srcdir/"songs",builddir,relpath,rows, cols, cells};
-    return config;
+        Config config{main_title, srcdir / "songs", builddir, relpath, rows, cols, cells};
+        return config;
+    }
+    catch (std::exception& e) {
+        std::cerr << "exception in yaml load of " << p << std::endl ;
+        throw(e) ;
+    }
 }
 
 

@@ -6,21 +6,21 @@
 }
 
 .title {;
-    font-size: 12px;
-    color: red;
+    font-size: 18px;
+    color: blue;
     font-family: Helvetica, Arial, sans-serif;
 
 }
 
 .verse {
     color: green;
-    font-size: 8px;
+    font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 .chorus {
     color: green;
-    font-size: 8px;
+    font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -75,7 +75,7 @@ table.blueTable td, table.blueTable th {
     padding: 3px 2px;
 }
 table.blueTable tbody td {
-    font-size: 13px;
+    font-size: 20px;
 }
 table.blueTable tr:nth-child(even) {
     background: #D0E4F5;
@@ -88,7 +88,7 @@ table.blueTable thead {
     border-bottom: 2px solid #444444;
 }
 table.blueTable thead th {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     color: #FFFFFF;
     border-left: 2px solid #D0E4F5;
@@ -98,7 +98,7 @@ table.blueTable thead th:first-child {
 }
 
 table.blueTable tfoot {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     color: #FFFFFF;
     background: #D0E4F5;
@@ -108,7 +108,7 @@ table.blueTable tfoot {
     border-top: 2px solid #444444;
 }
 table.blueTable tfoot td {
-    font-size: 14px;
+    font-size: 20px;
 }
 table.blueTable tfoot .links {
     text-align: right;
@@ -127,4 +127,14 @@ div.wav {
 
 a.wav {
     display:none
+}
+
+
+div.main-title {
+    text-align: center;
+    color:lightcoral;
+    background: honeydew;
+    font-size:30px ;
+    font-weight:bold ;
+
 }

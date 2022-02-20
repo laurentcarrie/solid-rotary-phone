@@ -133,16 +133,18 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
         // make wav
         std::ostringstream oss;
 
-        std::vector<std::filesystem::path> soundfont_paths = {
+        std::vector<std::filesystem::path> maybe_soundfont_paths = {
                 "/opt/homebrew/Cellar/fluid-synth/2.2.5/share/fluid-synth/sf2/VintageDreamsWaves-v2.sf2",
                 "/usr/share/sounds/sf2/FluidR3_GM.sf2"};
         std::vector<std::filesystem::path> existing_soundfont_paths;
-        std::copy_if(soundfont_paths.begin(), soundfont_paths.end(),
+        std::copy_if(maybe_soundfont_paths.begin(), maybe_soundfont_paths.end(),
                      std::back_inserter(existing_soundfont_paths), [](std::filesystem::path p) {
                     return std::filesystem::exists(p);
                 });
 
-        assert(!existing_soundfont_paths.empty());
+        if (existing_soundfont_paths.empty()) {
+            throw std::runtime_error("no path found for soundpaths") ;
+        }
 
         oss << "fluidsynth -F " << wav_path << " " << existing_soundfont_paths.front() << " " << midi_path;
         std::cout << oss.str() << std::endl;
@@ -260,11 +262,14 @@ grid-row-gap: 30px;
 </style>
 <link rel="stylesheet" type="text/css" href="../../style/style.css">
 <link rel="stylesheet" type="text/css" href="../../style/print.css" media="print" />
-</head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    </head>
 <body>
-
+<div class="main-title">
 
     )here";
+
+    oss << config.main_title << "</div>" << std::endl ;
 
     oss << "<div class=\"wrapper\">" << std::endl;
     for (unsigned int irow = 0; irow < config.rows; irow++) {

@@ -124,3 +124,12 @@ table.blueTable tfoot .links a{
 div.wav {
 
 }
+
+div.main-title {
+    text-align: center;
+    color:lightcoral;
+    background: honeydew;
+    font-size:30px ;
+    font-weight:bold ;
+
+}

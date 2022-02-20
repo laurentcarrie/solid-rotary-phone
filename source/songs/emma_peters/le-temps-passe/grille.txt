@@ -1,0 +1,20 @@
+<T>intro</T>
+<G>
+CM7 | Em7 | Dm7 |  Ddim
+</G>
+
+
+<pre>
+
+
+
+</pre>
+
+
+<T>chaque couplet et refrain fait 16 mesures</T>
+<G>
+CM7 | CM7 | Em7 | Em7
+Dm7 | Dm7 |  Ddim | Ddim
+CM7 | CM7 | Em7 | Em7
+Dm7 | Dm7 |  Ddim | Ddim
+</G>

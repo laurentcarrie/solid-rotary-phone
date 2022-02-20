@@ -1,0 +1,73 @@
+<T>intro</T>
+<T>refrain 1</T>
+<V>
+J'veux pas qu'le temps passe
+Je sens que je t'oublie un peu
+Bientôt y aura plus une trace
+De ce qu'on était tous les deux
+</V>
+<T>couplet 1</T>
+<V>
+
+Souvent j'ai fait des bagarres, trop alcoolisée
+J'ai fait couler des larmes, et ça, j'préfère oublier
+Mais là j'ai pas décidé, depuis que tu m'as quittée
+J'ai peur de tout oublier, d'oublier qu'on s'est aimés
+</V>
+
+<T>couplet 2</T>
+<V>
+L'odeur de tes draps froissés s'efface petit à petit
+Et quand on m"demande si je te connais, moi, je sais plus dire "oui"
+Mon cerveau fait le tri, hm-hm
+Est-ce que mon cœur aussi?
+</V>
+
+<T>refrain 2</T>
+<V>
+Moi, j'veux pas que le temps passe
+Je sens que je t'oublie un peu
+Bientôt y aura plus une trace
+De ce qu'on était tous les deux, hm-hm
+</V>
+
+<T>refrain 3</T>
+<V>
+Moi, j'veux pas que le temps passe
+J'veux me rappeler de tes beaux yeux
+J'ai peur que ta voix s'efface
+T'es ce qui m'est arrivée d'mieux
+</V>
+
+<T>couplet 3</T>
+<V>
+Mes potes me disent de tourner la page, et d'avancer (et d'avancer)
+Mais quand le film est beau, j'veux encore le regarder,
+Champ contre champ j'oublierai, tout notre premier feeling
+Ça floutera les plans de nos scènes de cul dans la cuisine
+</V>
+
+<T>couplet 4</T>
+<V>
+Moi, j'suis un peu prise, et toi, t'es un peu triste
+Tout va se réparer, j'oublierai même que t'existe
+Mon cerveau fait le tri, hm-hm
+Est-ce que mon cœur aussi?
+</V>
+
+<T>refrain 4</T>
+<V>
+Moi, j'veux pas que le temps passe
+Je sens que je t'oublie un peu (Je sens que je t'oublie un peu)
+Bientôt y aura plus une trace
+De ce qu'on était tous les deux, hmm
+</V>
+
+<T>refrain 5</T>
+<V>
+Moi, j'veux pas que le temps passe
+(Moi, j'veux pas que le temps passe)
+J'veux me rappeler de tes beaux yeux (j'veux me rappeler d'tes beaux yeux)
+J'ai peur que ta voix s'efface (que ta voix s'efface)
+T'es ce qui m'est arrivée de mieux
+</V>

@@ -19,6 +19,7 @@ public:
 
 class Config {
 public:
+    std::string main_title ;
     std::filesystem::path srcdir ;
     std::filesystem::path builddir ;
     std::string relpath ;
