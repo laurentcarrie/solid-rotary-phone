@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cassert>
 #include <regex>
+#include <array>
 
 std::string exec(const char* cmd) {
     std::array<char, 128> buffer;
@@ -130,7 +131,11 @@ void substitute_LY_WAV(Config config,Item item,std::string& input) {
     {
         // make wav
         std::ostringstream oss;
-        oss << "fluidsynth -F " << wav_path << " /usr/share/sounds/sf2/FluidR3_GM.sf2 " << midi_path;
+
+        auto sf2 = "/opt/homebrew/Cellar/fluid-synth/2.2.5/share/fluid-synth/sf2/VintageDreamsWaves-v2.sf2" ;
+        // aufo sf2 = "/usr/share/sounds/sf2/FluidR3_GM.sf2" ;
+
+        oss << "fluidsynth -F " << wav_path << " " << sf2 << " "  << midi_path;
         std::cout << oss.str() << std::endl;
         exec(oss.str().c_str());
 

@@ -136,7 +136,7 @@ int main(int argc, char **argv) {
         std::filesystem::path builddir = std::filesystem::path(argv[2]);
         std::filesystem::path srcdir = std::filesystem::path(argv[1]);
 
-        std::filesystem::path book = srcdir / "books/lgc.yml";
+        std::filesystem::path book = srcdir / "books" / "lgc.yml";
 
 
         make_book(srcdir, book, builddir);

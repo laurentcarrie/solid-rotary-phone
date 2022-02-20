@@ -24,6 +24,10 @@ bool myCompare(const tag_position &pos1, const tag_position &pos2) {
 }
 
 bool myCompareInclude(const Item &pos1, const Item &pos2) {
+    if ( pos1.starting_ == pos2.starting_ && pos1.ending_ == pos2.ending_) {
+        return false ;
+    }
+
     // nested
     if (pos1.starting_ < pos2.starting_ && pos1.ending_ > pos2.ending_) return false;
     if (pos2.starting_ < pos1.starting_ && pos2.ending_ > pos1.ending_) return true;
