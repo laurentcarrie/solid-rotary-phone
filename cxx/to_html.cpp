@@ -10,6 +10,7 @@
 #include <regex>
 #include <array>
 
+
 std::string exec(const char *cmd) {
     std::array<char, 128> buffer;
     std::string result;
@@ -21,6 +22,37 @@ std::string exec(const char *cmd) {
         result += buffer.data();
     }
     return result;
+}
+
+
+void generate_if_needed(std::filesystem::path target, std::vector<std::filesystem::path> sources,
+                        std::string command) {
+    bool is_needed = false;
+
+    if (!std::filesystem::exists(target)) {
+        is_needed = true ;
+    }
+    else {
+        for (auto s: sources) {
+            if (std::filesystem::last_write_time(target) < std::filesystem::last_write_time(s)) {
+                //std::cout << std::filesystem::last_write_time(target) << std::endl ;
+                std::cout << target << " is newer than " << s << std::endl;
+                is_needed = true;
+                break;
+            }
+        }
+    }
+    if (!is_needed) return ;
+    std::cout << command << std::endl ;
+    exec(command.c_str());
+
+    if (!std::filesystem::exists(target)) {
+        std::ostringstream oss;
+        oss << "command " << command << std::endl << "did not generate target " << std::endl << target << std::endl;
+        throw (std::runtime_error(oss.str()));
+    }
+
+    return;
 }
 
 std::string opening_tag(std::string tag) {
@@ -98,17 +130,20 @@ void substitute_L(Item item, std::string &input) {
 
 void substitute_LY(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
-    std::cout << "DDDDDDDDDDDDDDDD " << data << std::endl;
     replace_string_between_tags(input, std::string("<div><img class=\"ly\" src=\"") + data + (".png\"></div>"), item);
     std::ostringstream oss;
     oss << "lilypond -dbackend=eps -dresolution=600 --png --output ";
+    std::filesystem::path target(config.builddir / config.relpath / data);
+    target.replace_extension(".png");
+
     oss << config.builddir / config.relpath / data;
     std::filesystem::path source(config.srcdir / config.relpath / data);
     source.replace_extension(".ly");
     oss << " " << source;
     // oss << /home/laurent/work/solid-rotary-phone/build/cranberries/zombies/png_solo /home/laurent/work/solid-rotary-phone/source/cranberries/zombies/png_solo.ly" ;
-    std::cout << oss.str() << std::endl;
-    exec(oss.str().c_str());
+    // std::cout << oss.str() << std::endl;
+    generate_if_needed(target, {source}, oss.str());
+
 
 }
 
@@ -125,9 +160,11 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
     {
         // make midi
         std::ostringstream oss;
-        oss << "lilypond -dmidi-extension=midi --output " << midi_path << " " << ly_path;
-        std::cout << oss.str() << std::endl;
-        exec(oss.str().c_str());
+        auto midi_path_without_extension = midi_path ;
+        midi_path_without_extension.replace_extension("") ;
+        oss << "lilypond -dmidi-extension=midi --output " << midi_path_without_extension << " " << ly_path;
+        generate_if_needed(midi_path,{ly_path},oss.str()) ;
+
     }
     {
         // make wav
@@ -138,17 +175,16 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
                 "/usr/share/sounds/sf2/FluidR3_GM.sf2"};
         std::vector<std::filesystem::path> existing_soundfont_paths;
         std::copy_if(maybe_soundfont_paths.begin(), maybe_soundfont_paths.end(),
-                     std::back_inserter(existing_soundfont_paths), [](std::filesystem::path p) {
+                     std::back_inserter(existing_soundfont_paths), [](const std::filesystem::path &p) {
                     return std::filesystem::exists(p);
                 });
 
         if (existing_soundfont_paths.empty()) {
-            throw std::runtime_error("no path found for soundpaths") ;
+            throw std::runtime_error("no path found for soundpaths");
         }
-
         oss << "fluidsynth -F " << wav_path << " " << existing_soundfont_paths.front() << " " << midi_path;
-        std::cout << oss.str() << std::endl;
-        exec(oss.str().c_str());
+        generate_if_needed(wav_path, {midi_path}, oss.str());
+
 
     }
     {
@@ -269,7 +305,7 @@ grid-row-gap: 30px;
 
     )here";
 
-    oss << config.main_title << "</div>" << std::endl ;
+    oss << config.main_title << "</div>" << std::endl;
 
     oss << "<div class=\"wrapper\">" << std::endl;
     for (unsigned int irow = 0; irow < config.rows; irow++) {
