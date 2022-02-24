@@ -277,6 +277,9 @@ std::stringstream to_html(Config config) {
     std::stringstream oss;
     oss << R"here(
 <html>
+<title>)here" ;
+    oss << config.main_title ;
+    oss << R"here(</title>
 <head>
 <style>
 

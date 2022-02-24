@@ -54,3 +54,5 @@ public:
 Book read_book(std::filesystem::path) ;
 
 #endif //SOLID_ROTARY_PHONE_CONFIG_H
+
+//

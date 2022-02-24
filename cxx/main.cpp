@@ -63,7 +63,7 @@ std::string make_table() {
 */
 
 std::string read_datafile(std::filesystem::path rootdir, std::string prefix) {
-    std::filesystem::path filepath = rootdir / (prefix + ".txt");
+    std::filesystem::path filepath = rootdir / (prefix );
     std::ifstream fin(filepath);
     std::stringstream sss;
     if (std::filesystem::exists(filepath)) {

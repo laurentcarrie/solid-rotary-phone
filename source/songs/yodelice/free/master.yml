@@ -7,11 +7,11 @@ cells:
   -
     row: 1
     col: 1
-    what: lyrics
+    what: lyrics.html
   -
     row: 1
     col: 2
-    what: grille
+    what: grille.html
 
 
 
