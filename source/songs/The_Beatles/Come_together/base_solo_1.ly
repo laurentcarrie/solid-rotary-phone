@@ -1,3 +1,4 @@
+\version "2.22.1"
 
 song_tempo = 83
 
@@ -75,7 +76,7 @@ lead = {
 
 drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
 
-drums = {
+drumbars = {
   \drumbar |
   \drumbar |
   \drumbar |

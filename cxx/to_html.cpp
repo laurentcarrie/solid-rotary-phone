@@ -24,6 +24,20 @@ std::string exec(const char *cmd) {
     return result;
 }
 
+bool any_younger(const std::filesystem::path& p) {
+    if (!std::filesystem::exists(p)) {
+        return true ;
+    }
+    std::filesystem::path d = p.parent_path();
+    for (auto pp: d) {
+        if (std::filesystem::last_write_time(d) < std::filesystem::last_write_time(p)) {
+            return true;
+        }
+
+    }
+    return false ;
+}
+
 
 void generate_if_needed(std::filesystem::path target, std::vector<std::filesystem::path> sources,
                         std::string command) {
@@ -42,6 +56,10 @@ void generate_if_needed(std::filesystem::path target, std::vector<std::filesyste
             }
         }
     }
+    if (any_younger(target)) {
+        is_needed=true ;
+    }
+    is_needed=true ;
     if (!is_needed) return ;
     std::cout << command << std::endl ;
     exec(command.c_str());
@@ -171,6 +189,9 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
         std::ostringstream oss;
 
         std::vector<std::filesystem::path> maybe_soundfont_paths = {
+                // "/Users/laurent/softs/sounds/sf2/Timpani v2.0.sf2",
+                "/Users/laurent/softs/sounds/sf2/FluidR3_GM.sf2",
+                "/Users/laurent/softs/sounds/sf2/SGM-v2.01-YamahaGrand-Guit-Bass-v2.7.sf2",
                 "/opt/homebrew/Cellar/fluid-synth/2.2.5/share/fluid-synth/sf2/VintageDreamsWaves-v2.sf2",
                 "/usr/share/sounds/sf2/FluidR3_GM.sf2"};
         std::vector<std::filesystem::path> existing_soundfont_paths;
@@ -182,7 +203,16 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
         if (existing_soundfont_paths.empty()) {
             throw std::runtime_error("no path found for soundpaths");
         }
-        oss << "fluidsynth -F " << wav_path << " " << existing_soundfont_paths.front() << " " << midi_path;
+        if (true) {
+            oss << "fluidsynth -F " << wav_path << " " << existing_soundfont_paths.front() << " " << midi_path;
+        }
+        else {
+            oss << "fluidsynth -F " << wav_path << " ";
+            for (auto p: existing_soundfont_paths) {
+                oss << p << " ";
+            }
+            oss << midi_path;
+        }
         generate_if_needed(wav_path, {midi_path}, oss.str());
 
 

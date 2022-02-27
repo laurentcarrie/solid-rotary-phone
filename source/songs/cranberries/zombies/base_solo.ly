@@ -63,6 +63,8 @@ drumbarhh =  \drummode {
   hihat8
 }
 
+
+
 staff_rhythm =   {
   \clef "treble_8"
   \tempo 4 = \song_tempo

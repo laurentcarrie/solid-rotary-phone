@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 project(solid_rotary_phone)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(YAMLCPP_STATIC_LIBRARY false)
 
 file(GLOB LIBRARIES "/opt/homebrew/Cellar/yaml-cpp/0.7.0/lib/*.dylib")

@@ -17,6 +17,7 @@
 
       \new DrumStaff {
         \drumbar |
+        \repeat percent 7 \drumbar |
         \drumbar |
         \drumbar |
         \drumbar |

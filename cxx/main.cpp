@@ -130,13 +130,15 @@ void copy_css_file(std::filesystem::path srcdir,std::filesystem::path builddir) 
 
 int main(int argc, char **argv) {
     try {
-        assert(argc > 2);
+        assert(argc > 3);
 
         std::cout << "Hello, World!" << std::endl;
         std::filesystem::path builddir = std::filesystem::path(argv[2]);
         std::filesystem::path srcdir = std::filesystem::path(argv[1]);
+        std::string book_name(argv[3]);
 
-        std::filesystem::path book = srcdir / "books" / "lgc.yml";
+        std::filesystem::path book = srcdir / "books" / (book_name+".yml") ;
+        // assert(std::filesystem::exists(book)) ;
 
 
         make_book(srcdir, book, builddir);
