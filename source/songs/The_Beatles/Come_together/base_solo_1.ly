@@ -60,8 +60,7 @@ lead = {
     \grace d16\2^\markup {\char ##x2197 "1"}
     e2~\2
     e8\2
-    \grace d16\2^\markup {\char ##x2197 "1"}
-    e8\2
+    c8\2
     \grace d16\2^\markup {\char ##x2197 "1"}
     e16\2
     \grace e16\2^\markup {\char ##x2198 "1"}

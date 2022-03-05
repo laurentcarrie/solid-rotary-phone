@@ -24,13 +24,13 @@
 
   <<
 
-    \new DrumStaff
+    %\new DrumStaff
       % \tempo 4 = \song_tempo
-      <<
-            \new DrumVoice { \voiceOne \drumbarshh }
+     % <<
+      %      \new DrumVoice { \voiceOne \drumbarshh }
 
-      \new DrumVoice { \voiceTwo \drumbars }
-      >>
+      %\new DrumVoice { \voiceTwo \drumbars }
+     % >>
 
 
 

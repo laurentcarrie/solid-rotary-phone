@@ -11,9 +11,9 @@
     \new DrumStaff
       % \tempo 4 = \song_tempo
       <<
-           \new DrumVoice { \voiceOne \drumbarshh }
-            %\new DrumVoice { \voiceTwo \drumbars }
-      >>
+           \new DrumVoice {  \drumbarshh }
+           \new DrumVoice {  \drumbars }
+      >>	
 
 
 
@@ -21,12 +21,18 @@
     %  \rhythm
     %}
 
-    \new Staff {
+    \new TabStaff {
+        %instrumentName = "Jazz guitar"	
+       %InstrumentName = "Electric guitar"
+       \set 	Staff.∏midiInstrument = "electric guitar (clean)"
+      %\tabFullNotation
       \lead
     }
 
 
   >>
+  
+  \layout{}
 
   \midi {}
 

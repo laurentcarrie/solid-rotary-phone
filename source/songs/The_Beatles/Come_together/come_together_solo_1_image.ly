@@ -23,15 +23,15 @@
 
   <<
 
-    \new DrumStaff {
-      \tempo 4 = \song_tempo
+    %\new DrumStaff {
+     % \tempo 4 = \song_tempo
       % why not \drums ?
-      \drumbar
-      \drumbar
-      \drumbar
-      \drumbar
-      \drumbar
-    }
+     % \drumbar
+     %\drumbar
+     % \drumbar
+     % \drumbar
+     % \drumbar
+   % }
 
 
     %\new Staff {
