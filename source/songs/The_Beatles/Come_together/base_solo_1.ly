@@ -14,6 +14,21 @@ mb = {
   <d' a'>1
 }
 
+comma = #(define-event-function (parser location xy)
+          (pair?)
+          #{
+            \tweak extra-offset #xy ^ \markup \musicglyph "comma"
+          #})
+
+
+mypull =
+#(define-scheme-function
+   (na nb)
+   ( ly:music? ly:music?)
+      #{
+      %\grace ${na} {^\markup} { \char ##x2197 " 1 "  } $nb
+       \grace $na  {
+#})
 
 
 rhythm = {
@@ -26,9 +41,10 @@ lead = {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
 
     % mes 1
-    \grace g'8^\markup { \char ##x2197 " 1 "  }
-    a2~
-    a8
+    %\grace g'8^\markup { \char ##x2197 " 1 "  }
+    %a2~
+    \mypull g'8 a2~
+    { a8\comma #'(2 . 0) }
     \grace g16^\markup {\char ##x2197 "1"}
     a8
     \grace g16^\markup {\char ##x2197 "1"}

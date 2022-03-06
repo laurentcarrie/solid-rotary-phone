@@ -24,7 +24,7 @@
     \new TabStaff {
         %instrumentName = "Jazz guitar"	
        %InstrumentName = "Electric guitar"
-       \set 	Staff.∏midiInstrument = "electric guitar (clean)"
+       \set 	Staff.midiInstrument = "electric guitar (clean)"
       %\tabFullNotation
       \lead
     }
