@@ -9,7 +9,7 @@
   <<
 
     \new DrumStaff
-      % \tempo 4 = \song_tempo
+      \tempo 4 = \song_tempo
       <<
            \new DrumVoice {  \drumbarshh }
            \new DrumVoice {  \drumbars }
@@ -34,6 +34,8 @@
   
   \layout{}
 
-  \midi {}
+  \midi {
+  \tempo 4 = \song_tempo
+  }
 
 }

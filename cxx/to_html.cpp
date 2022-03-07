@@ -24,9 +24,9 @@ std::string exec(const char *cmd) {
     return result;
 }
 
-bool any_younger(const std::filesystem::path& p) {
+bool any_younger(const std::filesystem::path &p) {
     if (!std::filesystem::exists(p)) {
-        return true ;
+        return true;
     }
     std::filesystem::path d = p.parent_path();
     for (auto pp: d) {
@@ -35,7 +35,7 @@ bool any_younger(const std::filesystem::path& p) {
         }
 
     }
-    return false ;
+    return false;
 }
 
 
@@ -44,9 +44,8 @@ void generate_if_needed(std::filesystem::path target, std::vector<std::filesyste
     bool is_needed = false;
 
     if (!std::filesystem::exists(target)) {
-        is_needed = true ;
-    }
-    else {
+        is_needed = true;
+    } else {
         for (auto s: sources) {
             if (std::filesystem::last_write_time(target) < std::filesystem::last_write_time(s)) {
                 //std::cout << std::filesystem::last_write_time(target) << std::endl ;
@@ -57,11 +56,11 @@ void generate_if_needed(std::filesystem::path target, std::vector<std::filesyste
         }
     }
     if (any_younger(target)) {
-        is_needed=true ;
+        is_needed = true;
     }
-    is_needed=true ;
-    if (!is_needed) return ;
-    std::cout << command << std::endl ;
+    is_needed = true;
+    if (!is_needed) return;
+    std::cout << command << std::endl;
     exec(command.c_str());
 
     if (!std::filesystem::exists(target)) {
@@ -148,7 +147,7 @@ void substitute_L(Item item, std::string &input) {
 
 void substitute_LY(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
-    replace_string_between_tags(input, std::string("<div><img class=\"ly\" src=\"") + data + (".png\"></div>"), item);
+    replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + data + (".png\"></div>"), item);
     std::ostringstream oss;
     oss << "lilypond -dbackend=eps -dresolution=600 --png --output ";
     std::filesystem::path target(config.builddir / config.relpath / data);
@@ -178,10 +177,10 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
     {
         // make midi
         std::ostringstream oss;
-        auto midi_path_without_extension = midi_path ;
-        midi_path_without_extension.replace_extension("") ;
+        auto midi_path_without_extension = midi_path;
+        midi_path_without_extension.replace_extension("");
         oss << "lilypond -dmidi-extension=midi --output " << midi_path_without_extension << " " << ly_path;
-        generate_if_needed(midi_path,{ly_path},oss.str()) ;
+        generate_if_needed(midi_path, {ly_path}, oss.str());
 
     }
     {
@@ -205,8 +204,7 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
         }
         if (true) {
             oss << "fluidsynth -F " << wav_path << " " << existing_soundfont_paths.front() << " " << midi_path;
-        }
-        else {
+        } else {
             oss << "fluidsynth -F " << wav_path << " ";
             for (auto p: existing_soundfont_paths) {
                 oss << p << " ";
@@ -301,36 +299,48 @@ std::string substitute_all_tags(Config config, std::string data) {
 
 }
 
+void write_local_css(Config config, std::ostream &fout) {
+    fout << R"here(
+.wrapper {
+            display: grid;
+            grid-template-columns: repeat()here";
+    fout << config.nb_cols;
+    fout << R"here(, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+}
+)here";
+
+    for (auto cell: config.cells) {
+        fout << ".box_" << cell.index << " { " << std::endl
+             << "    grid-row-start: " << cell.row_start << " ;" << std::endl
+             << "    grid-row-end: " << cell.row_end << " ;" << std::endl
+             << "    grid-column-start: " << cell.col_start << " ;" << std::endl
+             << "    grid-column-end: " << cell.col_end << " ;" << std::endl;
+        if (cell.background_color.has_value()) {
+            fout << "    background-color: " << cell.background_color.value() << " ;" << std::endl;
+        }
+        fout << "}" << std::endl;
+    }
+}
+
 
 std::stringstream to_html(Config config) {
 
     std::stringstream oss;
     oss << R"here(
 <html>
-<title>)here" ;
-    oss << config.main_title ;
+<title>)here";
+    oss << config.main_title;
     oss << R"here(</title>
 <head>
 <style>
 
-.wrapper {
-	background-color: #ffffff;
-	border: 1px solid #00ffff;
-grid-column-gap: 30px;
-grid-row-gap: 30px;
-  display: grid;
-  grid-template-columns: )here";
 
-    for (auto i: config.cols) {
-        oss << i << "cm ";
-    }
-
-    oss << R"here( ;
-}
 
 </style>
 <link rel="stylesheet" type="text/css" href="../../style/style.css">
 <link rel="stylesheet" type="text/css" href="../../style/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="local.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     </head>
 <body>
@@ -341,21 +351,12 @@ grid-row-gap: 30px;
     oss << config.main_title << "</div>" << std::endl;
 
     oss << "<div class=\"wrapper\">" << std::endl;
-    for (unsigned int irow = 0; irow < config.rows; irow++) {
-        for (unsigned int icol = 0; icol < config.cols.size(); icol++) {
-            bool found = false;
-            for (auto c: config.cells) {
-                // std::cout << "loop " << c.what << std::endl ;
-                if (c.irow != irow + 1) continue;
-                if (c.icol != icol + 1) continue;
-                found = true;
-                oss << "<div>" << substitute_all_tags(config, c.data) << "</div>" << std::endl;
-            }
-            if (!found) {
-                oss << "<div>" << irow * config.cols.size() + icol << "</div>" << std::endl;
-            }
-        }
+    for (auto cell: config.cells) {
+        oss << "<div class=\"box_" << cell.index << "\">" << substitute_all_tags(config, cell.data) << "</div>"
+            << std::endl;
     }
+
+
     oss << "</div>" << std::endl;
 
 

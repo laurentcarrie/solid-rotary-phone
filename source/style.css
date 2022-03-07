@@ -2,7 +2,8 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
-    width: 10cm;
+    width: 20cm;
+    background-color: peru;
 }
 
 .title {;

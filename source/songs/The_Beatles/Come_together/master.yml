@@ -1,17 +1,35 @@
 title: The Beatles / Come Together
-rows: 1
-cols:
-  - 5
-  - 15
+nb_rows: 2
+nb_cols: 3
 cells:
   -
-    row: 1
-    col: 1
-    what: lyrics.html
+    row_start: 1
+    row_end: 2
+    col_start: 1
+    col_end: 2
+    what: lyrics1.html
+    background_color: red
   -
-    row: 1
-    col: 2
+    row_start: 1
+    row_end: 2
+    col_start: 2
+    col_end: 3
+    what: lyrics2.html
+    background_color: red
+  -
+    row_start: 1
+    row_end: 2
+    col_start: 3
+    col_end: 4
+    background_color: yellow
     what: grille.html
+  -
+    row_start: 2
+    row_end: 2
+    col_start: 1
+    col_end: 4
+    background_color: blue
+    what: partition.html
 
 
 

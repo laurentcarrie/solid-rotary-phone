@@ -7,14 +7,19 @@
 
 #include <string>
 #include <vector>
+#include <optional>
 #include <filesystem>
 
 class Cell {
 public:
-    unsigned int irow;
-    unsigned int icol;
+    unsigned int index ;
+    unsigned int row_start;
+    unsigned int row_end;
+    unsigned int col_start;
+    unsigned int col_end;
     std::string what;
     std::string data;
+    std::optional<std::string> background_color ;
 };
 
 class Config {
@@ -23,8 +28,8 @@ public:
     std::filesystem::path srcdir ;
     std::filesystem::path builddir ;
     std::string relpath ;
-    unsigned int rows;
-    std::vector<unsigned int> cols;
+    unsigned int nb_rows;
+    unsigned int nb_cols;
     std::vector<Cell> cells;
 };
 

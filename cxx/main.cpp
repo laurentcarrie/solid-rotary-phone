@@ -17,50 +17,6 @@
 #include "config.h"
 #include "to_html.h"
 
-/*
-std::string make_table() {
-    std::ostringstream oss ;
-    oss << R"here(
-<table class="redTable">
-<tfoot>
-<tr>
-<td colspan="3">
-<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
-</td>
-</tr>
-</tfoot>
-<tbody>
-<tr>
-<td>cell1_1</td>
-<td>cell2_1</td>
-<td>cell3_1</td>
-</tr>
-<tr>
-<td>cell1_2</td>
-<td>cell2_2</td>
-<td>cell3_2</td>
-</tr>
-<tr>
-<td>cell1_3</td>
-<td>cell2_3</td>
-<td>cell3_3</td>
-</tr>
-<tr>
-<td>cell1_4</td>
-<td>cell2_4</td>
-<td>cell3_4</td>
-</tr>
-<tr>
-<td>cell1_5</td>
-<td>cell2_5</td>
-<td>cell3_5</td>
-</tr>
-</tbody>
-</table>
-)here" ;
-
-}
-*/
 
 std::string read_datafile(std::filesystem::path rootdir, std::string prefix) {
     std::filesystem::path filepath = rootdir / (prefix );
@@ -90,16 +46,33 @@ std::filesystem::path make_song(std::filesystem::path srcdir, std::string rel_pa
         parse(data);
         (*iter).data = data;
     }
+
     std::filesystem::path result(builddir / rel_path / "out.html");
-    std::cout << "writing file " << result << std::endl;
-    std::filesystem::create_directories(builddir);
-    std::ofstream fout(result);
-    if (!fout.is_open()) {
-        std::ostringstream oss;
-        oss << __FILE__ << ":" << __LINE__ << ", could not open file for writing " << result << std::endl;
-        throw std::runtime_error(oss.str());
+
+    {
+        std::cout << "writing file " << result << std::endl;
+        std::filesystem::create_directories(builddir);
+        std::ofstream fout(result);
+        if (!fout.is_open()) {
+            std::ostringstream oss;
+            oss << __FILE__ << ":" << __LINE__ << ", could not open file for writing " << result << std::endl;
+            throw std::runtime_error(oss.str());
+        }
+        fout << to_html(config).rdbuf();
     }
-    fout << to_html(config).rdbuf();
+
+    {
+        std::filesystem::path result(builddir / rel_path / "local.css");
+        std::cout << "writing file " << result << std::endl;
+        std::filesystem::create_directories(builddir);
+        std::ofstream fout(result);
+        if (!fout.is_open()) {
+            std::ostringstream oss;
+            oss << __FILE__ << ":" << __LINE__ << ", could not open file for writing " << result << std::endl;
+            throw std::runtime_error(oss.str());
+        }
+        write_local_css(config,  fout) ;
+    }
 
     return result;
 }

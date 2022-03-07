@@ -26,10 +26,21 @@ namespace YAML {
 
         static bool decode(Node const &node, Cell &rhs) {
             // std::cout << "node : " << node << std::endl ;
-            unsigned int irow = node["row"].as<unsigned int>();
-            unsigned int icol = node["col"].as<unsigned int>();
+            assert(node["row_start"]) ;
+            unsigned int row_start = node["row_start"].as<unsigned int>();
+            assert(node["row_end"]) ;
+            unsigned int row_end = node["row_end"].as<unsigned int>();
+            assert(node["col_start"]) ;
+            unsigned int col_start = node["col_start"].as<unsigned int>();
+            assert(node["col_end"]) ;
+            unsigned int col_end = node["col_end"].as<unsigned int>();
+            assert(node["what"]) ;
             std::string what = node["what"].as<std::string>();
-            rhs = {irow, icol, what, ""};
+            std::string background_color = "white" ;
+            if ( node["background_color"]) {
+                background_color = node["background_color"].as<std::string>() ;
+            }
+            rhs = {0,row_start,row_end,col_start,col_end, what, "",background_color};
             return true;
         }
     } ;
@@ -72,15 +83,18 @@ Book read_book(std::filesystem::path p) {
 Config read_master(std::filesystem::path srcdir,std::string relpath,std::filesystem::path builddir,std::filesystem::path p) {
     try {
         YAML::Node yaml = YAML::LoadFile(p);
-        unsigned int rows = yaml["rows"].as<unsigned int>();
-        assert(yaml["rows"]) ;
-        std::vector<unsigned int> cols = yaml["cols"].as<std::vector<unsigned int>>();
+        unsigned int nb_rows = yaml["nb_rows"].as<unsigned int>();
+        assert(yaml["nb_rows"]) ;
+        unsigned int nb_cols = yaml["nb_cols"].as<unsigned int>();
         assert(yaml["cells"]) ;
         std::vector<Cell> cells = yaml["cells"].as<std::vector<Cell>>() ;
+        for (unsigned int i=0;i<cells.size();++i) {
+            cells[i].index = i ;
+        }
         assert (yaml["title"]) ;
         std::string main_title = yaml["title"].as<std::string>();
 
-        Config config{main_title, srcdir / "songs", builddir, relpath, rows, cols, cells};
+        Config config{main_title, srcdir / "songs", builddir, relpath, nb_rows, nb_cols, cells};
         return config;
     }
     catch (std::exception& e) {
