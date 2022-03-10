@@ -17,7 +17,7 @@
 
 }
 
-\include "break_base.ly"
+\include "intro_base.ly"
 
 
 \score {
@@ -33,13 +33,13 @@
 
 
 
-%    \new Staff {
-%      \clef "treble_8"
-%      \tempo 4 = \song_tempo
-%      \override Score.BarNumber.break-visibility = ##(#t #t #t)
-%      \omit StringNumber
-%      \rhythm
-%    }
+    %\new Staff {
+    %  \clef "treble_8"
+    %  \tempo 4 = \song_tempo
+    %  \override Score.BarNumber.break-visibility = ##(#t #t #t)
+    % \omit StringNumber
+    %  \rhythm
+    %}
 
 
 

@@ -7,8 +7,11 @@
 }
 
 .title {;
+    text-align: center;
     font-size: 18px;
-    color: blue;
+    color: black;
+    background-color: lightsteelblue;
+
     font-family: Helvetica, Arial, sans-serif;
 
 }
@@ -24,6 +27,15 @@
     font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
 }
+
+.note {
+    color: black;
+    background-color: powderblue;
+    text-underline: #1C6EA4;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 
 table.redTable {
     /*

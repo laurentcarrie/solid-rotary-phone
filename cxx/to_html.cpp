@@ -145,6 +145,12 @@ void substitute_L(Item item, std::string &input) {
     input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"lyrics\">");
 }
 
+void substitute_N(Config config,Item item, std::string &input) {
+    input.replace(item.ending_, closing_tag(item.tag_).size(), "</div>");
+    input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"note\">");
+}
+
+
 void substitute_LY(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
     replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + data + (".png\"></div>"), item);
@@ -286,6 +292,9 @@ std::string substitute_all_tags(Config config, std::string data) {
                 break;
             case LY_WAV:
                 substitute_LY_WAV(config, item, data);
+                break;
+            case N:
+                substitute_N(config, item, data);
                 break;
             default:
                 std::ostringstream oss;
