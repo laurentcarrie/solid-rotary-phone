@@ -9,6 +9,7 @@
 #include <cassert>
 #include <regex>
 #include <array>
+#include <fstream>
 
 
 std::string exec(const char *cmd) {
@@ -78,6 +79,72 @@ std::string opening_tag(std::string tag) {
 
 std::string closing_tag(std::string tag) {
     return std::string("</") + tag + (">");
+}
+
+void generate_png_ly(const Config& config,const std::string& stem) {
+    std::cout << "stem : " << stem << std::endl ;
+    std::filesystem::path lypath = config.srcdir / config.relpath / stem ;
+    lypath.replace_extension(".ly") ;
+    std::cout << lypath << std::endl ;
+    if ( ! std::filesystem::exists(lypath)) {
+        throw std::runtime_error(std::string("no such path : ")+lypath.generic_string()) ;
+    }
+    std::filesystem::path target = config.builddir / config.relpath / (stem+"_image") ;
+    target.replace_extension(".ly") ;
+    std::ofstream fout (target) ;
+    fout << "\\version \"2.22.1\"" << std::endl ;
+    fout << "\\include " << lypath << std::endl ;
+    fout << R"here(
+    \score {
+            <<
+                \new TabStaff {
+                    \tempo 4 = \song_tempo
+                    \tabFullNotation
+                    \override Score.BarNumber.break-visibility = ##(#t #t #t)
+                    \lead
+                }
+            >>
+
+            \layout {}
+    }
+ )here" ;
+
+}
+
+void generate_midi_ly(const Config& config,const std::string& stem) {
+    std::cout << "stem : " << stem << std::endl ;
+    std::filesystem::path lypath = config.srcdir / config.relpath / stem ;
+    lypath.replace_extension(".ly") ;
+    std::cout << lypath << std::endl ;
+    if ( ! std::filesystem::exists(lypath)) {
+        throw std::runtime_error(std::string("no such path : ")+lypath.generic_string()) ;
+    }
+    std::filesystem::path target = config.builddir / config.relpath / (stem+"_midi") ;
+    target.replace_extension(".ly") ;
+    std::ofstream fout (target) ;
+    fout << "\\version \"2.22.1\"" << std::endl ;
+    fout << "\\include " << lypath << std::endl ;
+    fout << R"here(
+    \score {
+        <<
+            \new DrumStaff
+                \tempo 4 = \song_tempo
+                <<
+                    \new DrumVoice {  \drumbarshh }
+                    \new DrumVoice {  \drumbars }
+                >>
+
+            \new Staff {
+                  \rhythm
+            }
+        >>
+
+       \midi {
+            \tempo 4 = \song_tempo
+      }
+    }
+ )here" ;
+
 }
 
 std::vector<std::string> split_string(std::string input, std::string delim) {
@@ -153,32 +220,34 @@ void substitute_N(Config config,Item item, std::string &input) {
 
 void substitute_LY(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
-    replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + data + (".png\"></div>"), item);
+    generate_png_ly(config,data) ;
+    std::string stem = data + "_image" ;
+    replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + stem + (".png\"></div>"), item);
     std::ostringstream oss;
     oss << "lilypond -dbackend=eps -dresolution=600 --png --output ";
-    std::filesystem::path target(config.builddir / config.relpath / data);
+    std::filesystem::path target(config.builddir / config.relpath / stem ) ;
     target.replace_extension(".png");
 
-    oss << config.builddir / config.relpath / data;
-    std::filesystem::path source(config.srcdir / config.relpath / data);
-    source.replace_extension(".ly");
-    oss << " " << source;
-    // oss << /home/laurent/work/solid-rotary-phone/build/cranberries/zombies/png_solo /home/laurent/work/solid-rotary-phone/source/cranberries/zombies/png_solo.ly" ;
-    // std::cout << oss.str() << std::endl;
+    oss << config.builddir / config.relpath / stem ;
+    std::filesystem::path source(config.builddir / config.relpath / stem );
+    source.replace_extension(".ly");    oss << " " << source;
     generate_if_needed(target, {source}, oss.str());
-
 
 }
 
 void substitute_LY_WAV(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
+    generate_midi_ly(config,data) ;
+    std::string stem = data + "_midi" ;
     std::stringstream oss;
-    auto ly_path = config.srcdir / config.relpath / data;
+    auto ly_path = config.builddir / config.relpath / stem ;
     ly_path.replace_extension(".ly");
-    auto midi_path = config.builddir / config.relpath / data;
+    auto midi_path = config.builddir / config.relpath / stem;
     midi_path.replace_extension(".midi");
-    auto wav_path = config.builddir / config.relpath / data;
+    auto wav_path = config.builddir / config.relpath / stem ;
     wav_path.replace_extension(".wav");
+
+
 
     {
         // make midi

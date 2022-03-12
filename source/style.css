@@ -7,7 +7,7 @@
 }
 
 .title {;
-    font-size: 12px;
+    font-size: 20px;
     color: red;
     background-color: greenyellow;
     text-align: center;
@@ -18,13 +18,13 @@
 
 .verse {
     color: green;
-    font-size: 8px;
+    font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 .chorus {
     color: green;
-    font-size: 8px;
+    font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
