@@ -61,6 +61,8 @@ lead = {
   \absolute  {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
 
+    \set Score.currentBarNumber = #0
+
     % mes1
     r4 r4 r4 d'8\4 f'8\3
     |

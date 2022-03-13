@@ -146,7 +146,7 @@ void substitute_L(Item item, std::string &input) {
     input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"lyrics\">");
 }
 
-void substitute_N(Config config,Item item, std::string &input) {
+void substitute_N(Config config, Item item, std::string &input) {
     input.replace(item.ending_, closing_tag(item.tag_).size(), "</div>");
     input.replace(item.starting_, opening_tag(item.tag_).size(), "<div class=\"note\">");
 }
@@ -154,33 +154,33 @@ void substitute_N(Config config,Item item, std::string &input) {
 
 void substitute_LY(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
-    generate_png_ly(config,data,false) ;
-    std::string stem = data + "_image" ;
+    generate_png_ly(config, data, false);
+    std::string stem = data + "_image";
     replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + stem + (".png\"></div>"), item);
     std::ostringstream oss;
     oss << "lilypond -dbackend=eps -dresolution=600 --png --output ";
-    std::filesystem::path target(config.builddir / config.relpath / stem ) ;
+    std::filesystem::path target(config.builddir / config.relpath / stem);
     target.replace_extension(".png");
 
-    oss << config.builddir / config.relpath / stem ;
-    std::filesystem::path source(config.builddir / config.relpath / stem );
-    source.replace_extension(".ly");    oss << " " << source;
+    oss << config.builddir / config.relpath / stem;
+    std::filesystem::path source(config.builddir / config.relpath / stem);
+    source.replace_extension(".ly");
+    oss << " " << source;
     generate_if_needed(target, {source}, oss.str());
 
 }
 
 void substitute_LY_WAV(Config config, Item item, std::string &input) {
     std::string data = get_string_between_tags(input, item);
-    generate_midi_ly(config,data) ;
-    std::string stem = data + "_midi" ;
+    generate_midi_ly(config, data);
+    std::string stem = data + "_midi";
     std::stringstream oss;
-    auto ly_path = config.builddir / config.relpath / stem ;
+    auto ly_path = config.builddir / config.relpath / stem;
     ly_path.replace_extension(".ly");
     auto midi_path = config.builddir / config.relpath / stem;
     midi_path.replace_extension(".midi");
-    auto wav_path = config.builddir / config.relpath / stem ;
+    auto wav_path = config.builddir / config.relpath / stem;
     wav_path.replace_extension(".wav");
-
 
 
     {
@@ -247,7 +247,27 @@ void substitute_G(Item item, std::string &input) {
         oss << "<tr>";
         std::vector<std::string> cells = split_string(line, "|");
         for (auto cell: cells) {
-            oss << "<td><div style=\"width: 50px\" >" << cell << "</div></td>";
+            char str_re[] = "<span [a-zA-Z0-9]+>";
+            std::regex re(str_re);
+            std::smatch m;
+            std::regex_search(cell, m, re);
+            std::optional<int> span;
+            span.reset();
+            for (auto x: m) {
+                std::string y(x);
+                auto s1 = std::string("<span ").size();
+                cell = cell.substr(0,cell.size()-y.size()) ;
+                int span_value = std::stoi(y.substr(s1, y.size() - s1 - 1));
+                std::cout << span_value << std::endl;
+                span = span_value;
+            }
+            oss << "<td";
+
+            if (span.has_value()) {
+                oss << " colspan=\"" << span.value() << "\"";
+            }
+            oss << ">" << cell << "</td>";
+
         }
         oss << "</tr>" << std::endl;
     }

@@ -87,9 +87,11 @@ table.blueTable {
 table.blueTable td, table.blueTable th {
     border: 1px solid #AAAAAA;
     padding: 3px 2px;
+    text-align: center;
 }
 table.blueTable tbody td {
     font-size: 13px;
+    width:2cm;
 }
 table.blueTable tr:nth-child(even) {
     background: #D0E4F5;
