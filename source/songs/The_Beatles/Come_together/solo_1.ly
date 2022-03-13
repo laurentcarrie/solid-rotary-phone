@@ -1,7 +1,5 @@
 \version "2.22.1"
 
-\include "../../common/macros.ly"
-
 song_tempo = 83
 
 ma = {
@@ -81,35 +79,18 @@ lead = {
 
 drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
 
+
+drumbarhh =  \drummode {
+    \repeat unfold 8 hihat8
+}
+
+
+nb_mesure = 5
+
 drumbars = {
-  \drumbar |
-  \drumbar |
-  \drumbar |
-  \drumbar |
-  \drumbar |
+    \repeat unfold \nb_mesure { \drumbar }
 }
 
-
-staff_rhythm =   {
-  \clef "treble_8"
-  \tempo 4 = \song_tempo
-  \override Score.BarNumber.break-visibility = ##(#t #t #t)
-  %\set TabStaff.stringTunings = #custom-tuning
-  \rhythm
-}
-
-staff_lead =    {
-  \clef "treble_8"
-  \tempo 4 = \song_tempo
-  \override Score.BarNumber.break-visibility = ##(#t #t #t)
-  \omit StringNumber
-  \lead
-
-}
-
-staff_lead_tab = {
-  \tempo 4 = \song_tempo
-  \tabFullNotation
-  \override Score.BarNumber.break-visibility = ##(#t #t #t)
-  \lead
+drumbarshh = {
+    \repeat unfold \nb_mesure { \drumbarhh }
 }

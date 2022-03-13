@@ -1,8 +1,6 @@
 \version "2.22.1"
 song_tempo = 90
 
-\include "../../common/macros.ly"
-
 ma = {
 
   < d a d' f' >4
@@ -70,7 +68,7 @@ lead = {
 drumbar =  \drummode {  bd4 sn4  bd4 sn4 }
 
 drumbars = {
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
+  \repeat unfold 4 { \drumbar | }
 
 }
 

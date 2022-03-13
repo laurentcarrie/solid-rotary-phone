@@ -1,8 +1,6 @@
 \version "2.22.1"
 song_tempo = 90
 
-\include "../../common/macros.ly"
-
 ma = {
 
   d8 d8 c'8 b8~ b8 d8 c'8 a8~

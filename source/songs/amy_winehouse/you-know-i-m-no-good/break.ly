@@ -1,8 +1,6 @@
 \version "2.22.1"
 song_tempo = 90
 
-\include "../../common/macros.ly"
-
 ma = {
 
   < d a d' f' >4

@@ -1,15 +1,6 @@
 \version "2.20.0"
 
-\paper {
-  indent = 0\mm
-  line-width = 210\mm
-  oddHeaderMarkup = ""
-  evenHeaderMarkup = ""
-  oddFooterMarkup = ""
-  evenFooterMarkup = ""
-}
-
-
+song_tempo = 100
 
 gm = {
   r8
@@ -42,45 +33,9 @@ rhythm = {
 
 }
 
-drumbar =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
+drumbars =  \drummode {  bassdrum4 hihat4  bassdrum hihat }
+drumbarshh = \drummode { r1 }
 
-\score {
-
-  <<
-
-    \new DrumStaff {
-
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-      \drumbar |
-
-
-
-    }
-
-
-    \new Staff {
-      \tempo 4 = 90
-      \override Score.BarNumber.break-visibility = ##(#t #t #t)
-      %\set TabStaff.stringTunings = #custom-tuning
-      \rhythm
-    }
-
-
-
-  >>
-  \layout {}
-
-  \midi {}
+lead = {
+    r1
 }
