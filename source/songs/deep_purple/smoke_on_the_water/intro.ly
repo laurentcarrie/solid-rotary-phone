@@ -7,6 +7,7 @@ ma = {
 
 }
 
+song_chords = \chordmode { c2 g:sus4 f e }
 
 
 
@@ -19,34 +20,34 @@ lead = {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
 
     % mes 1
-          < d\4 g\3 b\2 >8
+          < d\4 g\3  >8
           r8
-          < f\4 bes\3 d'\2 >8
+          < f\4 bes\3  >8
           r8
-          < g\4 c'\3 e'\2 >4
+          < g\4 c'\3  >4
           r8
-          < d\4 g\3 b\2 >8
+          < d\4 g\3  >8
     |
-    % mes2
+    % mes 2
           r8
-          < f\4 bes\3 d'\2 >8
+          < f\4 bes\3  >8
           r8
-          < gis\4 cis'\3 eis'\2 >8
-          < g\4 c'\3 e'\2 >4
+          < gis\4 cis'\3 >8
+          < g\4 c'\3  >4
           r4
     |
     % mes 3
-          < d\4 g\3 b\2 >8
+          < d\4 g\3 >8
           r8
-          < f\4 bes\3 d'\2 >8
+          < f\4 bes\3  >8
           r8
-          < g\4 c'\3 e'\2 >4
+          < g\4 c'\3  >4
           r8
-          < f\4 bes\3 d'\2 >8
+          < f\4 bes\3  >8
     |
     % mes 4
           r8
-          < d\4 g\3 b\2 >2
+          < d\4 g\3  >2
           r8
           r4
   }

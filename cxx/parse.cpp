@@ -53,7 +53,7 @@ std::list<int> find(std::string input, std::string tag) {
     return ret;
 }
 
-std::vector<std::pair<int, bool>> find_tags(std::string input, std::string tag) {
+std::vector<std::pair<int, bool>>find_tags(std::string input, std::string tag) {
     std::list<int> opening = find(input, std::string("<") + tag + ">");
     std::list<int> closing = find(input, std::string("</") + tag + ">");
     std::vector<std::pair<int, bool>> ret;

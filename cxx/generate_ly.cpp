@@ -11,7 +11,7 @@
 #include "config.h"
 #include "parse.h"
 
-void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm) {
+void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm,bool with_chords) {
     std::cout << "stem : " << stem << std::endl ;
     std::filesystem::path lypath = config.srcdir / config.relpath / stem ;
     lypath.replace_extension(".ly") ;
@@ -46,6 +46,18 @@ void generate_png_ly(const Config& config,const std::string& stem,bool with_rhyt
 
     \score {
             <<
+)here" ;
+
+    if (with_chords) {
+        fout << R"here(
+        \new ChordNames {
+            \set chordChanges = ##t
+            \song_chords
+        }
+        )here";
+    }
+
+    fout << R"here(
                 \new TabStaff {
                     \tempo 4 = \song_tempo
                     \tabFullNotation

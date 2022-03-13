@@ -37,10 +37,10 @@ Config read_master(std::filesystem::path srcdir,std::string relpath,std::filesys
 
 
 enum Tag {
-    V=0,C,T,L,G,LY,LY_WAV,N
+    V=0,C,T,L,G,LY,LY_C,LY_WAV,N
 };
 
-static std::vector<std::string> tags = {"V", "C", "T","L","G","LY","LY_WAV","N"};
+static std::vector<std::string> tags = {"V", "C", "T","L","G","LY","LY_C","LY_WAV","N"};
 
 Tag tag_of_name(std::string name) ;
 

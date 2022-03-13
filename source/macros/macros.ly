@@ -19,6 +19,16 @@ mypull =
       %$nb
 #})
 
+
+mypulled =
+#(define-scheme-function
+   (na)
+   ( ly:music? )
+      #{
+      $na ^\markup {\char ##x27B6 }
+#})
+
+
 myrelease =
 #(define-scheme-function
    (na nb)
