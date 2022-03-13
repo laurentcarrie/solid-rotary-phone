@@ -2,67 +2,53 @@
 
 song_tempo = 114
 
+% Bb
 ma = {
 
-  < d a d' f' >4
-  < d a d' f' >4
-  < d a d' f' >4
-  < d a d' f' >4
-
 }
 
-mb = {
-
-  < a, e a cis >4
-  < a, e a cis >4
-  < a, e a cis >4
-  < a, e a cis >4
-
-
-}
-
-
-mc = {
-
-  < e, b, e gis >4
-  < e, b, e gis >4
-  < e, b, e gis >4
-  < e, b, e gis >4
-
-
-}
-
-
-md = {
-
-  < a e >4
-  < a e >4
-  < a e >4
-  < a e >4
-
-
-}
 
 
 
 rhythm = {
-  \ma | \mb | \mc |  \md |
 
 }
 
 lead = {
-  \relative c'' {
+  \absolute  {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
 
     % mes 1
-    r8 a,8\4 c8\3 a8\4 d4\3 r4 |
-    % mes 2
-    r8 e8\2 d8\3 c8\3 a8\4 r8 r4 |
+          < d\4 g\3 b\2 >8
+          r8
+          < f\4 bes\3 d'\2 >8
+          r8
+          < g\4 c'\3 e'\2 >4
+          r8
+          < d\4 g\3 b\2 >8
+    |
+    % mes2
+          r8
+          < f\4 bes\3 d'\2 >8
+          r8
+          < gis\4 cis'\3 eis'\2 >8
+          < g\4 c'\3 e'\2 >4
+          r4
+    |
     % mes 3
-    r8 a8\4 c\3 d8\3 e8\2 r8 r4 |
+          < d\4 g\3 b\2 >8
+          r8
+          < f\4 bes\3 d'\2 >8
+          r8
+          < g\4 c'\3 e'\2 >4
+          r8
+          < f\4 bes\3 d'\2 >8
+    |
     % mes 4
-    r8 e8\2 d8\3 c\3 a8\4 r8 r4 |
-
+          r8
+          < d\4 g\3 b\2 >2
+          r8
+          r4
   }
 }
 

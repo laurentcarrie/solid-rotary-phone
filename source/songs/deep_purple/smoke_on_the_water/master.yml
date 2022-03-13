@@ -1,5 +1,5 @@
 title: Deep Purple / Smoke on the water
-nb_rows: 1
+nb_rows: 2
 nb_cols: 2
 cells:
   -
@@ -14,6 +14,12 @@ cells:
     col_start: 2
     col_end: 3
     what: grille.html
+  -
+    row_start: 2
+    row_end: 3
+    col_start: 1
+    col_end: 3
+    what: solo.html
 
 
 

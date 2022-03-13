@@ -88,18 +88,20 @@ void make_book(std::filesystem::path srcdir, std::filesystem::path book_path, st
 }
 
 
-void copy_css_file(std::filesystem::path srcdir,std::filesystem::path builddir) {
+void mount_files(std::filesystem::path srcdir,std::filesystem::path builddir) {
     std::function<std::string(std::string)> f = [srcdir,builddir](std::string name) {
-        std::filesystem::path to = builddir /"style" / name ;
+        std::filesystem::path to = builddir / name ;
         std::filesystem::create_directories(to.parent_path());
         std::filesystem::path from = srcdir / name ;
         std::filesystem::copy_file(from, to, std::filesystem::copy_options::overwrite_existing);
         return "" ;
     };
-    std::vector<std::string> names {"style.css","print.css"};
+    std::vector<std::string> names {"style/style.css","style/print.css","macros/macros.ly"};
 
     std::transform(names.begin(),names.end(),names.begin(),f) ;
 }
+
+
 
 int main(int argc, char **argv) {
     try {
@@ -114,11 +116,11 @@ int main(int argc, char **argv) {
         // assert(std::filesystem::exists(book)) ;
 
 
+        mount_files(srcdir,builddir);
         make_book(srcdir, book, builddir);
 
 
         // make_song(rootdir,builddir) ;
-        copy_css_file(srcdir,builddir);
     }
     catch (std::exception &e) {
         std::cout << e.what();
