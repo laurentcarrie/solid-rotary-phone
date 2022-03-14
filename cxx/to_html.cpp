@@ -152,9 +152,9 @@ void substitute_N(Config config, Item item, std::string &input) {
 }
 
 
-void substitute_LY(Config config, Item item, std::string &input,bool with_chords) {
+void substitute_LY(Config config, Item item, std::string &input,bool with_rhytm,bool with_chords,bool with_lyrics) {
     std::string data = get_string_between_tags(input, item);
-    generate_png_ly(config, data, false,with_chords);
+    generate_png_ly(config, data, with_rhytm,with_chords,with_lyrics);
     std::string stem = data + "_image";
     replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + stem + (".png\"></div>"), item);
     std::ostringstream oss;
@@ -311,10 +311,16 @@ std::string substitute_all_tags(Config config, std::string data) {
                 substitute_G(item, data);
                 break;
             case LY:
-                substitute_LY(config, item, data,false);
+                substitute_LY(config, item, data,false,false,false);
                 break;
             case LY_C:
-                substitute_LY(config, item, data,true);
+                substitute_LY(config, item, data,false,true,false);
+                break;
+            case LY_R:
+                substitute_LY(config, item, data,true,false,false);
+                break;
+            case LY_RC:
+                substitute_LY(config, item, data,true,true,true);
                 break;
             case LY_WAV:
                 substitute_LY_WAV(config, item, data);

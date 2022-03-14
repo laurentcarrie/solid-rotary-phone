@@ -11,7 +11,7 @@
 #include "config.h"
 #include "parse.h"
 
-void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm,bool with_chords) {
+void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm,bool with_chords,bool with_lyrics) {
     std::cout << "stem : " << stem << std::endl ;
     std::filesystem::path lypath = config.srcdir / config.relpath / stem ;
     lypath.replace_extension(".ly") ;
@@ -63,8 +63,22 @@ void generate_png_ly(const Config& config,const std::string& stem,bool with_rhyt
                     \tabFullNotation
                     \override Score.BarNumber.break-visibility = ##(#t #t #t)
                     \lead
+
                 }
 )here" ;
+
+    if (with_lyrics) {
+        fout << R"here(
+        \new Staff {
+            \new Voice = "one" {
+                \song_voice
+            }
+        }
+        \new Lyrics {
+            \lyricsto "one" { \song_lyrics }
+        }
+)here" ;
+    }
 
     if (with_rhythm) {
         fout << R"here(
@@ -101,6 +115,7 @@ void generate_midi_ly(const Config& config, const std::string& stem) {
     fout << "\\include " << lypath << std::endl ;
     fout << R"here(
     \score {
+        \unfoldRepeats {
         <<
             \new DrumStaff
                 \tempo 4 = \song_tempo
@@ -114,7 +129,8 @@ void generate_midi_ly(const Config& config, const std::string& stem) {
                   \set Staff.midiMinimumVolume = #0.2
                   \set Staff.midiMaximumVolume = #0.2
                   %\set Staff.midiInstrument = "electric guitar (clean)"
-                  \set Staff.midiInstrument = "clarinet"
+                  \set Staff.midiInstrument = "bass"
+                  %\set Staff.midiInstrument = "clarinet"
             }
             \new Staff {
                   \lead
@@ -122,7 +138,14 @@ void generate_midi_ly(const Config& config, const std::string& stem) {
                   \set Staff.midiMaximumVolume = #0.9
                   \set Staff.midiInstrument = "electric guitar (clean)"
             }
+            \new Staff {
+                  \song_voice
+                  \set Staff.midiMinimumVolume = #0.9
+                  \set Staff.midiMaximumVolume = #0.9
+                  \set Staff.midiInstrument = "electric guitar (clean)"
+            }
         >>
+        }
 
        \midi {
             \tempo 4 = \song_tempo

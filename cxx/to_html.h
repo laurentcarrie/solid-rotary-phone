@@ -11,7 +11,7 @@ class Config ;
 
 std::stringstream to_html(Config config) ;
 void write_local_css(Config config,std::ostream& fout) ;
-void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm,bool with_chords) ;
+void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm,bool with_chords,bool with_lyrics) ;
 void generate_midi_ly(const Config& config,const std::string& stem) ;
 
 #endif //SOLID_ROTARY_PHONE_TO_HTML_H
