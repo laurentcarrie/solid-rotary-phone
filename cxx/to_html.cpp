@@ -189,13 +189,12 @@ void substitute_G(const Config& config,const Item& item,  std::string &input) {
                 span = span_value;
             }
             cell = trim(cell) ;
-            std::pair<std::string,std::string> style_glyph = style_and_glyph_of_chord(cell) ;
-            oss << "<td class=\"" << style_glyph.first << "\" ";
+            oss << "<td " ;
 
             if (span.has_value()) {
                 oss << " colspan=\"" << span.value() << "\"";
             }
-            oss << ">" << style_glyph.second << "</td>";
+            oss << ">" << songs::glyphs_of_cell(cell) << "</td>";
 
         }
         oss << "</tr>" << std::endl;

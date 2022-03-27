@@ -2,6 +2,8 @@
 #define SOLID_ROTARY_PHONE_CELL_H
 #include <string>
 
-std::pair<std::string,std::string> style_and_glyph_of_chord(const std::string& chord) ;
+namespace songs {
+    std::string glyphs_of_cell(const std::string &cell);
+}
 
 #endif //SOLID_ROTARY_PHONE_CELL_H

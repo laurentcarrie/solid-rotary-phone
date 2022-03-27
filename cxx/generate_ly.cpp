@@ -71,6 +71,8 @@ void generate_png_ly(const Config& config,const std::string& stem,bool with_rhyt
                 }
 )here" ;
 
+    // @todo : fix this
+    with_lyrics=false ;
     if (with_lyrics) {
         fout << R"here(
         \new Staff {
@@ -142,12 +144,12 @@ void generate_midi_ly(const Config& config, const std::string& stem) {
                   \set Staff.midiMaximumVolume = #0.9
                   \set Staff.midiInstrument = "electric guitar (clean)"
             }
-            \new Staff {
-                  \song_voice
-                  \set Staff.midiMinimumVolume = #0.9
-                  \set Staff.midiMaximumVolume = #0.9
-                  \set Staff.midiInstrument = "electric guitar (clean)"
-            }
+            %\new Staff {
+            %      \song_voice
+            %      \set Staff.midiMinimumVolume = #0.9
+            %      \set Staff.midiMaximumVolume = #0.9
+            %      \set Staff.midiInstrument = "electric guitar (clean)"
+            %}
         >>
         }
 
