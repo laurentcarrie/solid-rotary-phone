@@ -205,23 +205,6 @@ body {
     src: url("../style/lolo.eot");
 }
 
-div {
-    /* font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG"; */
-    font-family: lolo;
-    margin: 0 0 30px 0;
-}
-
-h2 {
-    /* font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG"; */
-    /* font-family:"Party LET" ; */
-    font-family: lolo ;
-    color: mediumvioletred;
-    margin: 0 0 30px 0;
-    font-size: 25pt;
-
-}
-
-
 span.grid_chord {
     /*font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";*/
     font-family: lolo;
@@ -250,4 +233,8 @@ span.grid_chord_flat {
     margin: 0 0 30px 0;
     font-size: 25pt;
 
+}
+
+h2 {
+    font-family: lolo ;
 }

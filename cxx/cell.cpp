@@ -10,7 +10,7 @@ namespace songs {
     };
 
     enum Chord_e {
-        major, minor, minor7, major7, M7, Mm5
+        major, minor, minor7, major7, M7, Mm5,dim
     };
 
     int offset_in_font(Chord_e e) {
@@ -27,8 +27,10 @@ namespace songs {
                 return 21;
             case M7:
                 return 28;
+            case dim:
+                return 35;
             default:
-                throw std::runtime_error(std::string(__FILE__) + ":" + std::to_string(__LINE__) + "\nnot implemented");
+                throw std::runtime_error(std::string(__FILE__) + ":" + std::to_string(__LINE__) + "\nnot implemented : " + std::to_string(e));
 
         }
     }
@@ -101,7 +103,31 @@ namespace songs {
                                 std::string(__FILE__) + ":" + std::to_string(__LINE__) + "\nlogic error '" + chord);
                 }
             }
-            if (input[0] == '5') {
+            else if (input.substr(0,2) == "M7") {
+                input = input.substr(1, input.size() - 2);
+                switch (chord_e) {
+                    case major:
+                        chord_e = M7;
+                        break;
+                    default:
+                        throw std::runtime_error(
+                                std::string(__FILE__) + ":" + std::to_string(__LINE__) + "\nlogic error '" + chord);
+                }
+
+            }
+            else if (input.substr(0,3) == "dim") {
+                input = input.substr(1, input.size() - 3);
+                switch (chord_e) {
+                    case major:
+                        chord_e = dim;
+                        break;
+                    default:
+                        throw std::runtime_error(
+                                std::string(__FILE__) + ":" + std::to_string(__LINE__) + "\nlogic error '" + chord);
+                }
+
+            }
+            else if (input[0] == '5') {
                 input = input.substr(1, input.size() - 1);
                 switch (chord_e) {
                     case major:
@@ -136,9 +162,9 @@ namespace songs {
 
         if (input.size() == 0) {
             return std::string("<span class=\"") + font_of_alteration(note_e) +
-                   "\">" + std::string(1, note +
-                                          offset_in_font(chord_e)) +
-                   "</span>";
+                   "\">" + std::string(1, char(int(note) +
+                                          offset_in_font(chord_e))) +
+                   "</span>" ;
         }
 
 

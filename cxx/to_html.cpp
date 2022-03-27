@@ -194,7 +194,7 @@ void substitute_G(const Config& config,const Item& item,  std::string &input) {
             if (span.has_value()) {
                 oss << " colspan=\"" << span.value() << "\"";
             }
-            oss << ">" << songs::glyphs_of_cell(cell) << "</td>";
+            oss << ">" << songs::glyphs_of_cell(cell) << "</td>" << std::endl ;
 
         }
         oss << "</tr>" << std::endl;

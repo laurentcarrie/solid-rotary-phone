@@ -221,14 +221,7 @@ lead = {
 drumbar =  \drummode {  bd4 sn4  bd4 sn4 }
 
 drumbars = {
-  \drumbar |
-  \drumbar |
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
-
+\repeat unfold 30 { \drumbar | }
 }
 
 
@@ -244,12 +237,6 @@ drumbarhh =  \drummode {
 }
 
 drumbarshh = {
-  \drumbarhh |
-  \drumbarhh |
-  \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
-  \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
-  \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
-  \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
-  \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
+  \repeat unfold 30 {  \drumbarhh }
 
 }
