@@ -3,8 +3,12 @@
     border-radius: 4px;
     padding: 5px;
     width: 20cm;
-    background-color: peru;
 }
+
+div.ly {
+    text-align: center;
+}
+
 
 .title {;
     font-size: 20px;
@@ -64,6 +68,7 @@ table.redTable tr {
     padding: 3px 2px;
 
      */
+    height: 1.2cm ;
 }
 
 table.redTable thead {
@@ -142,10 +147,84 @@ div.wav {
 }
 
 div.main-title {
+    /* font-family:"Party LET" ; */
+    font-family: "Savoye LET";
     text-align: center;
     color:lightcoral;
     background: honeydew;
-    font-size:30px ;
-    font-weight:bold ;
+    font-size:60px ;
+    /* font-weight:bold ; */
 
 }
+
+body {
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern=1";
+    -ms-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+    -o-font-feature-settings: "kern";
+
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+
+@font-face {
+    font-family: "loloSVG";
+    /* src: url("../../style/lolo.svg#lolo") format('svg'); */
+    src: url("lolo.svg#lolo") format('svg');
+}
+
+@font-face {
+    font-family: "loloOTF";
+    /*
+    src: url("../../style/lolo.otf") format('opentype');
+
+     */
+    src: url("../style/lolo.otf") format('opentype');
+}
+
+@font-face {
+    font-family: "loloTTF";
+    /*
+    src: url("lolo.ttf") format('truetype');
+
+     */
+    src: url("../style/lolo.ttf") format('truetype');
+
+
+}
+
+@font-face {
+    font-family: "loloEOT";
+    /*
+    src: url("../../style/lolo.eot");
+
+     */
+    src: url("../style/lolo.eot");
+}
+
+div {
+    font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";
+    margin: 0 0 30px 0;
+}
+
+h2 {
+    /* font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG"; */
+    font-family:"Party LET" ;
+    color: mediumvioletred;
+    margin: 0 0 30px 0;
+    font-size: 25pt;
+
+}
+
+
+td.grid_chord_major {
+    font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";
+    /*font-family:"Party LET" ;*/
+    color: mediumvioletred;
+    font-size: 25pt;
+
+}
+

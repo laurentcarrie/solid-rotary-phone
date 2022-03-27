@@ -12,6 +12,10 @@
 #include "parse.h"
 
 void generate_png_ly(const Config& config,const std::string& stem,bool with_rhythm,bool with_chords,bool with_lyrics) {
+
+    // @todo fix
+    with_lyrics = false ;
+
     std::cout << "stem : " << stem << std::endl ;
     std::filesystem::path lypath = config.srcdir / config.relpath / stem ;
     lypath.replace_extension(".ly") ;

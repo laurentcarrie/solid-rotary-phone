@@ -10,68 +10,9 @@
 #include <regex>
 #include <array>
 #include <fstream>
+#include "util.h"
+#include "cell.h"
 
-
-std::string exec(const char *cmd) {
-    std::array<char, 128> buffer;
-    std::string result;
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
-    if (!pipe) {
-        throw std::runtime_error("popen() failed!");
-    }
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        result += buffer.data();
-    }
-    return result;
-}
-
-bool any_younger(const std::filesystem::path &p) {
-    if (!std::filesystem::exists(p)) {
-        return true;
-    }
-    std::filesystem::path d = p.parent_path();
-    for (auto pp: d) {
-        if (std::filesystem::last_write_time(d) < std::filesystem::last_write_time(p)) {
-            return true;
-        }
-
-    }
-    return false;
-}
-
-
-void generate_if_needed(std::filesystem::path target, std::vector<std::filesystem::path> sources,
-                        std::string command) {
-    bool is_needed = false;
-
-    if (!std::filesystem::exists(target)) {
-        is_needed = true;
-    } else {
-        for (auto s: sources) {
-            if (std::filesystem::last_write_time(target) < std::filesystem::last_write_time(s)) {
-                //std::cout << std::filesystem::last_write_time(target) << std::endl ;
-                std::cout << target << " is newer than " << s << std::endl;
-                is_needed = true;
-                break;
-            }
-        }
-    }
-    if (any_younger(target)) {
-        is_needed = true;
-    }
-    is_needed = true;
-    if (!is_needed) return;
-    std::cout << command << std::endl;
-    exec(command.c_str());
-
-    if (!std::filesystem::exists(target)) {
-        std::ostringstream oss;
-        oss << "command " << command << std::endl << "did not generate target " << std::endl << target << std::endl;
-        throw (std::runtime_error(oss.str()));
-    }
-
-    return;
-}
 
 std::string opening_tag(std::string tag) {
     return std::string("<") + tag + (">");
@@ -81,21 +22,6 @@ std::string closing_tag(std::string tag) {
     return std::string("</") + tag + (">");
 }
 
-std::vector<std::string> split_string(std::string input, std::string delim) {
-    std::vector<std::string> ret;
-    int begin_index = 0;
-    while (true) {
-        auto found_index = input.find_first_of(delim, begin_index);
-        if (found_index == std::string::npos) {
-            ret.push_back(input.substr(begin_index, input.size() - begin_index));
-            break;
-        }
-        ret.push_back(input.substr(begin_index, found_index - begin_index));
-        begin_index = found_index + 1;
-    }
-    return ret;
-
-}
 
 std::string get_string_between_tags(std::string input, Item item) {
     std::string gdata = input.substr(item.starting_ + 2 + item.tag_.size(),
@@ -158,7 +84,8 @@ void substitute_LY(Config config, Item item, std::string &input,bool with_rhytm,
     std::string stem = data + "_image";
     replace_string_between_tags(input, std::string("<div><img class=\"ly\"  src=\"") + stem + (".png\"></div>"), item);
     std::ostringstream oss;
-    oss << "lilypond -dbackend=eps -dresolution=600 --png --output ";
+    // oss << "lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts -dpixmap-format=pngalpha --png --output ";
+    oss << "lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output ";
     std::filesystem::path target(config.builddir / config.relpath / stem);
     target.replace_extension(".png");
 
@@ -234,7 +161,7 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
 }
 
 
-void substitute_G(Item item, std::string &input) {
+void substitute_G(const Config& config,const Item& item,  std::string &input) {
     std::string gdata = get_string_between_tags(input, item);
     // data.replace(item.ending_, closing_tag(item.tag_).size(),"</table></div>") ;
     // data.replace(item.starting_, opening_tag(item.tag_).size(),"<div><table class=\"redtable\">") ;
@@ -261,12 +188,14 @@ void substitute_G(Item item, std::string &input) {
                 std::cout << span_value << std::endl;
                 span = span_value;
             }
-            oss << "<td";
+            cell = trim(cell) ;
+            std::pair<std::string,std::string> style_glyph = style_and_glyph_of_chord(cell) ;
+            oss << "<td class=\"" << style_glyph.first << "\" ";
 
             if (span.has_value()) {
                 oss << " colspan=\"" << span.value() << "\"";
             }
-            oss << ">" << cell << "</td>";
+            oss << ">" << style_glyph.second << "</td>";
 
         }
         oss << "</tr>" << std::endl;
@@ -308,7 +237,7 @@ std::string substitute_all_tags(Config config, std::string data) {
                 substitute_L(item, data);
                 break;
             case G:
-                substitute_G(item, data);
+                substitute_G(config,item, data);
                 break;
             case LY:
                 substitute_LY(config, item, data,false,false,false);

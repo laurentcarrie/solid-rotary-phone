@@ -111,29 +111,34 @@ lead = {
     r2
     r8
     f,8\1
-    a16\1
+    \mypull g16\1 a16\1
     g16\1
     f8\1
+
     % mes 17
-    a1\1
+    \mypull g16\1 a1\1
+
     % mes 18
     r2
     r8
     f,8\3
-    a16\3
+    \mypull g16\3 a16\3
     g16\3
     f8\3
+
     % mes 19
-    d'1\2
+    \mypull c'16\2 d1\2
+
     % mes 20
     r2
     r8
-    g8\1
-    g16\1
+    \mypull f16\1 g8\1
+    \mypull f16\1 g16\1
     f16\1
     d8\1
+
     % mes 21
-    d1\2
+    \mypull c16\2 d1\2
 
   }
 }

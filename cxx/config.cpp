@@ -5,6 +5,7 @@
 #include <yaml-cpp/yaml.h>
 #include <cassert>
 #include <iostream>
+#include <map>
 
 #include "config.h"
 
@@ -98,6 +99,7 @@ Config read_master(std::filesystem::path srcdir,std::string relpath,std::filesys
         return config;
     }
     catch (std::exception& e) {
+        std::cerr << e.what() << std::endl ;
         std::cerr << "exception in yaml load of " << p << std::endl ;
         throw(e) ;
     }

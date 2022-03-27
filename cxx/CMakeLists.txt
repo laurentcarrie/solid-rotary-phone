@@ -47,7 +47,9 @@ include_directories(/opt/homebrew/Cellar/yaml-cpp/0.7.0/lib/)
 include(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(YAMLCPP DEFAULT_MSG YAMLCPP_INCLUDE_DIR YAMLCPP_LIBRARY)
 #mark_as_advanced(YAMLCPP_INCLUDE_DIR YAMLCPP_LIBRARY)
-add_executable(solid_rotary_phone main.cpp parse.cpp parse.h to_html.cpp to_html.h config.cpp config.h generate_ly.cpp)
+add_executable(solid_rotary_phone main.cpp parse.cpp parse.h to_html.cpp to_html.h config.cpp config.h generate_ly.cpp util.cpp util.h cell.cpp cell.h)
 #target_link_libraries(solid_rotary_phone yaml-cpp)
 target_link_libraries(solid_rotary_phone ${LIBRARIES})
 #target_link_directories(solid_rotary_phone /opt/homebrew/Cellar/yaml-cpp/0.7.0/lib/)
+
+

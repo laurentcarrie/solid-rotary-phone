@@ -16,6 +16,7 @@
 
 #include "config.h"
 #include "to_html.h"
+#include "util.h"
 
 
 std::string read_datafile(std::filesystem::path rootdir, std::string prefix) {
@@ -96,7 +97,7 @@ void mount_files(std::filesystem::path srcdir,std::filesystem::path builddir) {
         std::filesystem::copy_file(from, to, std::filesystem::copy_options::overwrite_existing);
         return "" ;
     };
-    std::vector<std::string> names {"style/style.css","style/print.css","macros/macros.ly"};
+    std::vector<std::string> names {"style/style.css","style/print.css","macros/macros.ly","style/lolo.ttf"};
 
     std::transform(names.begin(),names.end(),names.begin(),f) ;
 }
@@ -118,6 +119,7 @@ int main(int argc, char **argv) {
 
         mount_files(srcdir,builddir);
         make_book(srcdir, book, builddir);
+        clean_files(builddir);
 
 
         // make_song(rootdir,builddir) ;
