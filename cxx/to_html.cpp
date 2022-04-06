@@ -168,7 +168,7 @@ void substitute_G(const Config& config,const Item& item,  std::string &input) {
     // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
     std::vector<std::string> lines = split_string(gdata, "\n");
     std::ostringstream oss;
-    oss << "<div><table class=\"blueTable\">" << std::endl;
+    oss << "<div><table class=\"blueTable\" border=\"1\">" << std::endl;
     for (auto line: lines) {
         if (line == "") continue;
         oss << "<tr>";
@@ -189,12 +189,23 @@ void substitute_G(const Config& config,const Item& item,  std::string &input) {
                 span = span_value;
             }
             cell = trim(cell) ;
+            /*
             oss << "<td " ;
-
             if (span.has_value()) {
                 oss << " colspan=\"" << span.value() << "\"";
             }
-            oss << ">" << songs::glyphs_of_cell(cell) << "</td>" << std::endl ;
+            oss << ">" ;
+             */
+            auto glyphs = songs::glyphs_of_cell(cell) ;
+            if (glyphs.size()==1) {
+                oss << "<td>" << glyphs.at(0) << "</td>" ;
+            }
+            else if (glyphs.size()==2) {
+                oss << "<td>" << glyphs.at(0) << "     " << glyphs.at(1) << "</td>" ;
+            }
+            else {
+                throw std::runtime_error(std::string(__FILE__)+":"+std::to_string(__LINE__)+" : " + std::to_string(glyphs.size())) ;
+            }
 
         }
         oss << "</tr>" << std::endl;

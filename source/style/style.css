@@ -88,11 +88,14 @@ table.blueTable {
     /* width: 100%; */
     text-align: center;
     border-collapse: collapse;
+    table-layout: fixed ;
+
 }
 table.blueTable td, table.blueTable th {
     border: 1px solid #AAAAAA;
     padding: 3px 2px;
     text-align: center;
+    width:12% ;
 }
 table.blueTable tbody td {
     font-size: 13px;
@@ -237,4 +240,16 @@ span.grid_chord_flat {
 
 h2 {
     font-family: lolo ;
+}
+
+
+table.grid_table {
+
+    /* width: 100%; */
+    text-align: center;
+    border-collapse: collapse;
+}
+td.grid_table {
+    text-align: center;
+    border-collapse: collapse;
 }

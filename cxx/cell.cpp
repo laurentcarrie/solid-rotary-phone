@@ -173,13 +173,13 @@ namespace songs {
 
     }
 
-    std::string glyphs_of_cell(const std::string &cell) {
+    std::vector<std::string> glyphs_of_cell(const std::string &cell) {
 
         std::vector<std::string> v = split_string(cell, " ");
 
-        std::string ret;
+        std::vector<std::string> ret ;
         for (auto c: v) {
-            ret += glyph_of_one_chord(c);
+            ret.push_back(glyph_of_one_chord(c));
         }
 
         return ret;

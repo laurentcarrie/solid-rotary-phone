@@ -74,6 +74,15 @@ table.redTable thead {
      */
 }
 
+span.grid_chord {
+    /*font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";*/
+    font-family: lolo;
+    /*font-family:"Party LET" ;*/
+    color: black;
+    margin: 0 0 30px 0;
+    font-size: 15pt;
+
+}
 
 
 table.blueTable {
@@ -88,7 +97,7 @@ table.blueTable td, table.blueTable th {
     padding: 3px 2px;
 }
 table.blueTable tbody td {
-    font-size: 20px;
+    font-size: 10px;
 }
 table.blueTable tr:nth-child(even) {
     background: #D0E4F5;
