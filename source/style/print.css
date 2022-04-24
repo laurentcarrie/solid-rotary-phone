@@ -81,7 +81,24 @@ span.grid_chord {
     color: black;
     margin: 0 0 30px 0;
     font-size: 15pt;
+}
 
+span.grid_chord_flat {
+    /*font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";*/
+    font-family: lolo_flat;
+    /*font-family:"Party LET" ;*/
+    color: black;
+    margin: 0 0 30px 0;
+    font-size: 15pt;
+}
+
+span.grid_chord_sharp {
+    /*font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";*/
+    font-family: lolo_sharp;
+    /*font-family:"Party LET" ;*/
+    color: black;
+    margin: 0 0 30px 0;
+    font-size: 15pt;
 }
 
 

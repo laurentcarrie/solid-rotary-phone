@@ -118,7 +118,7 @@ std::string  trim(const std::string& input) {
 }
 
 std::vector<std::string> split_string(std::string input, std::string delim) {
-    std::__1::vector<std::string> ret;
+    std::vector<std::string> ret;
     int begin_index = 0;
     while (true) {
         auto found_index = input.find_first_of(delim, begin_index);

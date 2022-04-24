@@ -26,7 +26,7 @@ void generate_png_ly(const Config& config,const std::string& stem,bool with_rhyt
     std::filesystem::path target = config.builddir / config.relpath / (stem+"_image") ;
     target.replace_extension(".ly") ;
     std::ofstream fout (target) ;
-    fout << "\\version \"2.22.1\"" << std::endl ;
+    fout << "\\version \"2.22.0\"" << std::endl ;
     fout << "\\include \"../../macros/macros.ly\"" << std::endl ;
     fout << "\\include " << lypath << std::endl ;
 
@@ -116,7 +116,7 @@ void generate_midi_ly(const Config& config, const std::string& stem) {
     std::filesystem::path target = config.builddir / config.relpath / (stem+"_midi") ;
     target.replace_extension(".ly") ;
     std::ofstream fout (target) ;
-    fout << "\\version \"2.22.1\"" << std::endl ;
+    fout << "\\version \"2.22.0\"" << std::endl ;
     fout << "\\include \"../../macros/macros.ly\"" << std::endl ;
     fout << "\\include " << lypath << std::endl ;
     fout << R"here(

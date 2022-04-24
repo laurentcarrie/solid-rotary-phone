@@ -142,7 +142,7 @@ table.blueTable tfoot .links a{
     background: #1C6EA4;
     color: #FFFFFF;
     padding: 2px 8px;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 div.wav {
@@ -173,50 +173,7 @@ body {
 }
 
 
-@font-face {
-    font-family: "loloSVG";
-    /* src: url("../../style/lolo.svg#lolo") format('svg'); */
-    src: url("lolo.svg#lolo") format('svg');
-}
 
-@font-face {
-    font-family: "loloOTF";
-    /*
-    src: url("../../style/lolo.otf") format('opentype');
-
-     */
-    src: url("../style/lolo.otf") format('opentype');
-}
-
-@font-face {
-    font-family: "loloTTF";
-    /*
-    src: url("lolo.ttf") format('truetype');
-
-     */
-    src: url("../style/lolo.ttf") format('truetype');
-
-}
-
-@font-face {
-    font-family: "lolo_flatTTF";
-    /*
-    src: url("lolo.ttf") format('truetype');
-
-     */
-    src: url("../style/lolo_flat.ttf") format('truetype');
-
-}
-
-
-@font-face {
-    font-family: "loloEOT";
-    /*
-    src: url("../../style/lolo.eot");
-
-     */
-    src: url("../style/lolo.eot");
-}
 
 span.grid_chord {
     /*font-family: "loloEOT", "loloOTF", "loloTTF", "loloSVG";*/
@@ -225,6 +182,7 @@ span.grid_chord {
     color: mediumvioletred;
     margin: 0 0 30px 0;
     font-size: 25pt;
+    padding:5pt ;
 
 }
 
@@ -235,6 +193,7 @@ span.grid_chord_sharp {
     color: mediumvioletred;
     margin: 0 0 30px 0;
     font-size: 25pt;
+    padding:5pt ;
 
 }
 
@@ -245,13 +204,9 @@ span.grid_chord_flat {
     color: mediumvioletred;
     margin: 0 0 30px 0;
     font-size: 25pt;
+    padding:5pt ;
 
 }
-
-h2 {
-    font-family: lolo ;
-}
-
 
 table.grid_table {
 

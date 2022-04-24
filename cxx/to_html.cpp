@@ -162,119 +162,112 @@ void substitute_LY_WAV(Config config, Item item, std::string &input) {
 
 
 void substitute_G(const Config& config,const Item& item,  std::string &input) {
-    std::string gdata = get_string_between_tags(input, item);
-    // data.replace(item.ending_, closing_tag(item.tag_).size(),"</table></div>") ;
-    // data.replace(item.starting_, opening_tag(item.tag_).size(),"<div><table class=\"redtable\">") ;
-    // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
-    std::vector<std::string> lines = split_string(gdata, "\n");
-    std::ostringstream oss;
-    oss << "<div><table class=\"blueTable\" border=\"1\">" << std::endl;
-    for (auto line: lines) {
-        if (line == "") continue;
-        oss << "<tr>";
-        std::vector<std::string> cells = split_string(line, "|");
-        for (auto cell: cells) {
-            char str_re[] = "<span [a-zA-Z0-9]+>";
-            std::regex re(str_re);
-            std::smatch m;
-            std::regex_search(cell, m, re);
-            std::optional<int> span;
-            span.reset();
-            for (auto x: m) {
-                std::string y(x);
-                auto s1 = std::string("<span ").size();
-                cell = cell.substr(0,cell.size()-y.size()) ;
-                int span_value = std::stoi(y.substr(s1, y.size() - s1 - 1));
-                std::cout << span_value << std::endl;
-                span = span_value;
-            }
-            cell = trim(cell) ;
-            /*
-            oss << "<td " ;
-            if (span.has_value()) {
-                oss << " colspan=\"" << span.value() << "\"";
-            }
-            oss << ">" ;
-             */
-            auto glyphs = songs::glyphs_of_cell(cell) ;
-            if (glyphs.size()==1) {
-                oss << "<td>" << glyphs.at(0) << "</td>" << std::endl ;
-            }
-            else if (glyphs.size()==2) {
-                oss << "<td>" << glyphs.at(0) << "     " << glyphs.at(1) << "</td>" << std::endl ;
-            }
-            else {
-                throw std::runtime_error(std::string(__FILE__)+":"+std::to_string(__LINE__)+" : " + std::to_string(glyphs.size())) ;
-            }
+    try {
+        std::string gdata = get_string_between_tags(input, item);
+        // data.replace(item.ending_, closing_tag(item.tag_).size(),"</table></div>") ;
+        // data.replace(item.starting_, opening_tag(item.tag_).size(),"<div><table class=\"redtable\">") ;
+        // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
+        std::vector<std::string> lines = split_string(gdata, "\n");
+        std::ostringstream oss;
+        oss << "<div><table class=\"blueTable\" border=\"1\">" << std::endl;
+        for (auto line: lines) {
+            if (line == "") continue;
+            oss << "<tr>";
+            std::vector<std::string> cells = split_string(line, "|");
 
+            for (auto cell: cells) {
+                cell = trim(cell) ;
+                char str_re[] = "<span [a-zA-Z0-9]+>";
+                std::regex re(str_re);
+                std::smatch m;
+                std::regex_search(cell, m, re);
+                cell = trim(cell);
+                auto glyphs = songs::glyphs_of_cell(cell);
+                if (glyphs.size() == 1) {
+                    oss << "<td>" << glyphs.at(0) << "</td>" << std::endl;
+                } else if (glyphs.size() == 2) {
+                    oss << "<td>" << glyphs.at(0) << "     " << glyphs.at(1) << "</td>" << std::endl;
+                } else {
+                    throw_line(std::to_string(glyphs.size()));
+                }
+
+            }
+            oss << "</tr>" << std::endl;
         }
-        oss << "</tr>" << std::endl;
-    }
-    oss << "</table></div>";
+        oss << "</table></div>";
 
-    // data.replace(item.starting_,item.ending_-item.starting_+std::string("</G>").size(),oss.str()) ;
-    replace_string_between_tags(input, oss.str(), item);
-    // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
-    // std::cout << input << std::endl ;
+        // data.replace(item.starting_,item.ending_-item.starting_+std::string("</G>").size(),oss.str()) ;
+        replace_string_between_tags(input, oss.str(), item);
+        // data = std::regex_replace(data,std::regex("#"),"&#x266F;") ;
+        // std::cout << input << std::endl ;
+    }
+    catch (std::exception& e) {
+        throw_line(e.what()) ;
+    }
 
 }
 
 
 std::string substitute_all_tags(Config config, std::string data) {
+    try {
 
-    int previous_length = 1000;
-    while (true) {
-        std::vector<Item> items = parse(data);
-        assert (items.size() < previous_length);
-        previous_length = items.size();
-        if (items.empty()) break;
-        Item item = items.front();
+        int previous_length = 1000;
+        while (true) {
+            std::vector<Item> items = parse(data);
+            assert (items.size() < previous_length);
+            previous_length = items.size();
+            if (items.empty()) break;
+            Item item = items.front();
 
-        // std::cout << "substitute " << item.starting_ << " -> " << item.ending_ << std::endl ;
+            // std::cout << "substitute " << item.starting_ << " -> " << item.ending_ << std::endl ;
 
-        Tag etag = tag_of_name((item.tag_));
-        switch (etag) {
-            case V:
-                substitute_V(item, data);
-                break;
-            case C:
-                substitute_C(item, data);
-                break;
-            case T:
-                substitute_T(item, data);
-                break;
-            case L:
-                substitute_L(item, data);
-                break;
-            case G:
-                substitute_G(config,item, data);
-                break;
-            case LY:
-                substitute_LY(config, item, data,false,false,false);
-                break;
-            case LY_C:
-                substitute_LY(config, item, data,false,true,false);
-                break;
-            case LY_R:
-                substitute_LY(config, item, data,true,false,false);
-                break;
-            case LY_RC:
-                substitute_LY(config, item, data,true,true,true);
-                break;
-            case LY_WAV:
-                substitute_LY_WAV(config, item, data);
-                break;
-            case N:
-                substitute_N(config, item, data);
-                break;
-            default:
-                std::ostringstream oss;
-                oss << __FILE__ << ":" << __LINE__ << " ; case not managed : '" << item.tag_ << "'";
-                throw std::runtime_error(oss.str());
+            Tag etag = tag_of_name((item.tag_));
+            switch (etag) {
+                case V:
+                    substitute_V(item, data);
+                    break;
+                case C:
+                    substitute_C(item, data);
+                    break;
+                case T:
+                    substitute_T(item, data);
+                    break;
+                case L:
+                    substitute_L(item, data);
+                    break;
+                case G:
+                    substitute_G(config, item, data);
+                    break;
+                case LY:
+                    substitute_LY(config, item, data, false, false, false);
+                    break;
+                case LY_C:
+                    substitute_LY(config, item, data, false, true, false);
+                    break;
+                case LY_R:
+                    substitute_LY(config, item, data, true, false, false);
+                    break;
+                case LY_RC:
+                    substitute_LY(config, item, data, true, true, true);
+                    break;
+                case LY_WAV:
+                    substitute_LY_WAV(config, item, data);
+                    break;
+                case N:
+                    substitute_N(config, item, data);
+                    break;
+                default:
+                    std::ostringstream oss;
+                    oss << __FILE__ << ":" << __LINE__ << " ; case not managed : '" << item.tag_ << "'";
+                    throw std::runtime_error(oss.str());
+            }
         }
+        // data = std::regex_replace(data,std::regex("<br>"),"<br>\n") ;
+        return data;
     }
-    // data = std::regex_replace(data,std::regex("<br>"),"<br>\n") ;
-    return data;
+    catch (std::exception& e) {
+        throw_line(e.what()) ;
+    }
 
 
 }
@@ -305,13 +298,14 @@ void write_local_css(Config config, std::ostream &fout) {
 
 
 std::stringstream to_html(Config config) {
+    try {
 
-    std::stringstream oss;
-    oss << R"here(
+        std::stringstream oss;
+        oss << R"here(
 <html>
 <title>)here";
-    oss << config.main_title;
-    oss << R"here(</title>
+        oss << config.main_title;
+        oss << R"here(</title>
 <head>
 <style>
 
@@ -328,16 +322,16 @@ std::stringstream to_html(Config config) {
 
     )here";
 
-    oss << config.main_title << "</div>" << std::endl;
+        oss << config.main_title << "</div>" << std::endl;
 
-    oss << "<div class=\"wrapper\">" << std::endl;
-    for (auto cell: config.cells) {
-        oss << "<div class=\"box_" << cell.index << "\">" << substitute_all_tags(config, cell.data) << "</div>"
-            << std::endl;
-    }
+        oss << "<div class=\"wrapper\">" << std::endl;
+        for (auto cell: config.cells) {
+            oss << "<div class=\"box_" << cell.index << "\">" << substitute_all_tags(config, cell.data) << "</div>"
+                << std::endl;
+        }
 
 
-    oss << "</div>" << std::endl;
+        oss << "</div>" << std::endl;
 
 
 
@@ -345,9 +339,13 @@ std::stringstream to_html(Config config) {
 
 //    oss << input ;
 
-    oss << "</body></html>" << std::endl;
+        oss << "</body></html>" << std::endl;
 
-    return oss;
+        return oss;
+    }
+    catch (std::exception& e) {
+        throw_line(e.what()) ;
+    }
 
 }
 

@@ -4,6 +4,7 @@
 #include <vector>
 #include <optional>
 #include <iostream>
+#include <cassert>
 
 namespace songs {
 
@@ -157,7 +158,7 @@ namespace songs {
     }
 
 
-    const Symbol& symbol_of_input(const std::string& input) {
+    Symbol symbol_of_input(const std::string& input) {
         if (input[0]=='r') {
             return Symbol(rest_of_input(input)) ;
         }
