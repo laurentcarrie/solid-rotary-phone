@@ -168,7 +168,8 @@ namespace songs {
             return Symbol(chord_of_input(input)) ;
         }
         else {
-            throw std::runtime_error(std::string("bad input : ")+input) ;
+            throw std::runtime_error(std::string(__FILE__) + ":" +
+            std::to_string(__LINE__)+"\nbad input : '"+input+"'") ;
         }
     }
 
@@ -188,7 +189,9 @@ namespace songs {
 
         std::vector<std::string> ret;
         for (auto c: v) {
-            ret.push_back(songs::glyph_of_one_chord(c));
+            if (c!="") {
+                ret.push_back(songs::glyph_of_one_chord(c));
+            }
         }
 
         return ret;

@@ -97,7 +97,7 @@ void mount_files(std::filesystem::path srcdir,std::filesystem::path builddir) {
         std::filesystem::copy_file(from, to, std::filesystem::copy_options::overwrite_existing);
         return "" ;
     };
-    // std::vector<std::string> names {"style/style.css","style/print.css","macros/macros.ly","style/lolo.ttf"};
+    std::vector<std::string> names {"style/style.css","style/print.css","macros/macros.ly","style/lolo.ttf"};
 
     std::transform(names.begin(),names.end(),names.begin(),f) ;
 }
