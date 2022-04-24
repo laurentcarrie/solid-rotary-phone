@@ -196,8 +196,18 @@ body {
      */
     src: url("../style/lolo.ttf") format('truetype');
 
+}
+
+@font-face {
+    font-family: "lolo_flatTTF";
+    /*
+    src: url("lolo.ttf") format('truetype');
+
+     */
+    src: url("../style/lolo_flat.ttf") format('truetype');
 
 }
+
 
 @font-face {
     font-family: "loloEOT";

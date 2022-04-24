@@ -198,10 +198,10 @@ void substitute_G(const Config& config,const Item& item,  std::string &input) {
              */
             auto glyphs = songs::glyphs_of_cell(cell) ;
             if (glyphs.size()==1) {
-                oss << "<td>" << glyphs.at(0) << "</td>" ;
+                oss << "<td>" << glyphs.at(0) << "</td>" << std::endl ;
             }
             else if (glyphs.size()==2) {
-                oss << "<td>" << glyphs.at(0) << "     " << glyphs.at(1) << "</td>" ;
+                oss << "<td>" << glyphs.at(0) << "     " << glyphs.at(1) << "</td>" << std::endl ;
             }
             else {
                 throw std::runtime_error(std::string(__FILE__)+":"+std::to_string(__LINE__)+" : " + std::to_string(glyphs.size())) ;
