@@ -143,3 +143,5 @@ dmypy.json
 /cmake-build-debug/
 /cxx/cmake-build-debug/
 /cxx/CMakeFiles/
+
+.DS_Store
