@@ -106,6 +106,10 @@ void mount_files(std::filesystem::path srcdir,std::filesystem::path builddir) {
 
 int main(int argc, char **argv) {
     try {
+        if (argc<4) {
+            std::cout << argv[0] << " srcdir builddir book-name" << std::endl ;
+            exit(1) ;
+        }
         assert(argc > 3);
 
         std::cout << "Hello, World!" << std::endl;
@@ -119,7 +123,7 @@ int main(int argc, char **argv) {
 
         mount_files(srcdir,builddir);
         make_book(srcdir, book, builddir);
-        clean_files(builddir);
+        // clean_files(builddir);
 
 
         // make_song(rootdir,builddir) ;
