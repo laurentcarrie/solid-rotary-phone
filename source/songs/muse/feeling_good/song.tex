@@ -26,7 +26,11 @@
 \usepackage{titlesec}
 
 \titleformat{\section}
-{\normalfont\scshape}{\thesection}{1em}{}
+{\normalfont\scshape}{
+\begin{tcolorbox}
+    \thesection
+    \end{tcolorbox}
+}{1em}{}
 
 \renewcommand{\familydefault}{\sfdefault}
 \normalfont
