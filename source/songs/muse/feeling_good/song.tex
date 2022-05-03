@@ -15,7 +15,7 @@
 %\usepackage{auncial}
 %\usepackage[B1]{fontenc}
 
-
+\usepackage{graphicx}
 \usepackage{verse}
 %\newcommand{\attrib}[1]{\nopagebreak{\raggedleft\footnotesize #1\par}}
 %\setlength{\stanzaskip}{\baselineskip}
@@ -24,33 +24,32 @@
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
 \usepackage{titlesec}
+\usepackage{color}
 
 \titleformat{\section}
 {\normalfont\scshape}{
-\begin{tcolorbox}
     \thesection
-    \end{tcolorbox}
 }{1em}{}
+
+\definecolor{bg}{HTML}{ADFF2F}
+%\definecolor{bg}{RGB}{200,150,227}
+
+\newcommand{\couplet}[1]{
+%\colorbox{bg}{\section*{#1}}
+    \colorbox{bg}{
+    %\normalfont\scshape\selectfont
+        \Fontskrivan\bfseries\slshape
+        \fontsize{10pt}{50pt}\selectfont
+        #1
+    }
+
+}
 
 \renewcommand{\familydefault}{\sfdefault}
 \normalfont
 
 \usepackage[most]{tcolorbox}
 
-\tcbset{
-    frame code={}
-    center title,
-    left=0pt,
-    right=0pt,
-    top=0pt,
-    bottom=0pt,
-    colback=gray!70,
-    colframe=white,
-    width=\dimexpr\textwidth\relax,
-    enlarge left by=0mm,
-    boxsep=5pt,
-    arc=0pt,outer arc=0pt,
-}
 
 \title{Feelin' Good}
 \author{Nina Simone ( Muse ) }
@@ -58,25 +57,32 @@
 
 \begin{document}
 
-    {
-        %\aunclfamily
-        \Fontskrivan\bfseries\slshape
-        \fontsize{10pt}{50pt}\selectfont
-        \color{blue}
-        \maketitle
+{
+%\aunclfamily
+    \Fontskrivan\bfseries\slshape
+    \fontsize{10pt}{50pt}\selectfont
+    \color{blue}
+    \maketitle
 
-    }
-
-
+}
 
     \begin{Row}
         \begin{Cell}{1}
-
-           \input{lyrics.tex}
+            \input{lyrics.tex}
         \end{Cell}
         \begin{Cell}{1}
+            \input{grille.tex}
         \end{Cell}
-    \end{Row}\\
+    \end{Row}
+
+    \begin{Row}
+        \begin{Cell}{1}
+            \couplet{accords}
+            \begin{center}
+                \includegraphics[scale=0.7]{solo_png.png}
+            \end{center}
+        \end{Cell}
+    \end{Row}
 
 \end{document}
 
