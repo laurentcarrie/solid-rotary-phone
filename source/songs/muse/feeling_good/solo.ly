@@ -63,7 +63,12 @@ rhythm = {
 }
 }
 
-song_chords = {}
+song_chords = {
+    \time 6/8
+    \chordmode {
+        g2.:m    f2.:m  c   g:sus4  f  e
+    }
+}
 
 drumbar =  \drummode {  bd8 r8 r8 sn8 r8 r8 }
 

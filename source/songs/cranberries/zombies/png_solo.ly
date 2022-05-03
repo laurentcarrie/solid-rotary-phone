@@ -14,7 +14,7 @@
 
 \score {
   <<
-
+    \time 6/8
     %\new ChordNames { \theChords }
 
     \new TabStaff {

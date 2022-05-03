@@ -1,0 +1,65 @@
+\documentclass[DIV13,a4paper]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[scaled=0.85]{beramono}
+
+
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{grid-system}
+
+\usepackage{xcolor}
+\definecolor{linkcolor}{rgb}{0, 0, 0.93}
+
+\usepackage[
+	hidelinks,
+	colorlinks=true,
+	urlcolor=linkcolor
+]{hyperref}
+
+
+%\usepackage{emerald}
+%\usepackage[T1]{fontenc}
+
+\setlength{\parindent}{0cm}
+\lstset{language=[LaTeX]tex,xleftmargin=2em}
+%\font\myfont="Savoye LET" at 40 pt
+%\ECFAugie
+
+%\usepackage{fontspec}
+
+%\usepackage{yfonts}
+\usepackage[T1]{fontenc}
+%\setmainfont{QTBrushStroke}
+%\initfamily
+
+%\usepackage{fontspec}
+%\setmainfont{QTCaslanOpen}
+
+
+\font\myfont=cmr12 at 40pt
+\title{{\myfont Feeling Good}}
+\author{Nina Simone ( Muse ) }
+\date{}
+\begin{document}
+\maketitle
+
+
+\begin{row}[cellsep=0.75cm]{2}{2}
+	\begin{cell}{1}
+	\input{lyrics.tex}
+	\end{cell}
+	\begin{cell}{1}
+B
+	\end{cell}
+	\begin{cell}{1}
+C
+	\end{cell}
+\end{row}
+
+\end{document}
