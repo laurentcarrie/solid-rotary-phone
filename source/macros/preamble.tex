@@ -1,0 +1,50 @@
+\usepackage[margin=0.5cm]{geometry}
+\usepackage[utf8x]{inputenc}
+%\usepackage[light, largesmallcaps]{kpfonts}
+\usepackage{mwe}
+%\usepackage{geometry}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{grid-system}
+\usepackage{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{verse}
+
+\usepackage{aurical}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{color}
+
+
+\definecolor{bg}{HTML}{ADFF2F}
+
+\newcommand{\couplet}[1]{
+%\colorbox{bg}{\section*{#1}}
+    \colorbox{bg}{
+    %\normalfont\scshape\selectfont
+        \Fontskrivan\bfseries\slshape
+        \fontsize{10pt}{50pt}\selectfont
+        #1
+    }
+
+}
+
+\newcommand{\songtitle}[2] {
+\begin{center}
+    \Fontskrivan\bfseries\slshape
+    \fontsize{100pt}{50pt}\selectfont
+    \color{blue}
+    #1
+    %Feelin' Good
+\end{center}
+
+\begin{center}
+    \Fontskrivan\bfseries\slshape
+    \fontsize{20pt}{10pt}\selectfont
+    \color{orange}
+    #2
+    %Nina Simone (Muse)
+\end{center}
+}

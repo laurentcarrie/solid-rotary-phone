@@ -1,7 +1,10 @@
 MAKEFILES=$(shell find . -maxdepth 3 -type f -name Makefile)
 SUBDIRS=$(filter-out ./,$(dir $(MAKEFILES)))
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+DESTDIR:=$(ROOT_DIR)/../../delivery
 
-.PHONY: all clean
+
+.PHONY: all clean deliver
 .DEFAULT: all
 
 SHELL=/bin/bash
@@ -19,4 +22,13 @@ clean:
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
         make -C $$dir clean ; \
+    done
+
+deliver:
+	echo $(SUBDIRS) ;\
+    rm -rf $(DESTDIR) ;\
+    mkdir $(DESTDIR) ; \
+	for dir in $(SUBDIRS); do \
+    	echo $$dir ; \
+        make -C $$dir deliver DESTDIR="$(DESTDIR)" ; \
     done
