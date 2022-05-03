@@ -145,3 +145,11 @@ dmypy.json
 /cxx/CMakeFiles/
 
 .DS_Store
+*.aux
+*.out
+*.pdf
+*.count
+*-systems.*
+*.eps
+*_png.png
+
