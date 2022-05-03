@@ -23,6 +23,10 @@
 
 \score {
     <<
+    \new ChordNames {
+        \song_chords
+        }
+
     \new TabStaff {
         \tempo 4 = \song_tempo
         \tabFullNotation

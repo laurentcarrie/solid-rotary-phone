@@ -1,4 +1,4 @@
-\version "2.22.1"
+\version "2.20.0"
 song_tempo = 180
 nb_mesures = 32
 
