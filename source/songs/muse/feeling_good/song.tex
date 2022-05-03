@@ -1,0 +1,78 @@
+%\documentclass[a4paper, 12 pt, showframe, french]{scrartcl}
+\documentclass[a4paper, 10 pt]{article}
+\usepackage[margin=0.5cm]{geometry}
+\usepackage[utf8x]{inputenc}
+%\usepackage[light, largesmallcaps]{kpfonts}
+\usepackage{mwe}
+%\usepackage{geometry}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{grid-system}
+\usepackage{babel}
+\usepackage{listings}
+
+%\newcommand*{\myfont}{\fontsize{10pt}{12pt}\fontfamily{lmr}\selectfont}
+%\usepackage{auncial}
+%\usepackage[B1]{fontenc}
+
+
+\usepackage{verse}
+%\newcommand{\attrib}[1]{\nopagebreak{\raggedleft\footnotesize #1\par}}
+%\setlength{\stanzaskip}{\baselineskip}
+
+\usepackage{aurical}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\normalfont\scshape}{\thesection}{1em}{}
+
+\renewcommand{\familydefault}{\sfdefault}
+\normalfont
+
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+    frame code={}
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!70,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=0mm,
+    boxsep=5pt,
+    arc=0pt,outer arc=0pt,
+}
+
+\title{Feelin' Good}
+\author{Nina Simone ( Muse ) }
+\date{}
+
+\begin{document}
+
+    {
+        %\aunclfamily
+        \Fontskrivan\bfseries\slshape
+        \fontsize{10pt}{50pt}\selectfont
+        \color{blue}
+        \maketitle
+
+    }
+
+
+
+    \begin{Row}
+        \begin{Cell}{1}
+
+           \input{lyrics.tex}
+        \end{Cell}
+        \begin{Cell}{1}
+        \end{Cell}
+    \end{Row}\\
+
+\end{document}
+
