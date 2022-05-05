@@ -4,7 +4,7 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 DESTDIR:=$(ROOT_DIR)/../../delivery
 
 
-.PHONY: all clean deliver
+.PHONY: all clean delivery
 .DEFAULT: all
 
 SHELL=/bin/bash
@@ -24,11 +24,11 @@ clean:
         make -C $$dir clean ; \
     done
 
-deliver:
+delivery:
 	echo $(SUBDIRS) ;\
     rm -rf $(DESTDIR) ;\
     mkdir $(DESTDIR) ; \
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
-        make -C $$dir deliver DESTDIR="$(DESTDIR)" ; \
+        make -C $$dir delivery DESTDIR="$(DESTDIR)" ; \
     done

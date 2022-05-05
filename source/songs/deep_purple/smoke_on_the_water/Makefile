@@ -1,4 +1,4 @@
-.PHONY:  all clean deliver
+.PHONY:  all clean delivery
 .DEFAULT: all
 project=deep-purple-smoke-on-the-water
 
@@ -24,5 +24,5 @@ intro_png.png : intro_png.ly intro.ly
 
 all: $(project).pdf
 
-deliver : $(project).pdf
+delivery : $(project).pdf
 	cp  $(project).pdf $(DESTDIR)/.

@@ -1,4 +1,4 @@
-.PHONY:  all clean deliver
+.PHONY:  all clean delivery
 .DEFAULT: all
 project=muse-feeling-good
 
@@ -20,5 +20,5 @@ solo_png.png : solo_png.ly solo.ly
 
 all: $(project).pdf
 
-deliver : $(project).pdf
+delivery : $(project).pdf
 	cp  $(project).pdf $(DESTDIR)/.
