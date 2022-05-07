@@ -1,5 +1,5 @@
 %\documentclass[a4paper, 12 pt, showframe, french]{scrartcl}
-\documentclass[a4paper, 10 pt]{article}
+\documentclass[a4paper, 10 pt]{memoir}
 
 \input{../../../macros/preamble.tex}
 
@@ -14,20 +14,32 @@
 
     \begin{Row}
         \begin{Cell}{1}
-            \lyricsa
+            \begin{vplace}[0.7]
+                \lyricsa
+                \lyricsb
+                \lyricsc
+            \end{vplace}
         \end{Cell}
         \begin{Cell}{1}
-            \input{grille.tex}
+            \begin{vplace}[0.7]
+                \input{grille.tex}
+            \end{vplace}
         \end{Cell}
     \end{Row}
-    \begin{Row}
-        \begin{Cell}{1}
-            \lyricsb
-        \end{Cell}
-        \begin{Cell}{1}
-            \lyricsc
-        \end{Cell}
-    \end{Row}
+
+
+%    \begin{Row}
+%        \begin{Cell}{1}
+%            \begin{vplace}[0.7]
+%                \lyricsb
+%            \end{vplace}
+%        \end{Cell}
+%        \begin{Cell}{1}
+%            \begin{vplace}[0.7]
+%                \lyricsc
+%            \end{vplace}
+%        \end{Cell}
+%    \end{Row}
 
 
 \end{document}

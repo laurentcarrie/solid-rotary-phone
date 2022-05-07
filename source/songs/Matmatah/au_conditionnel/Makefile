@@ -2,6 +2,8 @@
 .DEFAULT: all
 project=matmatah-au-conditionnel
 
+delivery_file=$(DESTDIR)/$(project).pdf
+
 texfiles=
 
 clean:
@@ -20,5 +22,7 @@ $(project).pdf : song.tex lyrics.tex grille.tex
 
 all: $(project).pdf
 
-delivery : $(project).pdf
-	cp  $(project).pdf $(DESTDIR)/.
+delivery : $(delivery_file)
+
+$(delivery_file) : $(project).pdf
+	cp $< $@

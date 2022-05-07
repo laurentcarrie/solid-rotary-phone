@@ -18,7 +18,8 @@ all:
     done
 
 clean:
-	echo $(SUBDIRS)
+	echo $(SUBDIRS) ;\
+    rm -rf $(DESTDIR) ;\
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
         make -C $$dir clean ; \
