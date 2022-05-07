@@ -1,24 +1,15 @@
 .PHONY:  all clean delivery
-.DEFAULT: all
+.DEFAULT=delivery
 project=muse-feeling-good
 
-texfiles=
+include $(CURDIR)/../../../macros/Makefile
 
-clean:
-	rm -rf *.wav *.png *.pdf *.aux *.log *.eps *.count *-systems.*
 
 
 
 $(project).pdf : song.tex lyrics.tex grille.tex solo_png.png
-	pdflatex song.tex
+	bash $(buildtex) song.tex
 	mv song.pdf $(project).pdf
 
 solo_png.png : solo_png.ly solo.ly
 	 lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output $(basename $@) $<
-
-
-
-all: $(project).pdf
-
-delivery : $(project).pdf
-	cp  $(project).pdf $(DESTDIR)/.

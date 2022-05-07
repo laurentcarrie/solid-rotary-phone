@@ -17,13 +17,26 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{color}
-
+\usepackage{longtable}
+\usepackage{multirow}
 \usepackage[full]{leadsheets}
+
+% grilles
+\newlength\gridheight\setlength\gridheight{215.0mm}
+\newlength\gridwidth\setlength\gridwidth{180.0mm}
+\def\mygridbox#1{\parbox[c][\gridheight][c]{\gridwidth}{\center #1}}
+\def\mytitlebox#1{\parbox[c][{40.0mm}][c]{\gridwidth}{\center #1}}
+\setlength{\tabcolsep}{0.0mm}
 
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \pagestyle{fancy}
 \fancyhf{}
+%\usepackage{tabularx}
+\usepackage[most]{tcolorbox}
+
+\usepackage{booktabs}
+\usepackage{array}
 
 %\setlength{\headheight}{10pt}
 
@@ -45,30 +58,33 @@
     \colorbox{bg}{
     %\normalfont\scshape\selectfont
         \Fontskrivan\bfseries\slshape
-        \fontsize{10pt}{50pt}\selectfont
+        \fontsize{10pt}{40pt}\selectfont
         #1
     }
 
 }
 
-\newcommand{\songtitle}[2] {
-\begin{center}
-    \Fontskrivan\bfseries\slshape
-    \fontsize{60pt}{50pt}\selectfont
-    \color{blue}
-    #1
-\end{center}
+\newcommand{\songtitle}[3] {
+    \multicolumn{#1}{c}{
+        \Fontskrivan\bfseries\slshape
+        \fontsize{60pt}{50pt}\selectfont
+        \color{blue}
+        #2
+    } \\
 
-\begin{center}
+
+    \multicolumn{#1}{c}{
     \Fontskrivan\bfseries\slshape
     \fontsize{20pt}{10pt}\selectfont
     \color{orange}
-    #2
-\end{center}
-
-    \lfoot{#1 / #2}
+    #3
+    }\\
 
 
+}
+
+\newcommand{\makefooter}[2]{
+\lfoot{#1 / #2}
 }
 
 
@@ -80,13 +96,16 @@
 
 }
 
-\usepackage{array}
-\newcolumntype{C}{>{\centering\arraybackslash}p{3em}}
+
+
+\newcolumntype{C}{>{\centering\arraybackslash}m{1.5cm}}
+%\newcolumntype{C}{>{\centering}p{0.25cm}}
 
 \newcommand{\beforegrille}{
 %\Fontskrivan\bfseries\slshape
 %\fontsize{55pt}{52pt}
-\fontsize{12pt}{12pt}\selectfont
+    \fontsize{10pt}{8pt}\selectfont
+    \renewcommand{\arraystretch}{2}
 
 }
 

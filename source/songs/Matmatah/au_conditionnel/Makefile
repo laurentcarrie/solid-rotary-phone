@@ -2,17 +2,13 @@
 .DEFAULT: all
 project=matmatah-au-conditionnel
 
-delivery_file=$(DESTDIR)/$(project).pdf
 
-texfiles=
-
-clean:
-	rm -rf *.wav *.png *.pdf *.aux *.log *.eps *.count *-systems.*
+include $(CURDIR)/../../../macros/Makefile
 
 
 
 $(project).pdf : song.tex lyrics.tex grille.tex
-	pdflatex song.tex
+	bash $(buildtex) song.tex
 	mv song.pdf $(project).pdf
 
 #solo_png.png : solo_png.ly solo.ly
@@ -22,7 +18,3 @@ $(project).pdf : song.tex lyrics.tex grille.tex
 
 all: $(project).pdf
 
-delivery : $(delivery_file)
-
-$(delivery_file) : $(project).pdf
-	cp $< $@
