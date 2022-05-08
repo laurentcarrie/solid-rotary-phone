@@ -1,10 +1,14 @@
 .PHONY:  all clean delivery
 .DEFAULT: all
-project=deep-purple-smoke-on-the-water
+project=robert-palmer-bad-case-of-loving-you
 
 include $(CURDIR)/../../../macros/Makefile
 
-$(project).pdf : song.tex lyrics.tex grille.tex solo_png.png intro_png.png
+
+
+
+
+$(project).pdf : song.tex lyrics.tex grille.tex
 	bash $(buildtex) song.tex
 	mv song.pdf $(project).pdf
 
@@ -16,7 +20,3 @@ intro_png.png : intro_png.ly intro.ly
 
 
 
-all: $(project).pdf
-
-delivery : $(project).pdf
-	cp  $(project).pdf $(DESTDIR)/.
