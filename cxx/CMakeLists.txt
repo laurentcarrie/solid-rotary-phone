@@ -52,4 +52,5 @@ add_executable(solid_rotary_phone main.cpp parse.cpp parse.h to_html.cpp to_html
 target_link_libraries(solid_rotary_phone ${LIBRARIES})
 #target_link_directories(solid_rotary_phone /opt/homebrew/Cellar/yaml-cpp/0.7.0/lib/)
 
+add_executable(solid_rotary_phone_make_chords main_make_chord.cpp)
 

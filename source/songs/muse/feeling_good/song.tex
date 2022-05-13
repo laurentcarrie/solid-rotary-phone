@@ -2,6 +2,7 @@
 \documentclass[a4paper, 10 pt]{memoir}
 
 \input{../../../macros/preamble.tex}
+\input{../../../macros/chords.tex}
 
 \titleformat{\section}
 {\normalfont\scshape}{
@@ -12,9 +13,31 @@
 \renewcommand{\familydefault}{\sfdefault}
 \normalfont
 
+\usepackage{fontspec}
+%\setmainfont{lolo_flat}
+
+
+
 \begin{document}
 
+
+\IfFontExistsTF{/Users/will/Library/Fonts/CODE2000.TTF}{T}{F}
+\IfFontExistsTF{/Users/laurent/work/solid-rotary-phone/source/style/lolo.ttf}{T}{F}
+%\setmainfont{lolo}[
+%Path = /Users/laurent/work/solid-rotary-phone/source/style/lolo.ttf ,
+%prightFont = /Users/laurent/work/solid-rotary-phone/source/style/lolo.ttfregular ,
+%oldFont = /Users/laurent/work/solid-rotary-phone/source/style/lolo.ttf ,
+%]
+
+
+
+%\setmainfont{lolo}
+
 {
+\lolo\selectfont
+A B C D E F G H I J K L M N O P \\
+abcdefghijklmnop
+   }
 
     \makefooter{Feelin' Good}{Nina Simone (Muse)}
 
@@ -36,8 +59,8 @@
         \end{Row}
         %}
         \\
-
-        \multicolumn{1}{c}{            \includegraphics[scale=0.7]{solo_png.png}} \\
+        \multicolumn{1}{c}{    \couplet{couplet}  }\\
+        \multicolumn{1}{c}{          \includegraphics[scale=0.7]{solo_png.png}} \\
 
     \end{longtable}
 

@@ -23,12 +23,12 @@ bar_six= {
 
 bar_sept={
 \repeat unfold 6 {  <d\5 g\4 bes\3 d'\2>8 }
-\repeat unfold 6 {  <c\6 g\5 c'\4 e'\3 g'\2>8 }
+\repeat unfold 6 {  <c\5 g\4 c'\3 e'\2 >8 }
 }
 
 bar_huit={
-\repeat unfold 6 {  <bes,\6 f\5 bes\4 d'\3>8 }
-\repeat unfold 6 {  <a,\6 e\5 a\4 c'\3 e'\2>8 }
+\repeat unfold 6 {  <bes,\5 f\4 bes\3 d'\2>8 }
+\repeat unfold 6 {  <a,\5 e\4 g\3 c'\2 >8 }
 }
 
 bar_neuf={
