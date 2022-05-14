@@ -8,7 +8,8 @@ void write(std::ofstream &fout, const std::string &chord_name, const char letter
     //std::cout
     fout
     << "\\newcommand\\chord" << chord_name << "{{"
-         << "\\" << font_name << "\\selectfont "
+
+         << "\\" << font_name << "\\fontsize{20pt}{20pt}\\selectfont "
          << letter << " ~ }}" << std::endl;
 }
 

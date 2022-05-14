@@ -153,3 +153,4 @@ dmypy.json
 *.eps
 *_png.png
 
+/source/macros/chords.tex
