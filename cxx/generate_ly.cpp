@@ -55,7 +55,7 @@ void generate_png_ly(const Config& config,const std::string& stem,bool with_rhyt
     if (with_chords) {
         fout << R"here(
         \new ChordNames {
-            \set chordChanges = ##t
+            \set chordChanges = s#t
             \song_chords
         }
         )here";

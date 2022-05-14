@@ -13,7 +13,7 @@
 \include "predefined-guitar-fretboards.ly"
 custom-tuning = \stringTuning <d g d' g' b' d''>
 
-\addChordShape #'flatbar #guitar-tuning "0-1-(;0-1;0-1;0-1;0-1;0-1-);"
+\addchordShape s'flatbar #guitar-tuning "0-1-(;0-1;0-1;0-1;0-1;0-1-);"
 
 \storePredefinedDiagram #default-fret-table
 \chordmode { e }
