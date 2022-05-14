@@ -1,0 +1,50 @@
+%\documentclass[a4paper, 12 pt, showframe, french]{scrartcl}
+\documentclass[a4paper, 10 pt]{memoir}
+
+\input{../../../macros/preamble.tex}
+\input{../../../macros/chords.tex}
+
+
+
+
+
+\begin{document}
+
+{
+
+    \makefooter{Come Together}{The Beatles}
+
+    \begin{longtable}{c}
+        \songtitle{1}{Come Together}{The Beatles} \\
+        \hline
+        %\mygridbox{
+        \begin{Row}
+            \begin{Cell}{1}
+                %\begin{vplace}[1.0]
+                \input{lyrics.tex}
+                %\end{vplace}
+            \end{Cell}
+            \begin{Cell}{1}
+                %\begin{vplace}[0.7]
+                \input{grille.tex}
+                %\end{vplace}
+            \end{Cell}
+        \end{Row}
+        %}
+        \\
+        \multicolumn{1}{c}{    \couplet{couplet}  }     \\
+
+
+        \newpage
+
+        \multicolumn{1}{c}{            \couplet{solo après couplet 3}        } \\
+        \multicolumn{1}{c}{            \includegraphics[scale=1]{solo_1_png.png}        } \\
+
+        \multicolumn{1}{c}{            \couplet{solo final}        } \\
+        \multicolumn{1}{c}{            \includegraphics[scale=1]{solo_final_png.png}        } \\
+
+    \end{longtable}
+
+
+\end{document}
+

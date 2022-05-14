@@ -55,4 +55,10 @@ int main(int argc, char **argv) {
             write(fout,chord_name,c+21,d.first);
         }
     }
+
+    write(fout,"ERest",'q',"lolosharp") ;
+    write(fout,"QRest",'r',"lolosharp") ;
+    write(fout,"HRest",'s',"lolosharp") ;
+    write(fout,"QHRest",'t',"lolosharp") ;
+
 }
