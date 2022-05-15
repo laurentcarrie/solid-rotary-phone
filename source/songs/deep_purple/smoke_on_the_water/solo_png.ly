@@ -1,11 +1,11 @@
 \version "2.20.0"
 
-\include "../../../macros/macros.ly"
+\include "../../../../macros/macros.ly"
 \include "solo.ly"
 
 \paper {
     #(include-special-characters)
-    indent = 15\mm
+    indent = 0\mm
     line-width = 180\mm
     oddHeaderMarkup = ""
     evenHeaderMarkup = ""

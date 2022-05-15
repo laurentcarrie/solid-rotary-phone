@@ -1,0 +1,39 @@
+
+{
+
+    \makefooter{Some On The Water}{Deep Purple}
+
+    \begin{longtable}{c}
+        \songtitle{1}{Some On The Water}{Deep Purple} \\
+        \hline
+        %\mygridbox{
+        \begin{Row}
+            \begin{Cell}{1}
+                \input{lyrics.tex}
+            \end{Cell}
+            \begin{Cell}{2}
+                %\begin{vplace}[0.7]
+                \input{grille.tex}
+                %\end{vplace}
+            \end{Cell}
+        \end{Row}
+        %}
+        \\
+        \newpage
+
+        \begin{Row}
+            \begin{Cell}{1}
+                \couplet{accords}
+                \begin{center}
+                    \includegraphics[scale=1]{build/solo_png.png}
+                \end{center}
+            \end{Cell}
+        \end{Row}
+
+
+    \end{longtable}
+
+    \newpage
+    \lilypondfile[quote,noindent]{build/solo_png.ly}
+}
+

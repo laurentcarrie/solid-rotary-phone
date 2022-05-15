@@ -12,3 +12,4 @@ delivery : $(project).pdf
 
 clean :
 	rm -rf build
+	rm -rf *.pdf

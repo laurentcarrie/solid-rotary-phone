@@ -1,0 +1,37 @@
+{
+
+    \makefooter{Come Together}{The Beatles}
+
+    \begin{longtable}{c}
+        \songtitle{1}{Come Together}{The Beatles} \\
+        \hline
+        %\mygridbox{
+        \begin{Row}
+            \begin{Cell}{1}
+                %\begin{vplace}[1.0]
+                \input{lyrics.tex}
+                %\end{vplace}
+            \end{Cell}
+            \begin{Cell}{2}
+                %\begin{vplace}[0.7]
+                \input{grille.tex}
+                %\end{vplace}
+            \end{Cell}
+        \end{Row}
+        %}
+        \\
+        \multicolumn{1}{c}{    \couplet{couplet}  }     \\
+
+
+        \newpage
+
+        \multicolumn{1}{c}{            \couplet{solo après couplet 3}        } \\
+        \multicolumn{1}{c}{            \includegraphics[scale=1]{build/solo_1_png.png}        } \\
+
+        \multicolumn{1}{c}{            \couplet{solo final}        } \\
+        \multicolumn{1}{c}{            \includegraphics[scale=1]{build/solo_final_png.png}        } \\
+
+    \end{longtable}
+
+
+}

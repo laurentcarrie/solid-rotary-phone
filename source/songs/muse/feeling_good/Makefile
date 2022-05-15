@@ -5,8 +5,8 @@ project=muse-feeling-good
 include $(CURDIR)/../../../macros/Makefile
 
 
-$(project).pdf : song.tex lyrics.tex grille.tex build/solo_png.png
-	bash $(buildtex) $(project)
+$(project).pdf : song.tex lyrics.tex grille.tex body.tex build/solo_png.png
+	bash $(buildtex) $@ $^
 
 build/solo_png.png : solo_png.ly solo.ly
 	bash $(buildpngly) $^

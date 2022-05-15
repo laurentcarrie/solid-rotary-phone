@@ -8,8 +8,10 @@ mkdir -p build
 
 echo $*
 
+macropath=$(realpath $PWD/../../../macros)
+
 for i in $* ; do
-  cat $i | sed "s#../../../macros#../../../../macros#" > build/$i
+  cat $i | sed "s#../../../../macros#$macropath#" > build/$i
 
 done
 

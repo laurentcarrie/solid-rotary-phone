@@ -58,7 +58,7 @@
     \colorbox{bg}{
     %\normalfont\scshape\selectfont
         \Fontskrivan\bfseries\slshape
-        \fontsize{10pt}{40pt}\selectfont
+        \fontsize{15pt}{40pt}\selectfont
         #1
     }
 
@@ -98,7 +98,7 @@
 
 
 
-\newcolumntype{C}{>{\centering\arraybackslash}m{2.1cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}m{3.0cm}}
 %\newcolumntype{C}{>{\centering}p{0.25cm}}
 
 \newcommand{\beforegrille}{
@@ -139,4 +139,12 @@
    BoldItalicFont = lolo_sharp]
   {lolo_sharp}
 
+
+% pour les livres
+\newcommand{\fakesection}[1]{%
+    \par\refstepcounter{section}% Increase section counter
+    \sectionmark{#1}% Add section mark (header)
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+% Add more content here, if needed.
+}
 

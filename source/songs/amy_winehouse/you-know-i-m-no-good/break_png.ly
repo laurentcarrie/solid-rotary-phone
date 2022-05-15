@@ -1,6 +1,6 @@
 \version "2.20.0"
 
-\include "../../../macros/macros.ly"
+\include "../../../../macros/macros.ly"
 \include "break.ly"
 
 \paper {
