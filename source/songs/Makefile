@@ -22,7 +22,7 @@ clean:
     rm -rf $(DESTDIR) ;\
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
-        make -C $$dir clean ; \
+        rm -rf $$dir/build ;\
     done
 
 delivery:
@@ -32,4 +32,11 @@ delivery:
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
         make -C $$dir delivery DESTDIR="$(DESTDIR)" ; \
+    done
+
+pdf:
+	echo $(SUBDIRS) ;\
+	for dir in $(SUBDIRS); do \
+    	echo $$dir ; \
+        make -C $$dir pdf ; \
     done

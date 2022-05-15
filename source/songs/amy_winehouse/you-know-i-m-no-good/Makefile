@@ -1,18 +1,13 @@
-.PHONY:  all clean delivery
-.DEFAULT=delivery
 project=amy-winehouse-you-know-i-m-no-good
-
 include $(CURDIR)/../../../macros/Makefile
 
 
+$(project).pdf : song.tex lyrics.tex grille.tex build/break_png.png
+	bash $(buildtex) $(project)
 
 
-$(project).pdf : song.tex lyrics.tex grille.tex break_png.png
-	bash $(buildtex) song.tex
-	mv song.pdf $(project).pdf
-
-break_png.png : break_png.ly break.ly
-	 lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output $(basename $@) $<
+build/break_png.png : break_png.ly break.ly
+	bash $(buildpngly) $^
 
 
 break_midi.midi : break_midi.ly break.ly

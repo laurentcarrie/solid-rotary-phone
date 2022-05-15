@@ -1,22 +1,11 @@
-.PHONY:  all clean delivery
+.PHONY:  all clean delivery pdf
 .DEFAULT: all
 project=robert-palmer-bad-case-of-loving-you
 
 include $(CURDIR)/../../../macros/Makefile
 
-
-
-
-
 $(project).pdf : song.tex lyrics.tex grille.tex
-	bash $(buildtex) song.tex
-	mv song.pdf $(project).pdf
+	bash $(buildtex) $(project)
 
-solo_png.png : solo_png.ly solo.ly
-	 lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output $(basename $@) $<
-
-intro_png.png : intro_png.ly intro.ly
-	 lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output $(basename $@) $<
-
-
+pdf : $(project).pdf
 

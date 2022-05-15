@@ -1,22 +1,16 @@
-.PHONY:  all clean delivery
+.PHONY:  all clean delivery pdf
 .DEFAULT: all
 project=deep-purple-smoke-on-the-water
 
 include $(CURDIR)/../../../macros/Makefile
 
-$(project).pdf : song.tex lyrics.tex grille.tex solo_png.png intro_png.png
-	bash $(buildtex) song.tex
-	mv song.pdf $(project).pdf
+$(project).pdf : song.tex lyrics.tex grille.tex build/solo_png.png build/intro_png.png
+	bash $(buildtex) $(project)
 
-solo_png.png : solo_png.ly solo.ly
-	 lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output $(basename $@) $<
+build/solo_png.png : solo_png.ly solo.ly
+	bash $(buildpngly) $^
 
-intro_png.png : intro_png.ly intro.ly
-	 lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png --output $(basename $@) $<
+build/intro_png.png : intro_png.ly intro.ly
+	bash $(buildpngly) $^
 
-
-
-all: $(project).pdf
-
-delivery : $(project).pdf
-	cp  $(project).pdf $(DESTDIR)/.
+pdf : $(project).pdf

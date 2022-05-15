@@ -1,14 +1,14 @@
+.PHONY: clean pdf
+
 buildtex=$(CURDIR)/../../../macros/buildtex.sh
+buildpngly=$(CURDIR)/../../../macros/buildpngly.sh
 
 pdf: $(project).pdf
-
-clean:
-	rm -rf *.wav *.png *.pdf *.aux *.log *.eps *.count *-systems.*
-
 
 all: $(project).pdf
 
 delivery : $(project).pdf
 	cp  $(project).pdf $(DESTDIR)/.
 
-
+clean :
+	rm -rf build
