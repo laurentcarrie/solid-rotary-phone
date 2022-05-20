@@ -14,9 +14,9 @@
 
 \usepackage{aurical}
 \usepackage[T1]{fontenc}
-\usepackage{xcolor}
+\usepackage[table,x11names]{xcolor}
 \usepackage{titlesec}
-\usepackage{color}
+%\usepackage{color}
 \usepackage{longtable}
 \usepackage{multirow}
 %\usepackage[full]{leadsheets}
@@ -37,6 +37,7 @@
 
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{paracol}
 
 %\setlength{\headheight}{10pt}
 
@@ -53,13 +54,26 @@
 
 \definecolor{bg}{HTML}{ADFF2F}
 
-\newcommand{\couplet}[1]{
+\usepackage{fontspec}
+\setmainfont{Garamond Libre}
+
+% pour les lignes pointillées dans les tableaux
+\usepackage{arydshln}
+
+\newcommand{\couplet}[2]{
 %\colorbox{bg}{\section*{#1}}
     \colorbox{bg}{
     %\normalfont\scshape\selectfont
-        \Fontskrivan\bfseries\slshape
+        %\Fontskrivan\bfseries\slshape
         \fontsize{10pt}{30pt}\selectfont
         #1
+    }
+    {
+        %\Fontskrivan
+        %\normalfont\scshape\selectfont
+        %\fontsize{8pt}{8pt}
+        \selectfont
+        \small{#2}
     }
 
 }
@@ -98,13 +112,22 @@
 
 
 
-\newcolumntype{C}{>{\centering\arraybackslash}m{3.0cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}m{2cm}}
 %\newcolumntype{C}{>{\centering}p{0.25cm}}
 
 \newcommand{\beforegrille}{
 %\Fontskrivan\bfseries\slshape
 %\fontsize{55pt}{52pt}
     \fontsize{10pt}{8pt}\selectfont
+    \renewcommand{\arraystretch}{2}
+
+}
+
+\newcommand{\beforelyrics}{
+    %\Fontskrivan\bfseries\slshape
+    \Fontskrivan
+    \fontsize{55pt}{52pt}
+%   \fontsize{10pt}{8pt}\selectfont
     \renewcommand{\arraystretch}{2}
 
 }
@@ -149,3 +172,15 @@
 % Add more content here, if needed.
 }
 
+
+%\usepackage{color, colortbl}
+%\usepackage[table]{xcolor}
+\definecolor{Gray}{gray}{0.9}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\definecolor{Row1}{rgb}{0.77,9,9}
+\definecolor{Row2}{rgb}{0.9,0.77,9}
+
+%LightGoldenrodYellow 	  	FA 	FA 	D2 	250 	250 	210
+\definecolor{LightGoldenrodYellow}{RGB}{250,250,210}
+\newcommand{\rowcolora}{\rowcolor{Thistle1}}
+\newcommand{\rowcolorb}{\rowcolor{Seashell3}}

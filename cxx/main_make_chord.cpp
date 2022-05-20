@@ -4,7 +4,7 @@
 #include <vector>
 
 
-static int fontsize = 25 ;
+static int fontsize = 20 ;
 static int fontinterline = 20 ;
 
 

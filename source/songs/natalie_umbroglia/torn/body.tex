@@ -1,30 +1,16 @@
+    {
+        \makefooter{Torn}{Natalie Umbroglia}
 
-{
-    \input{lyrics.tex}
+        \begin{longtable}{c}
+            \songtitle{1}{Torn}       {Natalie Umbroglia} \\
+            \hline
+        \end{longtable}
 
-    \makefooter{Torn}{Natalie Umbroglia}
-
-    \begin{longtable}{c}
-        \songtitle{1}{Torn}       {Natalie Umbroglia} \\
-        \hline
-        %\mygridbox{
-        \begin{Row}
-            \begin{Cell}{1}
-                %\begin{vplace}[1.0]
-                %\end{vplace}
-                \lyricsa
-                \lyricsb
-                \lyricsc
-            \end{Cell}
-            \begin{Cell}{2}
-                %\begin{vplace}[0.7]
-                \input{grille.tex}
-                %\end{vplace}
-            \end{Cell}
-        \end{Row}
-        %}
-        \\
-
-    \end{longtable}
+        \begin{paracol}{2}
+            \input{lyrics.tex}
+            \switchcolumn
+            \input{grille.tex}
+        \end{paracol}
+    }
 
 

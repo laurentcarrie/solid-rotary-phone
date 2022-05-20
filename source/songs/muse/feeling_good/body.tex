@@ -5,27 +5,18 @@
         \begin{longtable}{c}
             \songtitle{1}{Feelin' Good}{Nina Simone (Muse)} \\
             \hline
-            %\mygridbox{
-            \begin{Row}
-                \begin{Cell}{1}
-                    %\begin{vplace}[1.0]
-                    \input{lyrics.tex}
-                    %\end{vplace}
-                \end{Cell}
-                \begin{Cell}{2}
-                    %\begin{vplace}[0.7]
-                    \input{grille.tex}
-                    %\end{vplace}
-                \end{Cell}
-            \end{Row}
-            %}
-            \\
-
         \end{longtable}
+
+        \begin{paracol}{2}
+            \input{lyrics.tex}
+            \switchcolumn
+            \input{grille.tex}
+
+        \end{paracol}
 
         \newpage
         \begin{center}
-            \couplet{couplet}
+            \couplet{couplet}{}
             \lilypondfile[quote]{solo_png.ly}
         \end{center}
 

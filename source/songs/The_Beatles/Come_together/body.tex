@@ -1,38 +1,26 @@
-{
+    {
 
-    \makefooter{Come Together}{The Beatles}
+        \makefooter{Come Together}{The Beatles}
 
-    \begin{longtable}{c}
-        \songtitle{1}{Come Together}{The Beatles} \\
-        \hline
-        %\mygridbox{
-        \begin{Row}
-            \begin{Cell}{1}
-                %\begin{vplace}[1.0]
-                \input{lyrics.tex}
-                %\end{vplace}
-            \end{Cell}
-            \begin{Cell}{2}
-                %\begin{vplace}[0.7]
-                \input{grille.tex}
-                %\end{vplace}
-            \end{Cell}
-        \end{Row}
-        %}
-        \\
-        \multicolumn{1}{c}{    \couplet{couplet}  }     \\
+        \begin{longtable}{c}
+            \songtitle{1}{Come Together}{The Beatles} \\
+            \hline
+        \end{longtable}
 
+        \begin{paracol}{3}
+            \input{lyrics.tex}
 
+            \input{grille.tex}
 
-    \end{longtable}
-    \newpage
+        \end{paracol}
+        \newpage
 
-    \couplet{solo après couplet 3}
-    \lilypondfile[quote,noindent]{solo_1_png.ly}
+        \couplet{solo après couplet 3}{}
+        \lilypondfile[quote,noindent]{solo_1_png.ly}
 
-    \couplet{solo final}
-    \lilypondfile[quote,noindent]{solo_final_png.ly}
+        \couplet{solo final}{}
+        \lilypondfile[quote,noindent]{solo_final_png.ly}
 
 
 
-}
+    }
