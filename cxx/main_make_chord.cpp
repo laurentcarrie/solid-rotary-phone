@@ -4,12 +4,17 @@
 #include <vector>
 
 
+static int fontsize = 25 ;
+static int fontinterline = 20 ;
+
+
+
 void write(std::ofstream &fout, const std::string &chord_name, const char letter, const std::string &font_name) {
     //std::cout
     fout
     << "\\newcommand\\chord" << chord_name << "{{"
 
-         << "\\" << font_name << "\\fontsize{30pt}{20pt}\\selectfont "
+         << "\\" << font_name << "\\fontsize{" << fontsize << "pt}{" << fontinterline << "pt}\\selectfont "
          << letter << " ~ }}" << std::endl;
 }
 

@@ -23,15 +23,16 @@
         \multicolumn{1}{c}{    \couplet{couplet}  }     \\
 
 
-        \newpage
-
-        \multicolumn{1}{c}{            \couplet{solo après couplet 3}        } \\
-        \multicolumn{1}{c}{            \includegraphics[scale=1]{build/solo_1_png.png}        } \\
-
-        \multicolumn{1}{c}{            \couplet{solo final}        } \\
-        \multicolumn{1}{c}{            \includegraphics[scale=1]{build/solo_final_png.png}        } \\
 
     \end{longtable}
+    \newpage
+
+    \couplet{solo après couplet 3}
+    \lilypondfile[quote,noindent]{solo_1_png.ly}
+
+    \couplet{solo final}
+    \lilypondfile[quote,noindent]{solo_final_png.ly}
+
 
 
 }

@@ -1,6 +1,7 @@
 \version "2.20.0"
 
 \include "../../../../macros/macros.ly"
+
 \include "intro.ly"
 
 \paper {

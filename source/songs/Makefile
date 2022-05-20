@@ -24,15 +24,17 @@ clean:
     	echo $$dir ; \
         rm -rf $$dir/build ;\
         rm -rf $$dir/*.pdf ;\
-    done
+    done ; \
+    rm -rf build
 
-delivery-songs:
+delivery-song: pdf
+	echo "YYYYYYYYYYYYYYYYYYYYYYYYY" ; \
 	echo $(SUBDIRS) ;\
     rm -rf $(DESTDIR)/songs ;\
     mkdir -p $(DESTDIR)/songs ; \
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
-        make -C $$dir delivery DESTDIR="$(DESTDIR)/songs" ; \
+        make -C $$dir delivery-song DESTDIR="$(DESTDIR)/songs" ; \
     done ;
 
 books=sunny-bd.pdf ultimate-chorus.pdf spcl.pdf

@@ -1,6 +1,6 @@
 \version "2.20.0"
 
-song_tempo = 80
+song_tempo = 109
 
 
 
@@ -94,3 +94,17 @@ drumbarshh = {
 \repeat unfold 24 { \drumbarhh }
 
 }
+
+
+
+song_chords = \chordmode {
+\time 6/4
+g2.:m g2.:m/f | ees2.:9.12 d4:7.9+.12+ g2:m |
+g2.:m g2.:m/f | ees2.:9.12 d4:7.9+.12+ g2:m |
+g2.:m g2.:m/f | e2.:m7 ees2.:7+ |
+g2.:m c2.|
+bes2. a2.:m |
+c2. d2. |
+
+}
+
