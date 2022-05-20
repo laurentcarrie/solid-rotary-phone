@@ -4,7 +4,7 @@ project=deep-purple-smoke-on-the-water
 
 include $(CURDIR)/../../../macros/Makefile
 
-$(project).pdf : song.tex lyrics.tex body.tex grille.tex  solo.ly intro_png.ly intro.ly
+$(project).pdf : song.tex lyrics.tex body.tex grille.tex  solo_png.ly solo.ly intro_png.ly intro.ly
 	bash $(buildtex) $@ $^
 
 pdf : $(project).pdf
