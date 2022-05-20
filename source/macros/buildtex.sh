@@ -40,10 +40,10 @@ for f in $texfiles ; do
     #fi
     echo "+++ +++ $g is a tex file"
     cat $g \
-      | sed -E "s#includegraphics(.*?)\{(.*?)\}#includegraphics\1{$heredir/\2}#" \
-      | sed -E "s#input\{(.*?).tex\}#input{$heredir/build/\1.lytex}#" \
-      | sed -E "s#lilypondfile(.*)\{(.*?).ly\}#lilypondfile\1{$heredir/build/\2.ly}#" \
-      | sed -E "s#input\{.*/macros/(.*?).lytex#input{$macrodir/\1.tex#" \
+      | sed -E "s#includegraphics(.*)\{(.*)\}#includegraphics\1{$heredir/\2}#" \
+      | sed -E "s#input\{(.*).tex\}#input{$heredir/build/\1.lytex}#" \
+      | sed -E "s#lilypondfile(.*)\{(.*).ly\}#lilypondfile\1{$heredir/build/\2.ly}#" \
+      | sed -E "s#input\{.*/macros/(.*).lytex#input{$macrodir/\1.tex#" \
       > build/$g.tmp
     mv build/$g.tmp build/$g
     #sed -i "s#input{body.tex}#input{body.tex}#" build/$g

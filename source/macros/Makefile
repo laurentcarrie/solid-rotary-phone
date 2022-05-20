@@ -17,4 +17,4 @@ $(DESTDIR)/$(project).pdf : $(project).pdf
 
 clean :
 	rm -rf build
-	rm -rf *.pdf
+	rm -rf *.pdfF
