@@ -1,5 +1,5 @@
-#cmake_minimum_required(VERSION 3.21)
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
+#cmake_minimum_required(VERSION 3.16)
 project(solid_rotary_phone)
 
 set(CMAKE_CXX_STANDARD 17)

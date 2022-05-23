@@ -17,7 +17,7 @@ la fonte est installée, on la voit mais lualatex ne la voit pas
 
 apparemment la solution est de copier les fontes :
 
-    rm -rf rm -rf ~/.texlive*
+    rm -rf ~/.texlive*
     mkdir -p ~/.fonts
     cp source/style/*.ttf ~/.fonts
 

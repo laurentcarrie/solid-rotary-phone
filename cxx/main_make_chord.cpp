@@ -59,11 +59,20 @@ int main(int argc, char **argv) {
             std::string chord_name(c+std::string("msept")+d.second) ;
             write(fout,chord_name,c+21,d.first);
         }
+
+        for (int i = 'A' ;i < 'A' +  7; ++i) {
+            char c = char(i) ;
+            std::string chord_name(c+std::string("septM")+d.second) ;
+            write(fout,chord_name,'c'-'A'+i,d.first);
+        }
+
     }
 
     write(fout,"ERest",'q',"lolosharp") ;
     write(fout,"QRest",'r',"lolosharp") ;
     write(fout,"HRest",'s',"lolosharp") ;
     write(fout,"QHRest",'t',"lolosharp") ;
+    write(fout,"RepeatDeux",'2',"lolo") ;
+    write(fout,"RepeatTrois",'3',"lolo") ;
 
 }
