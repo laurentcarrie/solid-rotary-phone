@@ -20,7 +20,7 @@ void write(std::ofstream &fout, const std::string &chord_name, const char letter
 
 std::vector<std::pair<std::string, std::string>> data = {
         {"lolo", ""},
-        {"loloflat", "b"},
+        {"loloflat", "f"},
         {"lolosharp", "s"},
 
 };
