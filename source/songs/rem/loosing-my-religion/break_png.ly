@@ -6,7 +6,7 @@
 \paper {
     #(include-special-characters)
     indent = 0\mm
-    line-width = 100\mm
+    line-width = 180\mm
     oddHeaderMarkup = ""
     evenHeaderMarkup = ""
     oddFooterMarkup = ""

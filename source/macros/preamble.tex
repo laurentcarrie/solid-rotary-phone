@@ -53,6 +53,7 @@
 
 
 \definecolor{bg}{HTML}{ADFF2F}
+%\definecolor{bgred}{\color{Seashell3}}
 
 \usepackage{fontspec}
 \setmainfont{Garamond Libre}
@@ -60,23 +61,28 @@
 % pour les lignes pointillées dans les tableaux
 \usepackage{arydshln}
 
-\newcommand{\couplet}[2]{
+\newcommand{\basecouplet}[3]{
 %\colorbox{bg}{\section*{#1}}
-    \colorbox{bg}{
+    \colorbox{#1}{
     %\normalfont\scshape\selectfont
         %\Fontskrivan\bfseries\slshape
         \fontsize{10pt}{30pt}\selectfont
-        #1
+        #2
     }
     {
         %\Fontskrivan
         %\normalfont\scshape\selectfont
         %\fontsize{8pt}{8pt}
         \selectfont
-        \small{#2}
+        \small{#3}
     }
 
 }
+
+\newcommand{\couplet}[2]{\basecouplet{Chartreuse1}{#1}{#2}}
+\newcommand{\coupletred}[2]{\basecouplet{Firebrick1}{#1}{#2}}
+\newcommand{\refrain}[2]{\basecouplet{CadetBlue1}{#1}{#2}}
+
 
 \newcommand{\songtitle}[3] {
     \multicolumn{#1}{c}{

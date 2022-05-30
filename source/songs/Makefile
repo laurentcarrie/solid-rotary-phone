@@ -39,13 +39,7 @@ delivery-song: pdf
 
 books=sunny-bd.pdf ultimate-chorus.pdf spcl.pdf
 
-delivery-books: $(books)
-	mkdir -p $(DESTDIR)/books/ ; \
-	for b in $(books) ; do \
-    	cp $$b $(DESTDIR)/books/. ; \
-    done ;
-
-delivery : delivery-songs delivery-books
+delivery : delivery-songs
 
 pdf:
 	echo $(SUBDIRS) ;\
@@ -54,12 +48,3 @@ pdf:
         make -C $$dir pdf ; \
     done
 
-
-sunny-bd.pdf : sunny-bd.tex pdf
-	bash ../macros/buildbook.sh  sunny-bd.tex
-
-spcl.pdf : spcl.tex pdf
-	bash ../macros/buildbook.sh  spcl.tex
-
-ultimate-chorus.pdf : ultimate-chorus.tex pdf
-	bash ../macros/buildbook.sh  ultimate-chorus.tex
