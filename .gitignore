@@ -152,5 +152,16 @@ dmypy.json
 *-systems.*
 *.eps
 *_png.png
+*.midi
 
 /source/macros/chords.tex
+/Makefile
+/delivery.zip
+/cmake_install.cmake
+/CMakeCache.txt
+/CMakeFiles/
+/cxx/cmake_install.cmake
+/cxx/CMakeCache.txt
+/cxx/Makefile
+/cxx/solid_rotary_phone_make_book
+/cxx/solid_rotary_phone_make_chords
