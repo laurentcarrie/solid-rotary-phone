@@ -1,4 +1,4 @@
-project=rem-loosing-my-religion
+project=rem-losing-my-religion
 include $(CURDIR)/../../../macros/Makefile
 
 

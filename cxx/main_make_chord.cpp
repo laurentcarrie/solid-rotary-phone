@@ -2,14 +2,14 @@
 #include <fstream>
 #include <filesystem>
 #include <vector>
+#include <functional>
+
+// static int fontsize = 20 ;
+// static int fontinterline = 20 ;
 
 
-static int fontsize = 20 ;
-static int fontinterline = 20 ;
 
-
-
-void write(std::ofstream &fout, const std::string &chord_name, const char letter, const std::string &font_name) {
+void write(std::ofstream &fout, const std::string &chord_name, const char letter, const std::string &font_name,int fontsize,int fontinterline) {
     //std::cout
     fout
     << "\\newcommand\\chord" << chord_name << "{{"
@@ -36,45 +36,57 @@ int main(int argc, char **argv) {
         std::cout << "writing to " << outfile << std::endl;
         std::ofstream fout(outfile);
         fout << "% this file was generated with command " << argv[0] << " " << argv[1] << std::endl;
+
+        int fontsize = 20 ;
+        int fontinterline = 20 ;
+
+        std::function<void(const std::string &chord_name, const char letter, const std::string &font_name)> write2
+        = [&fout,&fontsize,&fontinterline](const std::string &chord_name, const char letter, const std::string &font_name) {
+            write(fout,chord_name,letter,font_name,fontsize,fontinterline) ;
+        };
+
         for (auto d: data) {
             for (int i = 'A'; i < 'A' + 7; ++i) {
                 char c = char(i);
                 std::string chord_name = (c + d.second);
-                write(fout, chord_name, c, d.first);
+                write2(chord_name, c, d.first);
             }
 
             for (int i = 'A'; i < 'A' + 7; ++i) {
                 char c = char(i);
                 std::string chord_name(c + d.second + std::string("m"));
-                write(fout, chord_name, c + 7, d.first);
+                write2( chord_name, c + 7, d.first);
             }
 
             for (int i = 'A'; i < 'A' + 7; ++i) {
                 char c = char(i);
                 std::string chord_name(c + d.second + std::string("sept"));
-                write(fout, chord_name, c + 14, d.first);
+                write2( chord_name, c + 14, d.first);
             }
 
             for (int i = 'A'; i < 'A' + 7; ++i) {
                 char c = char(i);
                 std::string chord_name(c + std::string("msept") + d.second);
-                write(fout, chord_name, c + 21, d.first);
+                write2( chord_name, c + 21, d.first);
             }
 
             for (int i = 'A'; i < 'A' + 7; ++i) {
                 char c = char(i);
                 std::string chord_name(c + std::string("septM") + d.second);
-                write(fout, chord_name, 'c' - 'A' + i, d.first);
+                write2( chord_name, 'c' - 'A' + i, d.first);
             }
 
         }
 
-        write(fout, "ERest", 'q', "lolosharp");
-        write(fout, "QRest", 'r', "lolosharp");
-        write(fout, "HRest", 's', "lolosharp");
-        write(fout, "QHRest", 't', "lolosharp");
-        write(fout, "RepeatDeux", '2', "lolo");
-        write(fout, "RepeatTrois", '3', "lolo");
+        write2("ERest", 'q', "lolosharp");
+        write2( "QRest", 'r', "lolosharp");
+        write2( "HRest", 's', "lolosharp");
+        write2( "QHRest", 't', "lolosharp");
+
+        fontsize=12 ;
+        fontinterline=12 ;
+        write2("RepeatDeux", '2', "lolo");
+        write2("RepeatTrois", '3', "lolo");
         if (! fout.good() ) {
             throw std::runtime_error("fout is not good") ;
         }

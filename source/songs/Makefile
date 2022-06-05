@@ -27,7 +27,7 @@ clean:
     done ; \
     rm -rf build
 
-delivery-song: pdf
+delivery: pdf
 	echo "YYYYYYYYYYYYYYYYYYYYYYYYY" ; \
 	echo $(SUBDIRS) ;\
     rm -rf $(DESTDIR)/songs ;\
@@ -38,8 +38,6 @@ delivery-song: pdf
     done ;
 
 books=sunny-bd.pdf ultimate-chorus.pdf spcl.pdf
-
-delivery : delivery-songs
 
 pdf:
 	echo $(SUBDIRS) ;\

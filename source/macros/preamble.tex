@@ -103,12 +103,12 @@
 
 }
 
-\newcommand{\makefooter}[2]{
-\lfoot{#1 / #2}
-}
 
 
+%\newcolumntype{C}{>{\centering\arraybackslash}m{2cm}}
 \newcolumntype{C}{>{\centering\arraybackslash}m{2cm}}
+\newcolumntype{R}{r}
+\newcolumntype{D}{>{\centering\arraybackslash}m{1cm}}
 %\newcolumntype{C}{>{\centering}p{0.28cm}}
 
 \newcommand{\beforegrille}{
@@ -179,4 +179,62 @@
 %LightGoldenrodYellow 	  	FA 	FA 	D2 	250 	250 	210
 \definecolor{LightGoldenrodYellow}{RGB}{250,250,210}
 \newcommand{\rowcolora}{\rowcolor{Thistle1}}
-\newcommand{\rowcolorb}{\rowcolor{Seashell3}}
+%\newcommand{\rowcolorb}{\rowcolor{Seashell3}}
+\newcommand{\rowcolorb}{\rowcolor{Coral1}}
+
+
+\newcounter{bar}
+
+% bar counter
+\newcommand{\loloinitcounter}[1]{
+\setcounter{bar}{#1}
+}
+
+\newcommand{\loloshowcounter}[1]{%
+    \fontsize{6pt}{6pt}
+    \cellcolor{white}$_{\arabic{bar}}$
+    \addtocounter{bar}{#1}
+}
+
+
+
+\newcommand{\loloshowarrowcounter}[1]{%
+    \fontsize{6pt}{6pt}
+    \cellcolor{white}$_{\arabic{bar} \rightarrow \addtocounter{bar}{#1} \addtocounter{bar}{-1} \arabic{bar}}$
+    \addtocounter{bar}{1}
+}
+
+\newcommand{\loloprintbpm}[3]{%
+% min sec bars
+
+    \def\x{#1}
+    \def\y{#2}
+    \def\z{#3}
+    % $\x \div \y =$
+    \newcount\a\a=\number\x
+    \newcount\b\b=\number\y
+    \multiply\a by 60
+    \advance\a \y
+    \def\nseconds{\the\a}
+    %number of seconds : $\nseconds$
+
+    \newcount\c\c=\number\z
+    \multiply\c by 4
+    \def\nbbars{\the\c}
+    %number of beats : $\nbbars$
+
+    \multiply\c by 60
+    \divide\c by \nseconds
+    \def\bpm{\the\c}
+    %number of beats per minute : $\bpm$
+
+    %la durée du morceau est #1' #2'', il y a #3 mesures \rightarrow bpm = $\bpm$
+
+    #1' #2'/$\bpm$
+
+}
+
+\newcommand{\makefooter}[2]{
+    \lfoot{#1/#2}
+    %/\loloprintbpm{#3}{#4}{#5}}
+}
