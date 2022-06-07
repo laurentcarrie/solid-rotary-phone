@@ -4,7 +4,7 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 DESTDIR:=$(ROOT_DIR)/../../delivery
 
 
-.PHONY: all clean delivery delivery-books delivery-songs
+.PHONY: all clean delivery
 .DEFAULT: all
 
 SHELL=/bin/bash
@@ -27,14 +27,14 @@ clean:
     done ; \
     rm -rf build
 
-delivery: pdf
+delivery:
 	echo "YYYYYYYYYYYYYYYYYYYYYYYYY" ; \
 	echo $(SUBDIRS) ;\
     rm -rf $(DESTDIR)/songs ;\
     mkdir -p $(DESTDIR)/songs ; \
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
-        make -C $$dir delivery-song DESTDIR="$(DESTDIR)/songs" ; \
+        make -C $$dir delivery DESTDIR="$(DESTDIR)/songs" ; \
     done ;
 
 books=sunny-bd.pdf ultimate-chorus.pdf spcl.pdf

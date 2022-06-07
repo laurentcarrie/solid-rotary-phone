@@ -81,6 +81,7 @@
 
 \newcommand{\couplet}[2]{\basecouplet{Chartreuse1}{#1}{#2}}
 \newcommand{\coupletred}[2]{\basecouplet{Firebrick1}{#1}{#2}}
+\newcommand{\prerefrain}[2]{\basecouplet{DarkOrange1}{#1}{#2}}
 \newcommand{\refrain}[2]{\basecouplet{CadetBlue1}{#1}{#2}}
 
 
@@ -99,8 +100,6 @@
     \color{orange}
     #3
     }\\
-
-
 }
 
 
@@ -228,9 +227,9 @@
     \def\bpm{\the\c}
     %number of beats per minute : $\bpm$
 
-    %la durée du morceau est #1' #2'', il y a #3 mesures \rightarrow bpm = $\bpm$
+    durée :  #1' #2'' ; #3 mesures ; tempo = $\bpm$
 
-    #1' #2'/$\bpm$
+    % #1' #2'/$\bpm$
 
 }
 

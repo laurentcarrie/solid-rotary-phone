@@ -1,120 +1,45 @@
-    {
-        %\rowcolors{1}{Row1}{Row2}
-        \begin{tabular}{C|C|C|C}
-            \rowcolor{white}
-            \multicolumn{4}{c}{\couplet{intro}} \\
-            %\hline
-            \rowcolora
-            \chordE & \chordE & \chordE & \chordE \chordD \\
-            %\hdashline
-            \rowcolorb
-            \chordE &
-            \chordE &
-            \chordE &
-            \chordE \chordD \\
-            %\hline
+%\rowcolors{1}{Row1}{Row2}
 
-            \rowcolor{white}
-            \multicolumn{4}{c}{\couplet{couplet 1}} \\
-            %\hline
-            \rowcolora
-            \chordE &
-            \chordE \chordD &
-            \chordE &
-            \chordE \chordD \\
-            \rowcolorb
-            %\hdashline
-            \chordA &
-            \chordB &
-            \chordE &
-            \chordE \chordD \\
-            %\hdashline
-            \rowcolora
-            \chordE &
-            \chordE \chordD &
-            \chordE &
-            \chordE \chordD \\
-            %\hdashline
-            \rowcolorb
-            \chordA &
-            \chordB &
-            \chordE &
-            \chordE \chordD \\
-            %\hline
-            %\hline
-            \rowcolor{LightCyan}
-            \rowcolora
-            \chordE &
-            \chordE &
-            \chordE &
-            \chordE \\
-            %\hdashline
-            \rowcolorb
-            \chordA &
-            \chordA &
-            \chordE &
-            \chordB \\
-            %\hline
+\loloinitcounter{1}
 
-            \rowcolor{white}
-            \multicolumn{4}{c}{\couplet{pont}} \\
-            %\hline
-            \rowcolora
-            \chordE &
-            \chordE &
-            %\cellcolor{blue}
-            \chordE &
-            \chordE \\
-            %\hline
+\begin{tabular}{rC|C|C|CC}
 
-            \rowcolor{white}
-            \multicolumn{4}{c}{\couplet{couplet 2}} \\
-            \rowcolor{white}
-            \multicolumn{4}{c}{\couplet{refrain 2}} \\
+    & \multicolumn{4}{c}{\couplet{intro}{}} & \\
+    \loloshowcounter{8} & \chordE             & \chordE & \chordE             & \chordE \chordD & \chordRepeatDeux \\
+
+    & \multicolumn{4}{c}{\couplet{couplet 1}} \\
+    \loloshowcounter{4} & \chordE & \chordE \chordD & \chordE & \chordE \chordD \\
+    \loloshowcounter{4} & \chordA & \chordB & \chordE & \chordE \chordD \\
+    \loloshowcounter{4} & \chordE & \chordE \chordD & \chordE & \chordE \chordD \\
+    \loloshowcounter{4} & \chordA & \chordB & \chordE & \chordE \chordD \\
 
 
-            \rowcolor{white}
-            \multicolumn{4}{c}{\couplet{pont solo}} \\
-            %\hline
-            \rowcolora
-            \chordE &
-            \chordE &
-            \chordE &
-            \chordE \\
-            %\hdashline
-            \rowcolorb
-            \chordE &
-            \chordE &
-            \chordE &
-            \chordE \\
-            %\hdashline
-            \rowcolora
-            \chordA &
-            \chordA &
-            \chordB &
-            \chordB \\
-            %\hdashline
-            \rowcolorb
-            \chordA &
-            \chordA &
-            \chordE &
-            \chordE \\
-            %\hdashline
-            \rowcolora
-            \chordA &
-            \chordCsm &
-            \chordB &
-            \chordB \\
-            %\hdashline
-            \rowcolorb
-            \chordB &
-            \chordE &
-            \chordE &
-            \chordE \\
-            %\cdashline{1-1}
-            %\cdashline{2-4}
-            \rowcolora
-            \chordE \\
-            %\cline{1-1}
-        \end{tabular}
-    }
+    & \multicolumn{4}{c}{\refrain{refrain}{}} \\
+    \loloshowcounter{4} & \chordE \chordHRest &         & \chordE \chordHRest &                 &                  \\
+    \loloshowcounter{4} & \chordA & \chordA & \chordE & \chordB \\
+
+    & \multicolumn{4}{c}{\prerefrain{pont}} \\
+    \loloshowcounter{4} & \chordE & \chordE & \chordE & \chordE \\
+
+    \loloshowarrowcounter{16} & \multicolumn{4}{c}{\couplet{couplet 2}} \\
+
+    \loloshowarrowcounter{16} & \multicolumn{4}{c}{\refrain{refrain 2}} \\
+
+
+    & \multicolumn{4}{c}{\prerefrain{pont solo}} \\
+    \loloshowcounter{4} & \chordE & \chordE & \chordE & \chordE \\
+    \loloshowcounter{4} & \chordE & \chordE & \chordE & \chordE \\
+    \loloshowcounter{4} & \chordA & \chordA & \chordB & \chordB \\
+    \loloshowcounter{4} & \chordA & \chordA & \chordE & \chordE \\
+    \loloshowcounter{4} & \chordA & \chordCsm & \chordB & \chordB \\
+    \loloshowcounter{1} & \chordB \\
+    \loloshowcounter{4} & \chordE & \chordE & \chordE & \chordE \\
+
+    \loloshowarrowcounter{16} & \multicolumn{4}{c}{\couplet{couplet 3}} \\
+
+    \loloshowarrowcounter{16} & \multicolumn{4}{c}{\refrain{refrain 3}} \\
+
+    \loloshowcounter{2} & \chordE & \chordE \chordHRest \\
+    \setcounter{total}{\arabic{bar}}
+
+\end{tabular}

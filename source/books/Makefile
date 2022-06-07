@@ -29,3 +29,4 @@ sunny-bd : sunny-bd.pdf
 
 clean :
 	rm -f *.pdf
+	rm -rf tmpbuild-*
