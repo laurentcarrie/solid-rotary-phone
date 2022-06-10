@@ -12,4 +12,5 @@ cd cxx && cmake . && make ;
 
 rm -rf delivery
 
-make clean delivery -C source/songs
+make  clean delivery -C source/songs
+make  clean delivery -C source/books

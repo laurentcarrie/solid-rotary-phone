@@ -19,7 +19,7 @@ all:
 
 clean:
 	echo $(SUBDIRS) ;\
-    rm -rf $(DESTDIR) ;\
+    rm -rf $(DESTDIR)/songs ;\
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
         rm -rf $$dir/build ;\
@@ -34,7 +34,8 @@ delivery:
     mkdir -p $(DESTDIR)/songs ; \
 	for dir in $(SUBDIRS); do \
     	echo $$dir ; \
-        make -C $$dir delivery DESTDIR="$(DESTDIR)/songs" ; \
+        make -C $$dir pdf DESTDIR="$(DESTDIR)/songs" ; \
+        cp $$dir/*.pdf $(DESTDIR)/songs/. ; \
     done ;
 
 books=sunny-bd.pdf ultimate-chorus.pdf spcl.pdf

@@ -3,9 +3,10 @@ include $(CURDIR)/../../../macros/Makefile
 
 
 $(project).pdf : song.tex body.tex lyrics.tex grille.tex break_png.ly break.ly
+	rm -rf build *.pdf
 	bash $(buildtex) $@ $^
 
 
-
+pdf : $(project).pdf)
 
 all : break_midi.midi $(project.pdf)

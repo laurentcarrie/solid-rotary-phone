@@ -19,7 +19,7 @@ buildbook=$(CURDIR)/../../cxx/solid_rotary_phone_make_book
 delivery : sunny-bd.pdf walk-the-line.pdf
 	mkdir -p ../../delivery/books ; \
    for name in *.pdf ; do \
-        echo $${name};\
+        cp $${name} ../../delivery/books/. ; \
     done
 
 

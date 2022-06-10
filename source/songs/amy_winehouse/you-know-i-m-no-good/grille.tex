@@ -1,33 +1,42 @@
 
-grille
+\loloinitcounter{1}
 
-\begin{tabular}{C|C|C|C}
+\begin{tabular}{rC|C|C|C}
 
-    \multicolumn{4}{c}{\couplet{couplet 1}} \\
-    \rowcolora
-    \chordDm & \chordGm & \chordA     & \chordDm    \\
-    \rowcolorb
-    \chordDm & \chordGm & \chordA     & \chordDm    \\
+    \loloshowarrowcounter{2} & \multicolumn{4}{c}{\couplet{intro d}} \\
+    \loloshowarrowcounter{4} & \multicolumn{4}{c}{\couplet{intro d+b}} \\
 
-    \multicolumn{4}{c}{\couplet{pré refrain 1}} \\
-    \rowcolora
-    \chordGm & \chordGm & \chordEsept & \chordEsept \\
-    \rowcolorb
-    \chordF  & \chordF  & \chordEsept & \chordA     \\
 
-    \multicolumn{4}{c}{\couplet{refrain 1}} \\
-    \rowcolora
-    \chordDm & \chordAm & \chordE     & \chordAm    \\
-    \rowcolorb
-    \chordDm & \chordAm & \chordE     & \chordAm    \\
-    \multicolumn{4}{c}{\couplet{break batterie}} \\
-    \multicolumn{4}{c}{\couplet{couplet 2}} \\
-    \multicolumn{4}{c}{\couplet{pré-refrain 2}} \\
-    \multicolumn{4}{c}{\couplet{refrain 2}} \\
-    \multicolumn{4}{c}{\couplet{pont guitare 8 mesures}} \\
+    & \multicolumn{4}{c}{\couplet{couplet 1}} \\
+    \loloshowcounter{4} & \chordDm & \chordGm & \chordA     & \chordDm    \\
+    \loloshowcounter{4} &\chordDm & \chordGm & \chordA     & \chordDm    \\
+
+    &\multicolumn{4}{c}{\prerefrain{pré refrain 1}} \\
+    \loloshowcounter{4} &\chordGm & \chordGm & \chordEsept & \chordEsept \\
+    \loloshowcounter{4} &\chordF  & \chordF  & \chordEsept & \chordA     \\
+
+    &\multicolumn{4}{c}{\refrain{refrain 1}} \\
+    \loloshowcounter{4} &\chordDm & \chordAm & \chordE     & \chordAm    \\
+    \loloshowcounter{4} &\chordDm & \chordAm & \chordE     & \chordAm    \\
+
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{break batterie}} \\
+
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{couplet 2}} \\
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\prerefrain{pré-refrain 2}} \\
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\refrain{refrain 2}} \\
+
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{pont guitare 8 mesures}} \\
+
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{couplet 3}} \\
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\prerefrain{pré-refrain 3}} \\
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\refrain{refrain 3}} \\
+    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\refrain{final}} \\
+
     %\multicolumn{4}{c}{    \includegraphics[scale=0.7]{build/break_png.png}}
 
 
 \end{tabular}
+
+\loloprintbpm{4}{17}{\arabic{bar}}
 
 \lilypondfile[quote,noindent]{break_png.ly}
