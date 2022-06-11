@@ -43,6 +43,8 @@ lead = {
 
   \absolute  {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
+  \set Score.currentBarNumber = #3
+  \set Score.barNumberVisibility = #all-bar-numbers-visible
 
     \repeat percent 2 {\bar_ema     \bar_emb }
     \bar_ema |

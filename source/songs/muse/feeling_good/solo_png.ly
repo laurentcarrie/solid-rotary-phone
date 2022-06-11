@@ -5,7 +5,7 @@
 
 \paper {
     #(include-special-characters)
-    indent = 15\mm
+    indent = 0\mm
     line-width = 180\mm
     oddHeaderMarkup = ""
     evenHeaderMarkup = ""
@@ -31,7 +31,9 @@
     \new TabStaff {
         \tempo 4 = \song_tempo
         \tabFullNotation
-        \override Score.BarNumber.break-visibility = ##(#t #t #t)
+        %\override Score.BarNumber.break-visibility = ##(#t #t #t)
+        \set Score.currentBarNumber = #3
+        \set Score.barNumberVisibility = #all-bar-numbers-visible
         \lead
     }
 

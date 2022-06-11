@@ -19,6 +19,8 @@ lead = {
   \absolute  {
     \override Score.SpacingSpanner.shortest-duration-space = #4.0
 
+  \set Score.currentBarNumber = #3
+  \set Score.barNumberVisibility = #all-bar-numbers-visible
     % mes 1
           < d\4 g\3  >8
           r8
