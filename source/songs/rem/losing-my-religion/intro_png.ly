@@ -1,7 +1,7 @@
 \version "2.20.0"
 
 \include "../../../../macros/macros.ly"
-\include "break.ly"
+\include "intro.ly"
 
 \paper {
     #(include-special-characters)
@@ -11,18 +11,16 @@
     evenHeaderMarkup = ""
     oddFooterMarkup = ""
     evenFooterMarkup = ""
-
-    #(add-text-replacements!
-    '(
-    ("100" . "hundred")
-    ("dpi" . "dots per inch")
-    ))
-
 }
 
 
 \score {
     <<
+      \set Score.currentBarNumber = #0
+        \new ChordNames {
+            \song_chords
+            }
+
     \new TabStaff {
         \tempo 4 = \song_tempo
         \tabFullNotation

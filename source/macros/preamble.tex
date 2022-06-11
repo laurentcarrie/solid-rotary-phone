@@ -51,6 +51,7 @@
 \cfoot{\today}
 
 
+\usepackage{multicol}
 
 \definecolor{bg}{HTML}{ADFF2F}
 %\definecolor{bgred}{\color{Seashell3}}
@@ -65,16 +66,18 @@
 %\colorbox{bg}{\section*{#1}}
     \colorbox{#1}{
     %\normalfont\scshape\selectfont
-        %\Fontskrivan\bfseries\slshape
-        \fontsize{10pt}{30pt}\selectfont
+    %\Fontskrivan\bfseries\slshape
+        \fontsize{15pt}{30pt}\selectfont
         #2
     }
     {
-        %\Fontskrivan
-        %\normalfont\scshape\selectfont
-        %\fontsize{8pt}{8pt}
-        \selectfont
-        \small{#3}
+    %\Fontskrivan
+    %\normalfont\scshape\selectfont
+    %\fontsize{8pt}{8pt}
+            {
+            \fontsize{12pt}{30pt}\selectfont
+            #3
+        }
     }
 
 }
@@ -95,13 +98,12 @@
 
 
     \multicolumn{#1}{c}{
-    \Fontskrivan\bfseries\slshape
-    \fontsize{20pt}{10pt}\selectfont
-    \color{orange}
-    #3
+        \Fontskrivan\bfseries\slshape
+        \fontsize{20pt}{10pt}\selectfont
+        \color{orange}
+        #3
     }\\
 }
-
 
 
 %\newcolumntype{C}{>{\centering\arraybackslash}m{2cm}}
@@ -119,7 +121,7 @@
 }
 
 \newcommand{\beforelyrics}{
-    %\Fontskrivan\bfseries\slshape
+%\Fontskrivan\bfseries\slshape
     \Fontskrivan
     \fontsize{55pt}{52pt}
 %   \fontsize{10pt}{8pt}\selectfont
@@ -135,28 +137,28 @@
 %\usepackage{paracol}
 
 \newfontfamily\lolo[%%basic weight: 100, "bold" weight: 70
-   Extension      = .ttf,
-   ItalicFont     = lolo,
-   BoldFont       = lolo,
-   BoldItalicFont = lolo]
-  {lolo}
+    Extension      = .ttf,
+    ItalicFont     = lolo,
+    BoldFont       = lolo,
+    BoldItalicFont = lolo]
+{lolo}
 
 
 
 \newfontfamily\loloflat[%%basic weight: 50, "bold" weight: 70\overline{}
-   Extension      = .ttf,
-   ItalicFont     = lolo_flat,
-   BoldFont       = lolo_flat,
-   BoldItalicFont = lolo_flat]
-  {lolo_flat}
+    Extension      = .ttf,
+    ItalicFont     = lolo_flat,
+    BoldFont       = lolo_flat,
+    BoldItalicFont = lolo_flat]
+{lolo_flat}
 
 
 \newfontfamily\lolosharp[%%basic weight: 50, "bold" weight: 70
-   Extension      = .ttf,
-   ItalicFont     = lolo_sharp,
-   BoldFont       = lolo_sharp,
-   BoldItalicFont = lolo_sharp]
-  {lolo_sharp}
+    Extension      = .ttf,
+    ItalicFont     = lolo_sharp,
+    BoldFont       = lolo_sharp,
+    BoldItalicFont = lolo_sharp]
+{lolo_sharp}
 
 
 % pour les livres
@@ -186,7 +188,7 @@
 
 % bar counter
 \newcommand{\loloinitcounter}[1]{
-\setcounter{bar}{#1}
+    \setcounter{bar}{#1}
 }
 
 \newcommand{\loloshowcounter}[1]{%
@@ -227,13 +229,13 @@
     \def\bpm{\the\c}
     %number of beats per minute : $\bpm$
 
-    durée :  #1' #2'' ; #3 mesures ; tempo = $\bpm$
+    durée : #1' #2'' ; #3 mesures ; tempo = $\bpm$
 
-    % #1' #2'/$\bpm$
+% #1' #2'/$\bpm$
 
 }
 
 \newcommand{\makefooter}[2]{
     \lfoot{#1/#2}
-    %/\loloprintbpm{#3}{#4}{#5}}
+%/\loloprintbpm{#3}{#4}{#5}}
 }

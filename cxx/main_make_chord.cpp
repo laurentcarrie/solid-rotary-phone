@@ -37,8 +37,8 @@ int main(int argc, char **argv) {
         std::ofstream fout(outfile);
         fout << "% this file was generated with command " << argv[0] << " " << argv[1] << std::endl;
 
-        int fontsize = 20 ;
-        int fontinterline = 20 ;
+        int fontsize = 25 ;
+        int fontinterline = 25 ;
 
         std::function<void(const std::string &chord_name, const char letter, const std::string &font_name)> write2
         = [&fout,&fontsize,&fontinterline](const std::string &chord_name, const char letter, const std::string &font_name) {

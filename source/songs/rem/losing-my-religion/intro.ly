@@ -1,75 +1,95 @@
 \version "2.20.0"
-song_tempo = 123
-
+song_tempo = 90
 
 ma = {
-  < a,e  >4
-  < a,e  >4
-  < a,e  >4
-  < a,e  >4
 
-
-
-}
-
-
-mcis = {
-  < cis gis >4
-  < cis gis >4
-  < cis gis >4
-  < cis gis >4
+  < d a d' f' >4
+  < d a d' f' >4
+  < d a d' f' >4
+  < d a d' f' >4
 
 }
-
 
 mb = {
 
-  < b, fis b dis' > 4
-  r4
-  r2
+  < a, e a cis >4
+  < a, e a cis >4
+  < a, e a cis >4
+  < a, e a cis >4
+
+
+}
+
+
+mc = {
+
+  < e, b, e gis >4
+  < e, b, e gis >4
+  < e, b, e gis >4
+  < e, b, e gis >4
+
+
+}
+
+
+md = {
+
+  < a e >4
+  < a e >4
+  < a e >4
+  < a e >4
+
 
 }
 
 
 
 rhythm = {
- r1 |
- \ma | \ma | \mcis | \mcis |
- \ma | \ma | \mcis | \mb |
+  \ma | \mb | \mc |  \md |
 
 }
 
 lead = {
-  \relative c' {
-    \override Score.SpacingSpanner.shortest-duration-space = #4.0
 
-    % mes
-    r2 fis8\3 gis8\2 fis8\3 cis8\4 |
-    % mes 1
+    \override Score.SpacingSpanner.shortest-duration-space = #4.0
+  \set Score.currentBarNumber = #0
+
+  \set Score.barNumberVisibility = #all-bar-numbers-visible
+    % mes 0
+    r2 fis'8\3 gis'8\2 fis'8\3 cis'8\4  |
+
     \set Score.currentBarNumber = #1
-    e2\3 e8\3 e8\3  r8 e8~\3    |
+    % mes 1
+    e'4\3 r4 e'8\3 e'8\3 r8 e'8\3  |
+
     % mes 2
-    e8\3 r8 r4 fis8\3 gis8\2 fis8\3 cis8\4 |
+    r2 fis'8\3 gis'8\2 fis'8\3 cis'8\4  |
+
     % mes 3
-    e2\3 e8\3 e8\3  r8 e8~\3    |
+    e'4\3 r4 e'8\3 e'8\3 r8 e'8\3  |
+
     % mes 4
-    e8\3 r8 r4 fis8\3 gis8\2 fis8\3 cis8\4 |
+    r2 fis'8\3 gis'8\2 fis'8\3 cis'8\4  |
+
     % mes 5
-    e2\3 e8\3 e8\3  r8 e8~\3    |
+    e'4\3 r4 e'8\3 e'8\3 r8 e'8\3  |
+
     % mes 6
-    e8\3 r8 r4 fis8\3 gis8\2 fis8\3 cis8\4 |
+    r2 fis'8\3 gis'8\2 fis'8\3 cis'8\4  |
+
     % mes 7
-    e4\3  r4 r8. fis8\3  r16 e8\3 |
+    e'2\3 r8 fis'8\3 r8 e'8\3 |
+
     % mes 8
-    dis4\3  r4 r4
-  }
+    dis'4\3 r4 r2
+
+
 }
 
 drumbar =  \drummode {  bd4 sn4  bd4 sn4 }
 
 drumbars = {
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
-  \drumbar |   \drumbar |  \drumbar |  \drumbar |
+  \repeat unfold 9 { \drumbar | }
 
 }
 
@@ -87,6 +107,14 @@ drumbarhh =  \drummode {
 
 drumbarshh = {
   \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
-  \drumbarhh |  \drumbarhh |  \drumbarhh |  \drumbarhh |
 
 }
+
+
+song_chords = \chordmode {
+r1 |
+a1 | a1 | cis1:m | cis1:m |
+a1 | a1 | cis1:m | b1 |
+
+}
+
