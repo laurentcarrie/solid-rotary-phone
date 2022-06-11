@@ -1,35 +1,42 @@
-
 \loloinitcounter{1}
 
 \begin{tabular}{rC|C|C|C}
 
-    \loloshowarrowcounter{2} & \multicolumn{4}{c}{\couplet{intro d}} \\
-    \loloshowarrowcounter{4} & \multicolumn{4}{c}{\couplet{intro d+b}} \\
+    \lolomakerowd{2}{\pont{intro d}{}} \\
+    \lolomakerowd{2}{\pont{intro d+b}{}} \\
 
 
-    & \multicolumn{4}{c}{\couplet{couplet 1}} \\
-    \loloshowcounter{4} & \chordDm & \chordGm & \chordA     & \chordDm    \\
-    \loloshowcounter{4} &\chordDm & \chordGm & \chordA     & \chordDm    \\
+    & \multicolumn{1}{l}{\couplet{couplet 1}{}} \\
+    \cline{2-5}
+    \loloshowcounter{4}      & \chordDm             & \chordGm             & \chordA              & \chordDm                             \\
+    \loloshowcounter{4}      & \chordDm             & \chordGm             & \chordA              & \chordDm                             \\
+    \cline{2-5}
 
-    &\multicolumn{4}{c}{\prerefrain{pré refrain 1}} \\
-    \loloshowcounter{4} &\chordGm & \chordGm & \chordEsept & \chordEsept \\
-    \loloshowcounter{4} &\chordF  & \chordF  & \chordEsept & \chordA     \\
+    & \multicolumn{1}{l}{} & \multicolumn{1}{l}{            \prerefrain{pré-refrain 1}{}} \\
+    \cline{2-5}
 
-    &\multicolumn{4}{c}{\refrain{refrain 1}} \\
-    \loloshowcounter{4} &\chordDm & \chordAm & \chordE     & \chordAm    \\
-    \loloshowcounter{4} &\chordDm & \chordAm & \chordE     & \chordAm    \\
+    \loloshowcounter{4}      & \chordGm             & \chordGm             & \chordEsept          & \chordEsept                          \\
+    \loloshowcounter{4}      & \chordF              & \chordF              & \chordEsept          & \chordA                              \\
+    \cline{2-5}
 
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{break batterie}} \\
+    & \multicolumn{3}{r}{\refrain{refrain 1}{}} \\
+    \cline{2-5}
+    \loloshowcounter{4}      & \chordDm             & \chordAm             & \chordE              & \chordAm                             \\
+    \loloshowcounter{4}      & \chordDm             & \chordAm             & \chordE              & \chordAm                             \\
+    \cline{2-5}
 
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{couplet 2}} \\
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\prerefrain{pré-refrain 2}} \\
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\refrain{refrain 2}} \\
+    \loloshowarrowcounter{4} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}         & \multicolumn{1}{l}{\pont{break batterie}{}} \\
 
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{pont guitare 8 mesures}} \\
+    \lolomakerowa{8}{\couplet{couplet 2}{}} \\
+    \lolomakerowb{8}{\prerefrain{pré-refrain 2}{}} \\
+    \lolomakerowc{8}{\refrain{refrain 2}{}} \\
 
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\couplet{couplet 3}} \\
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\prerefrain{pré-refrain 3}} \\
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{\refrain{refrain 3}} \\
+    \loloshowarrowcounter{4} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}         & \multicolumn{1}{l}{\pont{pont g}{}} \\
+
+    \lolomakerowa{8}{\couplet{couplet 3}{}} \\
+    \lolomakerowb{8}{\prerefrain{pré-refrain 3}{}} \\
+    \lolomakerowc{8}{\refrain{refrain 3}{}} \\
+
     \loloshowarrowcounter{8} & \multicolumn{4}{c}{\refrain{final}} \\
 
     %\multicolumn{4}{c}{    \includegraphics[scale=0.7]{build/break_png.png}}

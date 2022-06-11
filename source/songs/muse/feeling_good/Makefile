@@ -12,3 +12,6 @@ $(project).pdf : song.tex lyrics.tex body.tex grille.tex body.tex solo_png.ly so
 
 pdf : $(project).pdf
 
+clean :
+	rm -rf build
+	rm -rf *.pdf
