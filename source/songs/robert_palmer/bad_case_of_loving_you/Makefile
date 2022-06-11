@@ -9,3 +9,6 @@ $(project).pdf : song.tex lyrics.tex grille.tex body.tex
 
 pdf : $(project).pdf
 
+clean :
+	rm -rf build
+	rm -rf *.pdf

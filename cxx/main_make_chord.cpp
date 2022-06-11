@@ -83,8 +83,8 @@ int main(int argc, char **argv) {
         write2( "HRest", 's', "lolosharp");
         write2( "QHRest", 't', "lolosharp");
 
-        fontsize=12 ;
-        fontinterline=12 ;
+        fontsize=20 ;
+        fontinterline=24 ;
         write2("RepeatDeux", '2', "lolo");
         write2("RepeatTrois", '3', "lolo");
         if (! fout.good() ) {

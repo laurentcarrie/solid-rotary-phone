@@ -1,41 +1,42 @@
 %\beforegrille
 
 
-\begin{tabular}{rC|C|C|CC}
+\begin{tabular}{rC|C|C|Cl}
 
     \loloinitcounter{1}
 
-    & \multicolumn{4}{c}{  \couplet{intro}} \\
-    %\rowcolora
-    \loloshowcounter{8} & \chordEm     & \chordCseptM   \chordAm & \chordEm & \chordCseptM   \chordAm & \cellcolor{white} \chordRepeatDeux \\
+    \lolomakerowdnc{\couplet{intro}} \\
+    \loloshowcounter{8}  & \chordEm     & \chordCseptM   \chordAm & \chordEm & \chordCseptM   \chordAm & \cellcolor{white} \chordRepeatDeux \\
 
-    & \multicolumn{4}{c}{  \couplet{couplet 1}} \\
-    %\rowcolora
-    \loloshowcounter{4} & \chordEm     & \chordCseptM   \chordAm & \chordEm & \chordCseptM   \chordAm & \cellcolor{white}\chordRepeatDeux  \\
-    %\rowcolorb
-    \loloshowcounter{4} & \chordEm     & \chordCseptM   \chordAm & \chordEm & \chordCseptM   \chordAm & \cellcolor{white} \chordRepeatDeux \\
+    \lolomakerowanc{\couplet{couplet 1}} \\
+    \loloshowcounter{8}  & \chordEm     & \chordCseptM   \chordAm & \chordEm & \chordCseptM   \chordAm & \cellcolor{white}\chordRepeatDeux  \\
 
-    & \multicolumn{4}{c}{  \prerefrain{pré refrain 1}} \\
-    %\rowcolora
-    \loloshowcounter{8} & \chordCseptM & \chordA              & \chordC  & \chordA              & \cellcolor{white} \chordRepeatDeux \\
+    \lolomakerowbnc{  \prerefrain{pré refrain 1}} \\
+    \loloshowcounter{16} & \chordCseptM & \chordA              & \chordC  & \chordA              & \cellcolor{white} \chordRepeatDeux \\
 
-    \loloshowarrowcounter{16} & \multicolumn{4}{c}{  \refrain{refrain 1}} \\
+    \lolomakerowcnc{  \refrain{refrain 1}} \\
+    \loloshowcounter{8}  & \chordEm     & \chordCseptM   \chordAm & \chordEm & \chordCseptM   \chordAm & \cellcolor{white}\chordRepeatDeux  \\
 
-    \loloshowarrowcounter{16} & \multicolumn{4}{c}{  \couplet{couplet 2 (cool)}{}} \\
+    \lolomakerowa{16}{  \couplet{couplet 2 (cool)}{}} \\
 
-    \loloshowarrowcounter{8} & \multicolumn{4}{c}{  \prerefrain{pré-refrain 2}} \\
-    \loloshowarrowcounter{16} & \multicolumn{4}{c}{  \refrain{refrain 2}} \\
-    \loloshowarrowcounter{16} & \multicolumn{4}{c}{  \couplet{solo (idem couplet)}} \\
-     & \multicolumn{4}{c}{  \couplet{pont} } \\
-    %\rowcolora
-    \loloshowcounter{8} & \chordCseptM & \chordA              & \chordC  & \chordA              & \cellcolor{white} \chordRepeatDeux \\
-    \loloshowcounter{1}& \chordA \\
-    \loloshowarrowcounter{16}& \multicolumn{4}{c}{  \refrain{refrain 3}} \\
-    \loloshowarrowcounter{16}& \multicolumn{4}{c}{  \refrain{refrain la-la-la}} \\
-    \loloshowarrowcounter{16}& \multicolumn{4}{c}{  \couplet{final}} \\
+    \lolomakerowb{8}{  \prerefrain{pré-refrain 2}} \\
+    \lolomakerowc{16}{  \refrain{refrain 2}} \\
 
-    \loloshowarrowcounter{2}& \chordCseptM & \chordA \\
+    \lolomakerowd{16}{  \pont{solo (idem couplet)}} \\
+
+
+    \lolomakerowdnc{  \pont{pont} } \\
+    \loloshowcounter{8}  & \chordCseptM & \chordA              & \chordC  & \chordA              & \cellcolor{white} \chordRepeatDeux \\
+    \loloshowcounter{1} & \chordA \\
+
+
+    \lolomakerowc{16}{  \refrain{refrain 3}} \\
+    \lolomakerowc{16}{  \refrain{refrain la-la-la}} \\
+
+    \lolomakerowdnc{  \pont{final}} \\
+    \loloshowarrowcounter{2} & \chordCseptM & \chordA \\
 
 
 \end{tabular}
 
+\loloprintbpm{3}{50}{\arabic{bar}}

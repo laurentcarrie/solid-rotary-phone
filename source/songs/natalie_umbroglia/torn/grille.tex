@@ -1,41 +1,43 @@
 \loloinitcounter{1}
 
 \begin{tabular}{rC|C|C|Cl}
-    & \multicolumn{4}{c}{\couplet{intro}} \\
+    \lolomakerowdnc{\pont{intro}} \\
     \loloshowcounter{4} &  \chordE  & \chordE  & \chordE  & \chordE \\
 
-    & \multicolumn{4}{c}{\couplet{couplet 1}} \\
+    \lolomakerowanc{\couplet{couplet 1}} \\
     \loloshowcounter{4} & \chordE  & \chordE  & \chordGsm & \chordGsm \\
     \loloshowcounter{2} & \chordAsept & \chordAsept \\
 
-    \loloshowarrowcounter{6} & \multicolumn{4}{c}{\couplet{couplet 2}{}} \\
+    \lolomakerowa{6}{\couplet{couplet 2}{}} \\
 
-    & \multicolumn{4}{c}{\prerefrain{pré refrain 1}} \\
+    \lolomakerowbnc{\prerefrain{pré refrain 1}} \\
     \loloshowcounter{4} & \chordCsm & \chordB  & \chordGsm & \chordB  \\
 
-    & \multicolumn{4}{c}{\refrain{refrain 1}} \\
-    \loloshowcounter{4} & \chordE  & \chordB  & \chordCsm & \chordA & \chordRepeatTrois \\
+    \lolomakerowcnc{\refrain{refrain 1}} \\
+    \loloshowcounter{12} & \chordE  & \chordB  & \chordCsm & \chordA & \chordRepeatTrois \\
 
-    \loloshowarrowcounter{6} & \multicolumn{4}{c}{\couplet{couplet 2}} \\
+    \lolomakerowa{6}{\couplet{couplet 2}} \\
 
-    \loloshowarrowcounter{4} & \multicolumn{4}{c}{\prerefrain{pré-refrain 2}} \\
+    \lolomakerowb{4}{\prerefrain{pré-refrain 2}} \\
 
-    \loloshowarrowcounter{12} & \multicolumn{4}{c}{\refrain{refrain 2}} \\
+    \lolomakerowc{12}{\refrain{refrain 2}} \\
 
 
-    & \multicolumn{4}{c}{\couplet{pont}} \\
+    \lolomakerowdnc{\pont{pont 1}} \\
     \loloshowcounter{2} & \chordCsm & \chordB \\
     \loloshowcounter{4} & \chordCsm & \chordCsm & \chordE  & \chordB    \\
 
-    \loloshowarrowcounter{4} & \multicolumn{4}{c}{\prerefrain{pré-refrain 3} }\\
+    \lolomakerowb{4}{\prerefrain{pré-refrain 3}} \\
 
-    \loloshowarrowcounter{16} & \multicolumn{4}{c}{\refrain{refrain 3} (4 lignes !)} \\
+    \lolomakerowc{16}{\refrain{refrain 3}{(4 lignes !)}} \\
 
 
-    & \multicolumn{4}{c}{\couplet{pont}} \\
+    \lolomakerowdnc{\pont{pont}} \\
     \loloshowcounter{3} & \chordCsm & \chordB & \chordB \\
 
-    \loloshowarrowcounter{12} & \multicolumn{4}{c}{\couplet{couplet sans chant}}
+    \lolomakerowa{12}{\couplet{couplet sans chant}}
 
 
 \end{tabular}
+
+\loloprintbpm{3}{55}{\arabic{bar}}
