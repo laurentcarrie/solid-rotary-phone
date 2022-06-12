@@ -11,6 +11,7 @@ pdf : $(project).pdf
 clean :
 	rm -rf build
 	rm -rf *.pdf
+	rm -rf *.midi *.wav
 
 all : pdf intro.wav
 
