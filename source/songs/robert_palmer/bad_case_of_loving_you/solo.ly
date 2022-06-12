@@ -164,6 +164,6 @@ song_chords = \chordmode {
 e1 | e1 | e1 | e1 |
 e1 | e1 | e1 | e1 |
 a1 | a1 | b1 | b1 |
-a1 | a1 |
+a1 | a1 | e1 |
 }
 
