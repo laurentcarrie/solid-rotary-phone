@@ -16,14 +16,14 @@ buildbook=$(CURDIR)/../../cxx/solid_rotary_phone_make_book
 
 
 
-delivery : sunny-bd.pdf walk-the-line.pdf
+delivery : sunny-bd.pdf move-the-line.pdf
 	mkdir -p ../../delivery/books ; \
    for name in *.pdf ; do \
         cp $${name} ../../delivery/books/. ; \
     done
 
 
-walk-the-line : walk-the-line.pdf
+move-the-line : move-the-line.pdf
 
 sunny-bd : sunny-bd.pdf
 
