@@ -5,7 +5,7 @@ project=luke-la-sentinelle
 
 include $(CURDIR)/../../../macros/Makefile
 
-$(project).pdf : song.tex lyrics.tex body.tex grille.tex couplet1.ly
+$(project).pdf : song.tex lyrics.tex body.tex grille1.tex grille2.tex couplet1.ly
 	bash $(buildtex) $@ $^
 
 pdf : $(project).pdf

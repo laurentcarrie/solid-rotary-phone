@@ -8,7 +8,7 @@ include $(CURDIR)/../../../macros/Makefile
 $(project).pdf : song.tex lyrics.tex body.tex grille.tex intro.ly intro_layout.ly
 	bash $(buildtex) $@ $^
 
-pdf : $(project).pdf intro.midi
+pdf : $(project).pdf
 
 intro.midi : intro_midi.ly intro.ly
 	lilypond -dmidi-extension=midi --output intro intro_midi.ly
